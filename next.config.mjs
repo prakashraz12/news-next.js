@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    domains: ["nepalkhabar.prixacdn.net", "www.onlinekhabar.com"],
+  },
+};
 
 export default nextConfig;

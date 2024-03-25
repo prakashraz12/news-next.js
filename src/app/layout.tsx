@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Mukta } from "next/font/google";
 import "./globals.css";
+import { LogoBarCompoent } from "@/components/logobar.compoent";
+import { NavabrCompoent } from "@/components/navbar.compoent";
+import { AdsViewComponent } from "@/components/ads-view.component";
 
-const inter = Inter({ subsets: ["latin"] });
+const mukta = Mukta({ subsets: ['devanagari'], weight:"400" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,9 +17,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={mukta.className}>
+        <LogoBarCompoent/>
+        <NavabrCompoent />
+        <AdsViewComponent/>
+        {children}
+        </body>
     </html>
   );
 }
