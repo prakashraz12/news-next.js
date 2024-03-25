@@ -9,10 +9,10 @@ interface AuthorInterFace {
 }
 
 interface HighlightedNewsProps {
-  title: String;
-  content: String;
+  title?: String;
+  content?: String;
   bannerImage?: String;
-  author: AuthorInterFace;
+  author?: AuthorInterFace;
 }
 export const HighlightedTopNews = ({
   title,
