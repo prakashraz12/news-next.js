@@ -34,19 +34,24 @@ export default function Home() {
       <hr className="mb-5 mt-5" />
       <TrendingNews />
       <p className="text-sm text-center">Advertisement</p>
-      <AdsViewComponent/>
+      <AdsViewComponent />
       <hr className="mb-5 mt-5" />
-      <CoverStoryComponent/>
-      <hr className="mb-5 mt-5"/>
+      <CoverStoryComponent />
+      <hr className="mb-5 mt-5" />
       <p className="text-sm text-center">Advertisement</p>
-      <HorizontalAdsCompoent/>
-      <hr className="mt-5 mb-5"/>
-      <PhotoGalleryComponet/>
-      <hr className="mt-5 mb-5"/>
-      <ProvinceNewsComponent/>
-      <hr className="mt-5"/>
+      <HorizontalAdsCompoent />
+      <hr className="mt-5 mb-5" />
+      <PhotoGalleryComponet />
+      <hr className="mt-5 mb-5" />
+      <ProvinceNewsComponent />
+      <hr className="mt-5" />
       <p className="text-sm text-center">Advertisement</p>
-      <HorizontalAdsCompoent/>
+      <HorizontalAdsCompoent />
+      <hr className="mt-5" />
+      <NarratorNewsCompoent />
+      <hr className="mt-5" />
+      <AdsViewComponent />
+      <NewsModalComponent newsHeadLine={"विचार"} />
     </main>
   );
 }

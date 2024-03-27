@@ -1,11 +1,14 @@
-import type { Metadata } from "next";
 import { Mukta } from "next/font/google";
 import "./globals.css";
 import { LogoBarCompoent } from "@/components/logobar.compoent";
 import { NavabrCompoent } from "@/components/navbar.compoent";
 import { AdsViewComponent } from "@/components/ads-view.component";
+import { FooterCompoent } from "@/components/footer.component";
+import { Metadata } from "next";
+import { ScrollButton } from "@/components/scroll-up.compoent";
 
-const mukta = Mukta({ subsets: ['devanagari'], weight:"400" });
+const mukta = Mukta({ subsets: ["devanagari"], weight: "400" });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,15 +20,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   return (
     <html lang="en">
       <body className={mukta.className}>
-        <LogoBarCompoent/>
-        <NavabrCompoent />
-        <AdsViewComponent/>
-        {children}
-        </body>
+        <div className="relative">
+          <LogoBarCompoent />
+          <NavabrCompoent />
+          <AdsViewComponent />
+          {children}
+          <FooterCompoent />
+          <ScrollButton />
+        </div>
+      </body>
     </html>
   );
 }

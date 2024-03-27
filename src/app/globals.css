@@ -74,3 +74,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+.title-cat-menu {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin: 10px 0px 0px;
+  flex: 0 0 100%;
+  order: 3;
+  gap: 7px;
+  overflow-y: hidden;
+}

@@ -4,13 +4,14 @@ import { Card, CardContent } from "./ui/card";
 export const VarticalNewsCardCompoent = () => {
   return (
     <Card className="cursor-pointer mt-3">
-      <div className="overflow-hidden">
+      <div className="overflow-hidden relative">
       <img
         src="https://www.onlinekhabar.com/wp-content/uploads/2024/03/Chhimkeswori-photo-1024x1010.jpg"
         loading="lazy"
         alt="news-image"
         className="w-full h-[200px] object-cover hover:scale-150 ease-in duration-500"
       />
+      <p className="bg-sky-800 w-auto absolute bottom-2 p-1.5 text-md font-medium text-white">{"कोशी प्रदेश"}</p>
       </div>
       <CardContent className="mt-2">
         <p className="text-2xl md:font-bold font-medium hover:text-sky-800">

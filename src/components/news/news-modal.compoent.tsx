@@ -15,12 +15,12 @@ export const NewsModalComponent = ({
         <h1 className="text-5xl font-bold text-sky-800">{newsHeadLine}</h1>
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-12 gap-4 p-3">
-        <div className="relative">
+        <div className="relative overflow-hidden">
           <img
             src="https://www.onlinekhabar.com/wp-content/uploads/2024/03/Holi-Celebrating-@Basantapur-4.jpg"
             alt="news-image"
             loading="lazy"
-            className="w-full rounded object-cover min-h-96 h-full transition-transform transform hover:scale-105  ease-in cursor-pointer"
+            className="w-full rounded object-cover min-h-96 h-full transition-transform transform duration-500 hover:scale-105  ease-in cursor-pointer"
           />
 
           <p className="text-xl font-bold absolute bottom-7 text-white left-3 shadow-md	backdrop-opacity-10 backdrop-invert bg-black/30">
@@ -32,9 +32,9 @@ export const NewsModalComponent = ({
           <HorizontalNewsCard />
           <HorizontalNewsCard />
           <HorizontalNewsCard />
-          <Button className="bg-sky-800 text-xl">थप समाचार</Button>
+          <Button className="bg-sky-800 text-xl ">थप समाचार</Button>
         </div>
-        <div className="flex flex-col hidden md:block">
+        <div className=" flex-col hidden md:flex w-full">
           <SideBarAdsCompoent />
           <SideBarAdsCompoent />
         </div>

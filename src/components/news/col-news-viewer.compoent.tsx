@@ -11,14 +11,14 @@ export const ColNewsViewsCompoent = () => {
       </div>
       <div className="w-full">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4  bg-sky-800">
-          <div className="md:col-span-6">
+          <div className="md:col-span-6 overflow-hidden">
             <img
               src="https://www.onlinekhabar.com/wp-content/uploads/2023/01/nagdhunga-tunnel-surung-2-1024x768.jpg"
               alt="news-image"
-              className="w-full h-[500px] object-cover"
+              className="w-full h-[500px] object-cover hover:scale-105 duration-500 ease-in-out"
             />
           </div>
-          <div className="md:col-span-6 flex items-center justify-around flex-col p-10 ">
+          <div className="md:col-span-6 flex items-center justify-around flex-col p-10  cursor-pointer">
             <h1 className="text-3xl font-bold text-white">
               स्थानीय अवरोधले नागढुंगा सुरुङ ‘ब्रेक थ्रु’ ढिला जापानी दूतावासका मिसन उपप्रमुखद्वारा केएनपी फ्याक्ट्रीको अवलोकन
             </h1>
@@ -47,7 +47,7 @@ export const ColNewsViewsCompoent = () => {
             <HorizontalNewsCard />
           </div>
         </div>
-        <div className=" flex-col w-1/10 hidden md:flex">
+        <div className=" flex-col w-full hidden md:flex">
           <SideBarAdsCompoent />
           <SideBarAdsCompoent />
           <SideBarAdsCompoent />

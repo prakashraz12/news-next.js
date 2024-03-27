@@ -16,13 +16,7 @@ const subMenus = [
     label: "रोजगार",
   },
   {
-    label: "बैँक / वित्त",
-  },
-  {
-    label: "अटो",
-  },
-  {
-    label: "कर्पोरेट",
+    label: "बैँक वित्त",
   },
 ];
 export const NarratorNewsCompoent = () => {
@@ -34,7 +28,7 @@ export const NarratorNewsCompoent = () => {
           <ul className="gap-10 hidden md:flex">
             {subMenus?.map((menu, index) => (
               <li
-                className="text-md font-bold text-slate-500 cursor-pointer hover:text-sky-800"
+                className="text-md  font-bold text-slate-500 cursor-pointer hover:text-sky-800"
                 key={index}
               >
                 {menu?.label}
@@ -46,13 +40,24 @@ export const NarratorNewsCompoent = () => {
           <ChevronRight />
         </div>
       </div>
+      <div className="md:hidden">
+        <ul className="title-cat-menu">
+          {subMenus?.map((menu, index) => (
+            <li  key={index}>
+              <a href="">{menu.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className="w-full mt-8 relative cursor-pointer">
-        <img
-          src="https://www.onlinekhabar.com/wp-content/uploads/2024/03/nepalgunj-motorpark_motorbot.jpg"
-          alt="news-image"
-          loading="lazy"
-          className="w-full h-[400px] object-cover rounded"
-        />
+        <div className="overflow-hidden">
+          <img
+            src="https://www.onlinekhabar.com/wp-content/uploads/2024/03/nepalgunj-motorpark_motorbot.jpg"
+            alt="news-image"
+            loading="lazy"
+            className="w-full h-[400px] object-cover rounded hover:scale-105 duration-300 ease-out"
+          />
+        </div>
         <h1 className="text-5xl font-bold absolute bottom-0 left-0 w-full text-white text-center bg-sky-800 bg-opacity-40 p-4">
           बसन्तपुरको होली उत्सव (तस्वीरहरु)
         </h1>
@@ -72,7 +77,7 @@ export const NarratorNewsCompoent = () => {
             <HorizontalNewsCard />
           </div>
         </div>
-        <div className=" flex-col w-1/10 hidden md:flex">
+        <div className=" flex-col w-full hidden md:flex">
           <SideBarAdsCompoent />
           <SideBarAdsCompoent />
           <SideBarAdsCompoent />
