@@ -4,8 +4,8 @@ import React from 'react'
 export const TimeCountComponent = () => {
   return (
       <div className='flex gap-2 items-center'>
-          <Clock />
-          <p className='font-bold text-lg'> ३ घन्टा अगाडि</p>
+          <Clock fontSize={"10px"} />
+          <p className='font-bold md:text-xl text-sm'> ३ घन्टा अगाडि</p>
     </div>
   )
 }

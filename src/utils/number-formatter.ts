@@ -8,6 +8,5 @@ export const NumsFormatter = (num: number) => {
     const degit = numStr[i];
     nepaliNum += numsObject[degit] || degit;
   }
-
   return nepaliNum;
 };

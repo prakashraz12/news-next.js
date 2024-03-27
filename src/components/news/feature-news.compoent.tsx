@@ -11,7 +11,7 @@ import { Card, CardContent } from "../ui/card";
 export const FeatureNewsCompoent = () => {
   return (
     <div className="w-full bg-sky-950 pl-[60px] pr-[60px] pt-[20px]  pb-[55px]">
-      <h1 className="text-5xl text-white font-bold mb-10 mt-10">फिचर</h1>
+      <h1 className="text-3xl  md:text-5xl text-white font-bold mb-10 mt-10">फिचर</h1>
 
       <Carousel
         opts={{
@@ -38,7 +38,7 @@ export const FeatureNewsCompoent = () => {
                       className="text-2xl font-semibold absolute bottom-0 left-0 p-2 w-full text-white rounded"
                       style={{
                         backgroundImage:
-                          "linear-gradient(to top, rgba(0.99,0.2,0.3,0.8), transparent)",
+                          "linear-gradient(0deg, rgba(5,5,6,0.9528186274509804) 0%, rgba(94,84,84,0.5326505602240896) 32%, rgba(23,28,29,0.3337710084033614) 84%)",
                       }}
                     >
                       स्थानीय अवरोधले नागढुंगा सुरुङ ‘ब्रेक थ्रु’ ढिला

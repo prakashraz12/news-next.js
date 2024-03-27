@@ -7,6 +7,7 @@ export const HorizontalNewsCard = () => {
       <img
         src="https://www.onlinekhabar.com/wp-content/uploads/2022/04/Prithvi-subba-gurung-and-khagaraj-gurung.jpg"
         alt="news-images"
+        loading="lazy"
         className="w-[200px] h-[100px] object-cover rounded"
       />
       <div className="flex flex-col gap-3 w-full">

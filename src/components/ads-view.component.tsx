@@ -6,7 +6,7 @@ interface AdsViewProps {
 }
 export const AdsViewComponent = () => {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center cursor-pointer">
       <Image
         width={0}
         height={0}
@@ -14,7 +14,7 @@ export const AdsViewComponent = () => {
           "https://www.onlinekhabar.com/wp-content/uploads/2023/11/FTTH__900-x-100.gif"
         }
         alt="ads-image"
-        className="sm:w-full md:w-[900px] h-fit sm:p-1 md:p-4 object-contain"
+        className="w-full h-fit sm:p-1 md:p-4 object-contain"
       />
     </div>
   );

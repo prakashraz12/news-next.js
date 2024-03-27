@@ -22,8 +22,8 @@ export const HighlightedTopNews = ({
 }: HighlightedNewsProps) => {
   return (
     <React.Fragment>
-      <div className="p-7 flex flex-col gap-10">
-        <h1 className="font-bold md:text-7xl sm:text-5xl text-center hover:text-sky-700 cursor-pointer">
+      <div className="md:p-7 p-3 flex flex-col md:gap-10 gap-3">
+        <h1 className="font-bold md:text-7xl text-2xl text-center hover:text-sky-700 cursor-pointer ease-linear duration-200">
           बिजुलीको तार चुँडिएर करेन्ट लाग्दा एकै घरमा ३ जनाको मृत्यु
         </h1>
         <div className="flex items-center gap-3 justify-center">
@@ -38,7 +38,7 @@ export const HighlightedTopNews = ({
           alt="news-banner-image"
           className="w-screen h-fit rounded"
         />
-        <hr />
+        <hr  />
       </div>
     </React.Fragment>
   );

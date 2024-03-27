@@ -7,7 +7,7 @@ export const ColNewsViewsCompoent = () => {
   return (
     <div className="w-full p-3">
       <div className="flex mb-10">
-        <h1 className="text-5xl font-bold text-sky-800">मनोरन्जन</h1>
+        <h1 className="text-3xl  md:text-5xl font-bold text-sky-800">मनोरन्जन</h1>
       </div>
       <div className="w-full">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4  bg-sky-800">

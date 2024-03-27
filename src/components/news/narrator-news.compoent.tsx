@@ -29,7 +29,7 @@ export const NarratorNewsCompoent = () => {
   return (
     <div className="w-full mt-10 p-3">
       <div className="flex justify-between items-center">
-        <h1 className="text-5xl font-bold text-sky-800">बिजनेस</h1>
+        <h1 className="text-3xl  md:text-5xl font-bold text-sky-800">बिजनेस</h1>
         <div>
           <ul className="gap-10 hidden md:flex">
             {subMenus?.map((menu, index) => (
@@ -50,6 +50,7 @@ export const NarratorNewsCompoent = () => {
         <img
           src="https://www.onlinekhabar.com/wp-content/uploads/2024/03/nepalgunj-motorpark_motorbot.jpg"
           alt="news-image"
+          loading="lazy"
           className="w-full h-[400px] object-cover rounded"
         />
         <h1 className="text-5xl font-bold absolute bottom-0 left-0 w-full text-white text-center bg-sky-800 bg-opacity-40 p-4">
