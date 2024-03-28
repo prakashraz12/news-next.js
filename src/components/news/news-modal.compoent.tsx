@@ -6,6 +6,7 @@ interface NewsModalComponentProps {
   newsHeadLine: String;
   news?: [];
 }
+
 export const NewsModalComponent = ({
   newsHeadLine,
 }: NewsModalComponentProps) => {

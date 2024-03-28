@@ -15,7 +15,7 @@ export const NavabrCompoent = () => {
   return (
     <React.Fragment>
       {isClient && (
-        <div className="w-full shadow-md sticky top-0 bg-white z-10">
+        <div className="w-full shadow-md sticky top-0 bg-white z-20">
           <nav className="md:container md:mx-auto p-5 flex justify-between items-center">
             <div className="md:block hidden">
               <MenuComponet menuList={menuList} />

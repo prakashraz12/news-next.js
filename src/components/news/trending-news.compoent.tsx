@@ -28,7 +28,7 @@ const trending = [
 export const TrendingNews = () => {
   return (
     <div className="w-full p-3">
-      <h1 className="text-5xl font-bold text-sky-800">ट्रेन्डिङ</h1>
+      <h1 className="text-3xl md:text-5xl font-bold text-sky-800">ट्रेन्डिङ</h1>
       <div className="grid grid-cols-12 gap-4 mt-5">
         {trending?.map((item, index) => (
           <div className="col-span-12 md:col-span-6" key={index}>

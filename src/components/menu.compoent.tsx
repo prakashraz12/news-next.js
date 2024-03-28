@@ -66,7 +66,7 @@ export function MenuComponet({ menuList }: MenuProps) {
       <NavigationMenuList>
         {menuList?.slice(0, menuList.length - 1).map((menuItem, index) => (
           <NavigationMenuItem key={index}>
-            <Link href="/docs" legacyBehavior passHref>
+            <Link href={`${menuItem.link}`} legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 {menuItem?.label}
               </NavigationMenuLink>

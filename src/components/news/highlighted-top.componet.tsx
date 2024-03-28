@@ -1,6 +1,7 @@
 import React from "react";
 import { ReporterAvatarCompoent } from "../reporter-avatar.compoent";
 import { TimeCountComponent } from "../time-count.compoent";
+import Link from "next/link";
 interface AuthorInterFace {
   firstName: String;
   middleName?: String;
@@ -23,9 +24,11 @@ export const HighlightedTopNews = ({
   return (
     <React.Fragment>
       <div className="md:p-7 p-3 flex flex-col md:gap-10 gap-3">
-        <h1 className="font-bold md:text-7xl text-2xl text-center hover:text-sky-700 cursor-pointer ease-linear duration-200">
+       <Link href={`/123`}>
+       <h1 className="font-bold md:text-7xl text-2xl text-center hover:text-sky-700 cursor-pointer ease-linear duration-200">
           बिजुलीको तार चुँडिएर करेन्ट लाग्दा एकै घरमा ३ जनाको मृत्यु
         </h1>
+       </Link>
         <div className="flex items-center gap-3 justify-center">
           <ReporterAvatarCompoent firstName={"टोपराज"} lastName={"शर्मा"} />
           <TimeCountComponent />

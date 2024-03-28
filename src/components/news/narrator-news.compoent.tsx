@@ -16,7 +16,7 @@ const subMenus = [
     label: "रोजगार",
   },
   {
-    label: "बैँक वित्त",
+    label: "बैँक/ वित्त",
   },
 ];
 export const NarratorNewsCompoent = () => {
@@ -43,8 +43,8 @@ export const NarratorNewsCompoent = () => {
       <div className="md:hidden">
         <ul className="title-cat-menu">
           {subMenus?.map((menu, index) => (
-            <li  key={index}>
-              <a href="">{menu.label}</a>
+            <li key={index} className="font-bold">
+              <a href="">{menu.label}</a> |
             </li>
           ))}
         </ul>

@@ -6,7 +6,7 @@ import { CircleUserIcon } from "lucide-react";
 import { Button } from "./ui/button";
 
 interface UserLogoComponentProps {
-  naviagtionLink: string;
+  naviagtionLink?: string;
   imageUrl?: string;
 }
 export const UserLogoComponent = ({
