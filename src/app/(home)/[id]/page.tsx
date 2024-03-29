@@ -1,24 +1,28 @@
 "use client";
 
 import { AdsViewComponent } from "@/components/ads-view.component";
+import { HorizontalAdsCompoent } from "@/components/horizontal-ads-compoent";
+import { FeelingAfterReadNewsCompoent } from "@/components/news/feeling-after-read-news.compoent";
+import { HorizontalNewsCard } from "@/components/news/horizontal-news-card.compoent";
 import { SideBarAdsCompoent } from "@/components/news/side-bar-ads.compoent";
+import { TrendingNews } from "@/components/news/trending-news.compoent";
 import { ReporterAvatarCompoent } from "@/components/reporter-avatar.compoent";
 import { TimeCountComponent } from "@/components/time-count.compoent";
 import {
   Facebook,
   MessageCircleDashedIcon,
   MessageCircleMore,
+  MessageSquareIcon,
   Twitter,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 const DetailsPage = () => {
-  const [isHeadingSticky, setIsHeadingSticky] = useState(false);
+  const [isHeadingSticky, setIsHeadingSticky] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll: () => void = () => {
       const scrollPosition = window.scrollY;
-      console.log(scrollPosition);
       setIsHeadingSticky(scrollPosition > 80);
     };
 
@@ -29,16 +33,16 @@ const DetailsPage = () => {
   }, []);
 
   return (
-    <div className="w-full p-8 bg-white">
-      <div className={`sticky top-[80px] z-10  bg-white p-2 `}>
-        <div className="flex justify-between  p-2">
+    <div className="w-full p-3 md:p-8 bg-white">
+      <div className={`sticky top-[80px] z-10  bg-white p-0`}>
+        <div className="flex justify-between  p-0">
           <h1
-            className={`text-5xl font-bold mt-2 mb-3 ease-in duration-500 ${isHeadingSticky ? "text-xl" : "text-7xl"}`}
+            className={`text-5xl md:block hidden font-bold mt-2 mb-3 ease-in duration-500 ${isHeadingSticky ? "text-xl" : "text-7xl"}`}
           >
             तम्घास बजारमा प्रदूषित धुवाँको मुस्लो
           </h1>
           {isHeadingSticky && (
-            <div className="flex items-center gap-3 justify-center ease-in duration-700">
+            <div className="md:flex hidden items-center gap-3 justify-center ease-in duration-700">
               <ReporterAvatarCompoent firstName={"टोपराज"} lastName={"शर्मा"} />
               <TimeCountComponent />
             </div>
@@ -46,8 +50,8 @@ const DetailsPage = () => {
         </div>
         <hr />
       </div>
-      <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-1">
+      <div className="grid grid-cols-12 gap-10">
+        <div className="col-span-1 hidden md:block">
           <div
             className={`sticky top-[155px]  bg-white p-2  z-0 ease-out duration-500`}
           >
@@ -75,20 +79,54 @@ const DetailsPage = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-9">
-         {
-          !isHeadingSticky &&  <div className="flex items-center gap-3 justify-center mt-4 mb-4 duration-500 ease-in transition-all">
-          <ReporterAvatarCompoent firstName={"टोपराज"} lastName={"शर्मा"} />
-          <TimeCountComponent />
-        </div>
-         }
+        <div className="md:col-span-7 col-span-10">
+          {!isHeadingSticky && (
+            <div className="md:flex hidden items-center gap-3 justify-center mt-4 mb-4 duration-500 ease-in transition-all">
+              <ReporterAvatarCompoent firstName={"टोपराज"} lastName={"शर्मा"} />
+              <TimeCountComponent />
+            </div>
+          )}
+          <div>
+            <h1 className={`text-2xl font-bold mt-2 mb-3`}>
+              तम्घास बजारमा प्रदूषित धुवाँको मुस्लो
+            </h1>
+            <hr className="mt-2 mb-2"></hr>
+            <div className="flex justify-between items-center">
+              <ReporterAvatarCompoent firstName={"टोपराज"} lastName={"शर्मा"} />
+              <TimeCountComponent />
+            </div>
+            <br />
+            <AdsViewComponent />
+            <br />
+            <div className="flex justify-between items-center mt-4">
+              <div className="text-sky-900 flex items-center gap-3">
+                <MessageCircleDashedIcon size={"40px"} />
+                <p className="text-xl font-bold">1.2k</p>
+              </div>
+              <div>
+                <ul className="text-white flex gap-2">
+                  <li className="w-[40px] h-[40px] bg-sky-900 flex justify-center items-center rounded-full">
+                    <Facebook color="#fff" />
+                  </li>
+                  <li className="w-[40px] h-[40px] bg-sky-900 flex justify-center items-center rounded-full">
+                    <Twitter />
+                  </li>
+                  <li className="w-[40px] h-[40px] bg-sky-900 flex justify-center items-center rounded-full">
+                    <MessageCircleMore />
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr className="mt-2 mb-2"></hr>
+          </div>
           <img
             src="https://www.onlinekhabar.com/wp-content/uploads/2024/03/chhaldi-thadhungha-sadak-pcc-4-1024x578.jpg"
             alt="news-banner-image"
-            className="aspect-video rounded-sm"
+            className="w-full aspect-auto object-cover rounded-sm"
           />
+
           <AdsViewComponent />
-          <p className="text-start text-xl mt-5">
+          <p className="text-xl  mt-5 md:max-w-none md:text-lg">
             फोहोर व्यवस्थापनका लागि उपयुक्त ठाउँ नहुँदा त्यस वरपरमा बस्तीका
             नागरिकले वषौंदेखि प्रदूषित धुवाँको सास्ती भोगिरहेका छन् । फोहोर
             फाल्ने ठाउँबाट निस्केको धुवाँले तम्घासको उदिनढुंगा बागमारे, धागिथुम
@@ -136,8 +174,13 @@ const DetailsPage = () => {
             उदिनढुंगा बागमारे, धागिथुम र वेदुखर्क भूजेल खर्क क्षेत्रका नागरिकहरु
             वषौंदेखि सास्ती भोगिरहेका छन् ।
           </p>
+          <hr />
+          <p className="md:block hidden text-sm text-center">Advertisment</p>
+          <HorizontalAdsCompoent />
+          <hr className="mt-3 mb-3" />
+          <FeelingAfterReadNewsCompoent />
         </div>
-        <div className="col-span-2 w-full mt-7">
+        <div className="md:col-span-4 w-full mt-7  flex flex-col justify-start col-span-10 ">
           <hr className="mt-2 mb-2" />
           <p className="text-sm text-center">Advertisment</p>
           <SideBarAdsCompoent />
@@ -148,6 +191,22 @@ const DetailsPage = () => {
           <SideBarAdsCompoent />
           <SideBarAdsCompoent />
           <SideBarAdsCompoent />
+          <hr className="mt-2 mb-2" />
+          <p className="text-4xl font-bold text-sky-800">सिफारिस</p>
+          <hr className="mt-2 mb-2" />
+          <div className="flex flex-col">
+            <HorizontalNewsCard />
+            <hr className="mt-2 mb-2" />
+            <HorizontalNewsCard />
+            <hr className="mt-2 mb-2" />
+            <HorizontalNewsCard />
+            <hr className="mt-2 mb-2" />
+          </div>
+          <p className="text-sm text-center">Advertisment</p>
+          <SideBarAdsCompoent />
+          <SideBarAdsCompoent />
+          <hr className="mt-2 mb-2" />
+          <TrendingNews colSpan={10} />
         </div>
       </div>
     </div>
