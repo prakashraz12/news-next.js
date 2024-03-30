@@ -11,7 +11,9 @@ import { Card, CardContent } from "../ui/card";
 export const FeatureNewsCompoent = () => {
   return (
     <div className="w-full bg-sky-950 pl-[60px] pr-[60px] pt-[20px]  pb-[55px]">
-      <h1 className="text-3xl  md:text-5xl text-white font-bold mb-10 mt-10">फिचर</h1>
+      <h1 className="text-3xl  md:text-5xl text-white font-bold mb-10 mt-10">
+        फिचर
+      </h1>
 
       <Carousel
         opts={{

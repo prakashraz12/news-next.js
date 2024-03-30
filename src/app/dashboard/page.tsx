@@ -1,12 +1,17 @@
 // pages/dashboard.tsx
 
-import React from 'react';
+import { AdminProfile } from "@/components/dashboard/admin-profile.compoent";
+import { Card, CardTitle } from "@/components/ui/card";
+import React from "react";
 
 const DashboardPage: React.FC = () => {
   return (
-    <div>
-      <h1>Dashboard</h1>
-      {/* Add your dashboard content here */}
+    <div className="grid grid-flow-col-3">
+      <div>
+        <Card className="">
+          <CardTitle>Daily Visitors</CardTitle>
+        </Card>
+      </div>
     </div>
   );
 };

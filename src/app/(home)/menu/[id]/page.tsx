@@ -1,8 +1,11 @@
 import React from 'react'
+import { LayoutOne } from '../_compoenents/layoutOne'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+     <LayoutOne/>
+    </div>
   )
 }
 
