@@ -7,7 +7,7 @@ import {
   SquareMenu,
   User,
 } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 const dashboardSidebar = [
   {
@@ -19,7 +19,7 @@ const dashboardSidebar = [
     icon: <Newspaper />,
   },
   {
-    name: "Province News",
+    name: "Province",
     icon: <Rss />,
   },
   {
@@ -35,14 +35,24 @@ const dashboardSidebar = [
     icon: <SquareMenu />,
   },
 ];
-export const DashbordSidebar = () => {
+
+interface NavDashboardProps {
+  isMenuOpen: boolean;
+}
+
+export const DashbordSidebar = ({ isMenuOpen }: NavDashboardProps) => {
   return (
-    <div className="w-[250px] h-screen p-3 border-r">
-      <ul>
+    <div
+      className={`w-[${isMenuOpen ? "260px" : "70px"}] h-full p-3 border-r sticky top-20 z-0  duration-700 ease-in transition-all`}
+    >
+      <ul className="h-full flex  flex-col">
         {dashboardSidebar?.map((item, index) => (
-          <li className="p-3 hover:bg-sky-900 mb-2 flex  gap-2 items-center hover:text-white rounded-lg transition-all ease-in duration-100">
+          <li
+            key={index}
+            className={`pt-3 pb-3 pr-3 pl-3 cursor-pointer hover:bg-sky-900 mb-2 flex  gap-2 items-center hover:text-white rounded-lg`}
+          >
             {item.icon}
-            {item?.name}
+            {isMenuOpen && item.name}
           </li>
         ))}
       </ul>

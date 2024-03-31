@@ -1,13 +1,28 @@
-import { Bell, Box, Menu } from "lucide-react";
+import { Bell, Box, Menu, X } from "lucide-react";
 import React from "react";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 
-export const NavDashboard = () => {
+interface NavDashboardProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (isOpen: boolean) => void;
+}
+
+export const NavDashboard = ({
+  isMenuOpen,
+  setIsMenuOpen,
+}: NavDashboardProps) => {
+  const handleClickOnMenu = (): void => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="w-full  bg-sky-900 sticky top-0 text-white p-5">
       <div className="flex justify-between items-center">
-        <div>
-          <Menu />
+        <div
+          className="transition-all duration-500 ease-in cursor-pointer"
+          onClick={handleClickOnMenu}
+        >
+          {isMenuOpen ? <X /> : <Menu />}
         </div>
         <div className="flex gap-5 items-center">
           <div className="relative cursor-pointer">
