@@ -26,7 +26,7 @@ const PieChart: React.FC<PieChartProps> = ({ data }) => {
   const series: number[] = data.map(item => item.count);
 
   return (
-    <ReactApexChart options={options} series={series} type="pie" height={200}  />
+    <ReactApexChart options={options} series={series} type="pie" height={200}   />
   );
 };
 

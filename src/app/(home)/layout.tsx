@@ -6,20 +6,21 @@ import { NavabrCompoent } from "@/components/navbar.compoent";
 import { ScrollButton } from "@/components/scroll-up.compoent";
 import React, { ReactNode } from "react";
 
-interface HomePageLayoutProps {
-  children: ReactNode;
-}
 
-const HomePageLayout: React.FC<HomePageLayoutProps> = ({ children }) => {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div className="relative">
-      <LogoBarCompoent />
-      <NavabrCompoent />
-      {children}
-      <FooterCompoent />
-      <ScrollButton />
-    </div>
+    <html lang="en">
+      <body className="relative">
+        <LogoBarCompoent />
+        <NavabrCompoent />
+        {children}
+        <FooterCompoent />
+        <ScrollButton />
+      </body>
+    </html>
   );
-};
-
-export default HomePageLayout;
+}

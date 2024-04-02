@@ -4,7 +4,7 @@ import React from "react";
 
 export const FooterCompoent = () => {
   return (
-    <div className="bg-sky-900 w-full">
+    <footer className="bg-sky-900 w-full">
       <div className="grid grid-cols-1 md:grid-cols-4 md:container md:mx-auto  w-full p-5">
         <div>
           <h1 className="text-3xl font-bold text-white">उपयोगी लिंकहरु</h1>
@@ -52,7 +52,7 @@ export const FooterCompoent = () => {
             +977-1-4790176, +977-1-4796489 news@onlinekhabar.com
           </p>
           <div className="mt-3">
-          <ul className="flex text-white gap-3">
+            <ul className="flex text-white gap-3">
               <li>
                 <Facebook />
               </li>
@@ -63,12 +63,9 @@ export const FooterCompoent = () => {
                 <Youtube />
               </li>
             </ul>
-           
-
           </div>
         </div>
       </div>
-      
-    </div>
+    </footer>
   );
 };

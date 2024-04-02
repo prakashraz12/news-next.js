@@ -4,6 +4,8 @@ import { MenuComponet } from "./menu.compoent";
 import { UserLogoComponent } from "./user-logo.compoent";
 import { SearchComponent } from "./search.compoent";
 import { MobileNavBrComponent } from "./mobile-navbar.compoent";
+import { AuthModal } from "@/app/auth/auth-modal.compoent";
+
 
 export const NavabrCompoent = () => {
   const [isClient, setIsClient] = useState<Boolean>(false);
@@ -27,6 +29,7 @@ export const NavabrCompoent = () => {
               <div className="hidden md:block"></div>
               <div className="flex">
                 <UserLogoComponent naviagtionLink="/" />
+                <AuthModal/>
                 <SearchComponent />
               </div>
             </div>

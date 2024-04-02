@@ -35,7 +35,7 @@ const DetailsPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="md:container md:mx-auto min-h-screen w-full">
       <div className="w-full p-3 md:p-8 bg-white">
         <div className={`sticky top-[80px] z-10  bg-white p-0`}>
           <div className="flex justify-between  p-0">

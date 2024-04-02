@@ -8,10 +8,12 @@ import { Button } from "./ui/button";
 interface UserLogoComponentProps {
   naviagtionLink?: string;
   imageUrl?: string;
+  onClick?: ()=> void
 }
 export const UserLogoComponent = ({
   naviagtionLink,
   imageUrl,
+  onClick
 }: UserLogoComponentProps) => {
   const router = useRouter();
 
@@ -22,7 +24,7 @@ export const UserLogoComponent = ({
   return (
     <div onClick={handleClickOnAvatar} className="cursor-pointer">
       {imageUrl === null || imageUrl === undefined ? (
-        <Button variant={"ghost"} className="p-2">
+        <Button variant={"ghost"} className="p-2" onClick={onClick}>
           <CircleUserIcon />
         </Button>
       ) : (

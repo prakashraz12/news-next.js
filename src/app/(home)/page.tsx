@@ -16,7 +16,7 @@ import { MoreCommentedNews } from "@/components/news/more-commented.compoent";
 const HomePage = () => {
   return (
     <HomePageLayout>
-      <main className=" md:container md:mx-auto min-h-screen w-full">
+      <main className="md:container md:mx-auto min-h-screen w-full">
         <HighlightedTopNews />
         <HighlightedTopNews />
         <p className="text-sm text-center">Advertisement</p>
