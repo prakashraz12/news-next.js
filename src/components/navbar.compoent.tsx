@@ -28,7 +28,7 @@ export const NavabrCompoent = () => {
               </div>
               <div className="hidden md:block"></div>
               <div className="flex">
-                <UserLogoComponent naviagtionLink="/" />
+                {/* <UserLogoComponent naviagtionLink="/" /> */}
                 <AuthModal/>
                 <SearchComponent />
               </div>

@@ -30,11 +30,21 @@ export const AuthModal = () => {
         </DialogHeader>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex flex-col">
-            <form></form>
+            <form className="flex flex-col gap-3">
+              <Input placeholder="Email" className="w-full" />
+              <Input placeholder="password" className="w-full" />
+              <Button type="submit">login</Button>
+            </form>
+          </div>
+          <div>
+            <ul>
+              <li>समाचार डाइजेस्ट: तपाईले पढ्न छुटाउनुभएका समाचारहरु पढ्न सक्नुहुनेछ ।</li>
+              <li>संग्रहित समाचार: तपाईले संग्रह गर्नुभएको समाचारहरु पढ्न सक्नुहुनेछ ।</li>
+            </ul>
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          {/* <Button type="submit">Save changes</Button> */}
         </DialogFooter>
       </DialogContent>
     </Dialog>
