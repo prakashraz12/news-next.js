@@ -75,4 +75,4 @@ export const SearchComponent = () => {
   );
 };
 
-const DialogComponent = () => {};
+

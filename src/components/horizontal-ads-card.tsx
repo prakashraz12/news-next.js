@@ -5,9 +5,7 @@ interface HorizontalAdsCardProps {
   adsLink: string;
 }
 export const HorizontalAdsCard = () => {
-  const handleAdsClick = (adsLink: string) => {
-    window.open(`/${adsLink}`);
-  };
+
   return (
     <div className="w-full cursor-pointer">
       <img

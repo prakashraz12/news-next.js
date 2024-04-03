@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
+import React, { useEffect, useState } from "react";
 import { ChevronUp } from "lucide-react";
 
 export const ScrollButton = () => {
@@ -9,7 +8,6 @@ export const ScrollButton = () => {
   
     useEffect(() => {
       const handleScroll = () => {
-        const windowHeight = window.innerHeight;
         const scrollHeight = document.body.scrollHeight;
         const scrollPosition = window.scrollY;
   
@@ -29,7 +27,7 @@ export const ScrollButton = () => {
     };
   
     return (
-      <>
+      <React.Fragment>
         {showButton && (
           <div
             className="fixed bottom-4 right-4 bg-sky-700 text-white rounded-full p-3 shadow-lg cursor-pointer"
@@ -39,6 +37,6 @@ export const ScrollButton = () => {
             <ChevronUp />
           </div>
         )}
-      </>
+      </React.Fragment>
     );
   };

@@ -1,4 +1,5 @@
-const QuillEditor = dynamic(()=> import("@/components/react-quil-editor.component"), {ssr:false})
+import dynamic from "next/dynamic";
+const QuillEditor = dynamic(() => import("@/components/react-quil-editor.component"), { ssr: false });
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,7 +14,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import dynamic from "next/dynamic";
 
 const NewsCreatePage = () => {
   return (

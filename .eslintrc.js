@@ -18,7 +18,12 @@ module.exports = {
             ],
             "parserOptions": {
                 "sourceType": "script"
-            }
+            },
+            files: ['src/components/ui/**/*.tsx'],
+            rules: {
+              'react/prop-types': 'off', 
+              'react/react-in-jsx-scope': 'off',
+            },
         }
     ],
     "parser": "@typescript-eslint/parser",
@@ -34,7 +39,7 @@ module.exports = {
     },
     settings:{
         react:{
-            version:"latest"
+            version:"17.0.2"
         }
     }
 }

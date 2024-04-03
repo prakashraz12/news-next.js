@@ -30,7 +30,7 @@ export const DailyAnalaytics = () => {
       <div>
         <Card className="p-3 flex flex-col gap-2">
           <CardTitle className="text-md font-bold">
-            Today's News
+            Todays News
           </CardTitle>
           <h1 className="text-5xl font-bold text-slate-400">1.2k</h1>
           <TrendingUp />

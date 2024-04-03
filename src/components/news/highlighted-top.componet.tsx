@@ -4,16 +4,16 @@ import { TimeCountComponent } from "../time-count.compoent";
 import Link from "next/link";
 import { AdsViewComponent } from "../ads-view.component";
 interface AuthorInterFace {
-  firstName: String;
-  middleName?: String;
-  lastName: String;
-  id: String;
+  firstName: string;
+  middleName?: string;
+  lastName: string;
+  id: string;
 }
 
 interface HighlightedNewsProps {
-  title?: String;
-  content?: String;
-  bannerImage?: String;
+  title?: string;
+  content?: string;
+  bannerImage?: string;
   author?: AuthorInterFace;
 }
 export const HighlightedTopNews = ({

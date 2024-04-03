@@ -1,7 +1,7 @@
 "use client";
 import { NavDashboard } from "@/components/dashboard/navbar.compoent";
 import { DashbordSidebar } from "@/components/dashboard/sidebar.component";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function RootLayout({
   children,

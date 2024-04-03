@@ -1,11 +1,9 @@
 "use client";
-
 import { AdsViewComponent } from "@/components/ads-view.component";
 import { HorizontalAdsCompoent } from "@/components/horizontal-ads-compoent";
 import { FeedBackContainer } from "@/components/news/feed-back-container.compoent";
 import { FeelingAfterReadNewsCompoent } from "@/components/news/feeling-after-read-news.compoent";
 import { HorizontalNewsCard } from "@/components/news/horizontal-news-card.compoent";
-import { RelatedNewsComponet } from "@/components/news/related-news.compoent";
 import { SideBarAdsCompoent } from "@/components/news/side-bar-ads.compoent";
 import { TrendingNews } from "@/components/news/trending-news.compoent";
 import { ReporterAvatarCompoent } from "@/components/reporter-avatar.compoent";

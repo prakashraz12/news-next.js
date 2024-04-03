@@ -1,5 +1,5 @@
 "use client";
-import { Facebook, FacebookIcon, Twitter, Youtube } from "lucide-react";
+import { Facebook,  Twitter, Youtube } from "lucide-react";
 import React from "react";
 
 export const FooterCompoent = () => {

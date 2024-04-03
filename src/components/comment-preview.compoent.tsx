@@ -3,7 +3,7 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Card, CardContent, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { Redo, ThumbsDownIcon, ThumbsUpIcon } from "lucide-react";
+import {  ThumbsDownIcon, ThumbsUpIcon } from "lucide-react";
 import { Textarea } from "./ui/textarea";
 
 export const CommentPreviewComponent = () => {

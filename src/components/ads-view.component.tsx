@@ -1,9 +1,7 @@
 'use client';
 import Image from "next/image";
 import React from "react";
-interface AdsViewProps {
-  width?: number;
-}
+
 export const AdsViewComponent = () => {
   return (
     <div className="flex justify-center cursor-pointer">

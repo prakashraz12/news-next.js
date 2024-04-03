@@ -1,4 +1,4 @@
-import { Bell, Box, Menu, X } from "lucide-react";
+import { Bell, Menu, X } from "lucide-react";
 import React from "react";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 

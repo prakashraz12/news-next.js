@@ -2,10 +2,10 @@ import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 interface ReporterAvatarCompoentProps {
-  imageUrl?: String;
-  firstName: String;
-  middleName?: String;
-  lastName: String;
+  imageUrl?: string;
+  firstName: string;
+  middleName?: string;
+  lastName: string;
   className?:string
 }
 export const ReporterAvatarCompoent = ({

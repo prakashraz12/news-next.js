@@ -1,6 +1,7 @@
 import { Mukta } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
+import React from "react";
 
 const mukta = Mukta({ subsets: ["devanagari"], weight: "400" });
 
@@ -15,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={mukta.className}>{children}</body>
-    </html>
+    <React.Fragment>
+      <html lang="en">
+        <body className={mukta.className}>{children}</body>
+      </html>
+    </React.Fragment>
   );
 }
