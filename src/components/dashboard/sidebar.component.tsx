@@ -57,13 +57,11 @@ export const DashbordSidebar = ({ isMenuOpen }: NavDashboardProps) => {
         {dashboardSidebar?.map((item, index) => (
           <li
             key={index}
-            className={`pt-3 pb-3 ${params === item.link ? "bg-sky-800 text-white":""} pr-3 pl-3 cursor-pointer hover:bg-slate-400 mb-2 flex gap-2 items-center hover:text-white rounded-lg`}
+            className={`pt-3 pb-3 ${params === item.link ? "bg-sky-800 text-white" : ""} pr-3 pl-3 cursor-pointer hover:bg-slate-400 mb-2 flex gap-2 items-center hover:text-white rounded-lg`}
           >
             <Link href={item.link} passHref className="flex gap-3 items-start">
-           
-                {item.icon}
-                {isMenuOpen ? item?.name : ""}
-             
+              {item.icon}
+              {isMenuOpen ? item?.name : ""}
             </Link>
           </li>
         ))}
