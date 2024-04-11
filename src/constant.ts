@@ -36,7 +36,7 @@ export const nepaliWeekend:{[key:string]:string}={
   "Saturday": "शनिबार",
 }
 
-export const province = [
+export const province:{[key:string]:any} = [
   {
     label: "कोशी प्रदेश",
     order: 1,
@@ -67,7 +67,7 @@ export const province = [
   },
 ];
 
-export const formats = [
+export const formats:string[] = [
   'header',
   'bold', 'italic', 'underline', 'strike', 'blockquote',
   'list', 'bullet', 'indent',

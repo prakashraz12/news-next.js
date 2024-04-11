@@ -60,7 +60,7 @@ export const ProvinceNewsPlaceholderCompoent = () => {
 
 export const VarticalNewsCardPlaceholder = () => {
   return (
-    <div className="w-full h-[500px]">
+    <div className="w-full h-auto mt-3 mb-3">
       <Skeleton className="w-full h-[250px] bg-slate-500 rounded-none" />
       <div className="w-full flex flex-col gap-5 p-4 bg-slate-300">
         <div>

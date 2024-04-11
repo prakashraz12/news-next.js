@@ -21,14 +21,15 @@ export const UserLogoComponent = ({
     router.push(`/${naviagtionLink}`);
   };
 
+  const isUserLogedIn = false;
   return (
-    <div onClick={handleClickOnAvatar} className="cursor-pointer">
-      {imageUrl === null || imageUrl === undefined ? (
+    <div  className="cursor-pointer">
+      {! isUserLogedIn  ? (
         <Button variant={"ghost"} className="p-2" onClick={onClick}>
           <CircleUserIcon />
         </Button>
       ) : (
-        <Avatar>
+        <Avatar onClick={handleClickOnAvatar}>
           <AvatarImage src={imageUrl} alt="user-image" />
           <AvatarFallback></AvatarFallback>
         </Avatar>

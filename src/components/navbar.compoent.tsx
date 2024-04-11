@@ -8,12 +8,16 @@ import { AuthModal } from "@/app/auth/auth-modal.compoent";
 
 
 export const NavabrCompoent = () => {
-  const [isClient, setIsClient] = useState<Boolean>(false);
+  const [isClient, setIsClient] = useState<boolean>(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
+  const handleAuthModalOpen = () => {
+    setIsAuthModalOpen(true)
+  }
   return (
     <React.Fragment>
       {isClient && (
@@ -28,8 +32,8 @@ export const NavabrCompoent = () => {
               </div>
               <div className="hidden md:block"></div>
               <div className="flex">
-                {/* <UserLogoComponent naviagtionLink="/" /> */}
-                <AuthModal/>
+                <UserLogoComponent  onClick={handleAuthModalOpen} />
+                <AuthModal open={isAuthModalOpen}  setOpen={setIsAuthModalOpen}/>
                 <SearchComponent />
               </div>
             </div>

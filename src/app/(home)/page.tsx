@@ -15,7 +15,7 @@ import { MoreCommentedNews } from "@/components/news/more-commented.compoent";
 
 const HomePage = () => {
   return (
-    <HomePageLayout>
+      <HomePageLayout>
       <main className="md:container md:mx-auto min-h-screen w-full">
         <HighlightedTopNews />
         <HighlightedTopNews />
@@ -56,7 +56,7 @@ const HomePage = () => {
         <hr className="mt-5 hidden md:block" />
         <AdsViewComponent />
         <NewsModalComponent newsHeadLine={"विचार"} />
-        <AdsViewComponent/>
+        <AdsViewComponent />
         <hr className="mt-5 mb-5" />
         <MoreCommentedNews />
       </main>

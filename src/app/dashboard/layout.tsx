@@ -1,4 +1,5 @@
 "use client";
+import { ReduxStoreProviderLayout } from "@/layout/redux-provider";
 import { NavDashboard } from "@/components/dashboard/navbar.compoent";
 import { DashbordSidebar } from "@/components/dashboard/sidebar.component";
 import React, { useState } from "react";
@@ -12,6 +13,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="h-full">
+      <ReduxStoreProviderLayout>
       <body className="w-full h-full flex flex-col">
         <NavDashboard isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <div className="flex h-full fixed w-full">
@@ -19,6 +21,7 @@ export default function RootLayout({
           <main className="p-2 overflow-auto flex-1 w-full h-full">{children}</main>
         </div>
       </body>
+      </ReduxStoreProviderLayout>
     </html>
   );
 }

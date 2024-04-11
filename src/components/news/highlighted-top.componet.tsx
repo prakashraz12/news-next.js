@@ -3,6 +3,7 @@ import { ReporterAvatarCompoent } from "../reporter-avatar.compoent";
 import { TimeCountComponent } from "../time-count.compoent";
 import Link from "next/link";
 import { AdsViewComponent } from "../ads-view.component";
+import Image from "next/image";
 interface AuthorInterFace {
   firstName: string;
   middleName?: string;
@@ -24,26 +25,28 @@ export const HighlightedTopNews = ({
 }: HighlightedNewsProps) => {
   return (
     <React.Fragment>
-      <AdsViewComponent/>
+      <AdsViewComponent />
       <div className="md:p-7 p-3 flex flex-col md:gap-10 gap-3">
-       <Link href={`/123`}>
-       <h1 className="font-bold md:text-7xl text-2xl text-center hover:text-sky-700 cursor-pointer ease-linear duration-200">
-          बिजुलीको तार चुँडिएर करेन्ट लाग्दा एकै घरमा ३ जनाको मृत्यु
-        </h1>
-       </Link>
+        <Link href={`/123`}>
+          <h1 className="font-bold md:text-7xl text-2xl text-center hover:text-sky-700 cursor-pointer ease-linear duration-200">
+            बिजुलीको तार चुँडिएर करेन्ट लाग्दा एकै घरमा ३ जनाको मृत्यु
+          </h1>
+        </Link>
         <div className="flex items-center gap-3 justify-center">
           <ReporterAvatarCompoent firstName={"टोपराज"} lastName={"शर्मा"} />
           <TimeCountComponent />
         </div>
-        <img
-          loading="lazy"
+        <Image
           src={
             "https://www.onlinekhabar.com/wp-content/uploads/2024/03/biplab-samuhik-kheti.jpg"
           }
-          alt="news-banner-image"
-          className="w-screen h-fit rounded"
+          width={0}
+          height={0}
+          layout="responsive"
+          alt="news-image"
+          className="aspect-video rounded-sm"
         />
-        <hr  />
+        <hr />
       </div>
     </React.Fragment>
   );

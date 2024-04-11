@@ -40,6 +40,7 @@ const DetailsPage = () => {
       setIsAdsShown(false);
     }, 4000);
   }, []);
+
   return (
     <React.Fragment>
       {isAdsShown && <PopUpAdsOnDetailsPage setIsAdsShown={setIsAdsShown} />}
