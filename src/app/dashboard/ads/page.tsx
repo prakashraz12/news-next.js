@@ -17,7 +17,7 @@ const AdsPage = () => {
         </Card>
       </TabsContent>
       <TabsContent value="2">
-        <NewsDetailsPageAds/>
+        <NewsDetailsPageAds />
       </TabsContent>
     </Tabs>
   );
