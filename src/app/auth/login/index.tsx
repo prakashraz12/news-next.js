@@ -1,12 +1,15 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { LoginForm } from "../_components/login-form";
 import { useFormik } from "formik";
 import { LoginSchema } from "../auth.validation-schema";
 import { useLoginMutation } from "@/(service)/api/user.api";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setToken, setUserDetails } from "@/(store)/slices/app.slice";
 interface LoginProps {
   setModalType: (type: string) => void;
+  setOpen:(type:boolean)=> void
 }
 
 interface LoginFormValues {
@@ -14,13 +17,16 @@ interface LoginFormValues {
   password: string;
 }
 
-const Login = ({ setModalType }: LoginProps) => {
+const Login = ({ setModalType, setOpen }: LoginProps) => {
+  const dispatch = useDispatch();
   const [
     loginData,
     {
       isLoading: isLoginLoading,
       isError: isLoginError,
       error: logInErrorMessage,
+      isSuccess: isLogedinSuccessfully,
+      data: loginResponse,
     },
   ] = useLoginMutation();
 
@@ -50,6 +56,16 @@ const Login = ({ setModalType }: LoginProps) => {
   }, [isLoginError, logInErrorMessage]);
 
   //success handling
+
+  useEffect(() => {
+    if (isLogedinSuccessfully) {
+      dispatch(setToken(loginResponse?.data?.token));
+      dispatch(setUserDetails(loginResponse?.data?.user));
+      toast.success("Logedin success fully")
+      setOpen(false)
+    }
+  }, [isLogedinSuccessfully]);
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="flex flex-col">

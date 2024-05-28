@@ -1,46 +1,81 @@
-import React from "react";
+"use client";
+import React, { useCallback, useEffect, useState } from "react";
 import { HorizontalNewsCard } from "./horizontal-news-card.compoent";
 import { Button } from "../ui/button";
 import { SideBarAdsCompoent } from "./side-bar-ads.compoent";
+import { useGetNewsMutation } from "@/(service)/api/news.api";
+import { Menu, News } from "@/types/newsTypes";
+import { AdsViewComponent } from "../ads-view.component";
+import { useRouter } from "next/navigation";
 interface NewsModalComponentProps {
-  newsHeadLine: String;
-  news?: [];
+  item?: Menu;
 }
 
-export const NewsModalComponent = ({
-  newsHeadLine,
-}: NewsModalComponentProps) => {
+export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
+  const router = useRouter();
+  const [newsData, setNewsData] = useState<News[]>([]);
+  const [searchNews, { data, isSuccess: isSuccessOnFetchedNews }] =
+    useGetNewsMutation();
+
+  const fetchNews = useCallback(() => {
+    searchNews({ page: 1, rowsPerPage: 4, menu: item?._id });
+  }, [item?._id]);
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
+  useEffect(() => {
+    if (isSuccessOnFetchedNews) {
+      setNewsData(data?.data as News[]);
+    }
+  }, [isSuccessOnFetchedNews]);
+
   return (
     <React.Fragment>
-      <div className="w-full mb-3 p-3">
-        <h1 className="text-5xl font-bold text-sky-800">{newsHeadLine}</h1>
-      </div>
-      <div className="grid md:grid-cols-3 sm:grid-cols-12 gap-4 p-3">
-        <div className="relative overflow-hidden">
-          <img
-            src="https://www.onlinekhabar.com/wp-content/uploads/2024/03/Holi-Celebrating-@Basantapur-4.jpg"
-            alt="news-image"
-            loading="lazy"
-            className="w-full rounded object-cover min-h-96 h-full transition-transform transform duration-500 hover:scale-105  ease-in cursor-pointer"
-          />
+      {isSuccessOnFetchedNews && newsData.length > 0 && (
+        <>
+          <div className="w-full mb-3 p-3">
+            <h1 className="text-5xl font-bold text-sky-800">
+              {item?.menuTitle}
+            </h1>
+          </div>
+          <div className="grid md:grid-cols-3 sm:grid-cols-12 gap-4 p-3">
+            <div
+              className="relative overflow-hidden rounded-md"
+              onClick={() => {
+                router.push(`/news/${newsData[0]?._id}`);
+              }}
+            >
+              <img
+                src={newsData[0]?.bannerImage || "/no-photo.png"}
+                alt="news-image"
+                loading="lazy"
+                className={`w-full rounded ${newsData[0]?.bannerImage ? "object-cover" : "object-contain"} min-h-96 h-full ${newsData[0]?.bannerImage && "transition-transform transform duration-500 hover:scale-105  ease-in cursor-pointer"} ${!newsData[0]?.bannerImage && "opacity-20"}`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-950 to-transparent cursor-pointer "></div>
+              <p className="text-xl font-bold absolute bottom-7 w-full flex  items-center  h-16 text-white left-3">
+                <span>{newsData[0]?.newsTitle}</span>
+              </p>
+            </div>
+            <div className="flex flex-col gap-5">
+              {newsData
+                ?.slice(1)
+                ?.map((item, index) => (
+                  <HorizontalNewsCard key={index} item={item} />
+                ))}
 
-          <p className="text-xl font-bold absolute bottom-7 text-white left-3 shadow-md	backdrop-opacity-10 backdrop-invert bg-black/30">
-            होली खेलिसकेपछि कसरी गर्ने अनुहारको स्याहार ? होली खेलिसकेपछि कसरी
-            गर्ने अनुहारको स्याहार ?
-          </p>
-        </div>
-        <div className="flex flex-col gap-5">
-          <HorizontalNewsCard />
-          <HorizontalNewsCard />
-          <HorizontalNewsCard />
-          <Button className="bg-sky-800 text-xl ">थप समाचार</Button>
-        </div>
-        <div className=" flex-col hidden md:flex w-full">
-          <SideBarAdsCompoent />
-          <SideBarAdsCompoent />
-        </div>
-      </div>
-      <hr className="mb-3 mt-3" />
+              <Button className="bg-sky-800 text-xl ">थप समाचार</Button>
+            </div>
+            <div className=" flex-col hidden md:flex w-full">
+              <SideBarAdsCompoent />
+              <SideBarAdsCompoent />
+            </div>
+          </div>
+          <hr className="mb-3 mt-3" />
+          <p className="text-sm text-center">Advertisement</p>
+          <AdsViewComponent />
+        </>
+      )}
     </React.Fragment>
   );
 };

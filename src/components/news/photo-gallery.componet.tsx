@@ -12,6 +12,7 @@ import { Card, CardContent } from "../ui/card";
 export const PhotoGalleryComponet = () => {
   return (
     <div className="bg-rose-900 w-full h-auto p-9">
+      <div className="md:container">
       <div className="flex justify-between">
         <h1 className="text-3xl  md:text-5xl font-bold text-white">ग्यालरी</h1>
         <ArrowRightCircleIcon className="text-white cursor-pointer" />
@@ -54,6 +55,7 @@ export const PhotoGalleryComponet = () => {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+      </div>
       </div>
     </div>
   );

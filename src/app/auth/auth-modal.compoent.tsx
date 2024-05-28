@@ -41,7 +41,7 @@ export const AuthModal = ({ open, setOpen }: AuthModalProps) => {
         </DialogHeader>
         <hr />
         {modalType === "login" ? (
-          <Login setModalType={setModalType} />
+          <Login setModalType={setModalType} setOpen={setOpen} />
         ) : modalType === "register" ? (
           <Register setModalType={setModalType} setOpen={setOpen} />
         ) : (

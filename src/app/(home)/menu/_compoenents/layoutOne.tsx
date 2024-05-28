@@ -14,7 +14,7 @@ import React from "react";
 
 export const LayoutOne = () => {
   return (
-    <div>
+    <div className="md:container">
       <div className="w-full p-3">
         <div className="flex justify-between p-3 items-center">
           <h1 className="text-3xl md:text-4xl font-bold text-orange-800">

@@ -3,7 +3,7 @@ import { MoreCmmentedNewsCardCompoent } from "../more-commented-news-card.compoe
 
 export const MoreCommentedNews = () => {
   return (
-    <div className="p-3">
+    <div className="p-3 md:container mt-4 mb-4">
       <div className="mb-4">
         <h1 className="text-4xl md:text-5xl font-bold text-sky-800">
           धेरै कमेन्ट गरिएका

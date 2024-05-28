@@ -27,16 +27,20 @@ export const neplaiMonthsMap: { [key: string]: string } = {
 };
 
 export const nepaliWeekend:{[key:string]:string}={
-  "Sunday": "आइतबार",
-  "Monday": "सोमबार",
-  "Tuesday": "मंगलबार",
-  "Wednesday": "बुधबार",
-  "Thursday": "बिहिबार",
-  "Friday": "शुक्रबार",
-  "Saturday": "शनिबार",
+  "Sunday": "आइत",
+  "Monday": "सोम",
+  "Tuesday": "मंगल",
+  "Wednesday": "बुध",
+  "Thursday": "बिहि",
+  "Friday": "शुक्र",
+  "Saturday": "शनि",
 }
 
-export const province:{[key:string]:any} = [
+export interface ProvinceProps{
+  label: string;
+  order:number
+}
+export const province:ProvinceProps[] = [
   {
     label: "कोशी प्रदेश",
     order: 1,
@@ -83,3 +87,5 @@ export const modules ={
       ['clean']
     ],
 }
+
+

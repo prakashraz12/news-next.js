@@ -13,16 +13,15 @@ module.exports = {
             "env": {
                 "node": true
             },
-            "files": [
-                ".eslintrc.{js,cjs}"
-            ],
+           
             "parserOptions": {
                 "sourceType": "script"
             },
             files: ['src/components/ui/**/*.tsx'],
             rules: {
               'react/prop-types': 'off', 
-              'react/react-in-jsx-scope': 'off',
+                'react/react-in-jsx-scope': 'off',
+                "@typescript-eslint/no-explicit-any": "off",
             },
         }
     ],
@@ -36,6 +35,7 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
     },
     settings:{
         react:{

@@ -1,6 +1,6 @@
 import React from "react";
 import { CoverStoryCard } from "../cover-story-card";
-import { Button } from "../ui/button";
+
 import {  ChevronRight } from "lucide-react";
 
 export const CoverStoryComponent = () => {

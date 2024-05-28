@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { registerUserSchema } from "../auth.validation-schema";
 import { VerifyEmailPopUp } from "../_components/verify-email.compoent";
 import { useRegisterMutation } from "@/(service)/api/user.api";
+import toast from "react-hot-toast";
 
 interface RegisterProps {
   setModalType: (type: string) => void;
@@ -49,6 +50,18 @@ const Register = ({ setModalType, setOpen }: RegisterProps) => {
     }
   }, [isRegisterSuccess]);
 
+   //error handling
+   useEffect(() => {
+    if (isRegisterError && errorMessageOnRegister) {
+      if ("data" in errorMessageOnRegister && errorMessageOnRegister.data) {
+        const errorMessage = (errorMessageOnRegister.data as { message?: string })
+          .message;
+        if (errorMessage) {
+          toast.error(errorMessage);
+        }
+      }
+    }
+  }, [isRegisterError, errorMessageOnRegister]);
   return (
     <div className="w-full p-3">
       <RegisterForm

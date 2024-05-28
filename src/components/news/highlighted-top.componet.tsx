@@ -5,10 +5,9 @@ import Link from "next/link";
 import { AdsViewComponent } from "../ads-view.component";
 import Image from "next/image";
 interface AuthorInterFace {
-  firstName: string;
-  middleName?: string;
-  lastName: string;
-  id: string;
+  fullName?: string
+  _id: string;
+  avatar?: string;
 }
 
 interface HighlightedNewsProps {
@@ -16,36 +15,39 @@ interface HighlightedNewsProps {
   content?: string;
   bannerImage?: string;
   author?: AuthorInterFace;
+  createTime: string
+  id: string;
 }
 export const HighlightedTopNews = ({
   title,
-  content,
   bannerImage,
   author,
+  createTime,
+  id
 }: HighlightedNewsProps) => {
   return (
     <React.Fragment>
       <AdsViewComponent />
       <div className="md:p-7 p-3 flex flex-col md:gap-10 gap-3">
-        <Link href={`/123`}>
+        <Link href={`/news/${id}`}>
           <h1 className="font-bold md:text-7xl text-2xl text-center hover:text-sky-700 cursor-pointer ease-linear duration-200">
-            बिजुलीको तार चुँडिएर करेन्ट लाग्दा एकै घरमा ३ जनाको मृत्यु
+            {title}
           </h1>
         </Link>
         <div className="flex items-center gap-3 justify-center">
-          <ReporterAvatarCompoent firstName={"टोपराज"} lastName={"शर्मा"} />
-          <TimeCountComponent />
+          <ReporterAvatarCompoent fullName={author?.fullName} imageUrl={author?.avatar} />
+          <TimeCountComponent createTime={createTime} />
         </div>
-        <Image
-          src={
-            "https://www.onlinekhabar.com/wp-content/uploads/2024/03/biplab-samuhik-kheti.jpg"
-          }
-          width={0}
-          height={0}
-          layout="responsive"
-          alt="news-image"
-          className="aspect-video rounded-sm"
-        />
+        {
+          bannerImage && <Image
+            src={bannerImage}
+            width={0}
+            height={0}
+            layout="responsive"
+            alt="news-image"
+            className="aspect-video rounded-sm"
+          />
+        }
         <hr />
       </div>
     </React.Fragment>
