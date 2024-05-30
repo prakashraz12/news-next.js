@@ -1,3 +1,4 @@
+"use client";
 import { useGetNewsMutation } from "@/(service)/api/news.api";
 import { News } from "@/types/newsTypes";
 import { useCallback, useEffect, useState } from "react";

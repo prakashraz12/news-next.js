@@ -1,5 +1,4 @@
 "use client";
-
 import { useGetGalleryNewsByIdMutation } from "@/(service)/api/gallery.api";
 import { NewsDetailsPage } from "@/components/details-page.compeont";
 import { News } from "@/types/newsTypes";

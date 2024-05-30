@@ -1,3 +1,4 @@
+"use client";
 import React, { useCallback, useEffect, useState } from "react";
 import { VarticalNewsCardCompoent } from "../vartical-news-card.compoent";
 import { numsFormatter } from "@/utils/number-formatter.util";

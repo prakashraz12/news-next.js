@@ -1,5 +1,4 @@
 "use client";
-
 import { useGetCoverStoryNewsbyIdMutation } from "@/(service)/api/coverStory.api";
 import { NewsDetailsPage } from "@/components/details-page.compeont";
 import { News } from "@/types/newsTypes";

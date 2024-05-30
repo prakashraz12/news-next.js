@@ -1,3 +1,4 @@
+"use client";
 import React, { useCallback, useEffect } from "react";
 import { AdsViewComponent } from "@/components/ads-view.component";
 import { CoverStoryComponent } from "@/components/news/cover-story.component";
@@ -23,7 +24,6 @@ const HomePage = () => {
 
   return (
     <HomePageLayout>
-      
       <main className="md:mx-auto min-h-screen w-full">
         <div className="md:container">
           <RednderHighlightedNews />
@@ -70,7 +70,6 @@ const HomePage = () => {
         <hr className="mt-5 mb-5" /> */}
           <TrendingNews colSpan={6} />
         </div>
-
         <FeatureNewsCompoent />
         <section className="md:container">
           <ProvinceNewsComponent />
