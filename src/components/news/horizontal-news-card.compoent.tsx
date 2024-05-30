@@ -8,7 +8,7 @@ import React from "react";
 export const HorizontalNewsCard = ({ item }: { item: News }) => {
   const router = useRouter();
   return (
-    <div className="w-full flex align-middle gap-4 cursor-pointer ease-linear duration-200  hover:text-sky-800 md:p-3 sm:p-1 rounded" onClick={() => router.push(`/news/${item?._id}`)}>
+    <div className="w-full flex align-middle gap-4 cursor-pointer ease-linear duration-200  hover:text-sky-800 md:p-3 sm:p-1 rounded" onClick={() => router.push(`/home/news/${item?._id}`)}>
       <div className="overflow-hidden">
         <img
           src={item?.bannerImage || "/no-photo.png"}

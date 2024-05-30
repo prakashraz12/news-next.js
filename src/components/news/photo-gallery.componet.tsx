@@ -48,7 +48,7 @@ export const PhotoGalleryComponet = () => {
                 {galleryData?.map((data, index) => (
                   <CarouselItem
                     key={index}
-                    onClick={()=>router.push(`/gallery/${data?._id}`)}
+                    onClick={()=>router.push(`/home/gallery/${data?._id}`)}
                     className="pl-1 md:basis-1/2 lg:basis-1/3"
                   >
                     <div className="p-1">

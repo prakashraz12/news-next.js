@@ -38,7 +38,7 @@ export const ColNewsViewsCompoent = ({ item }: { item: Menu }) => {
             </h1>
           </div>
           <div className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4  bg-sky-800 rounded-sm" onClick={()=>{router.push(`/news/${newsData[0]?._id}`)}}>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4  bg-sky-800 rounded-sm" onClick={()=>{router.push(`/home/news/${newsData[0]?._id}`)}}>
               <div className="md:col-span-6 overflow-hidden">
                 <img
                   src={newsData[0]?.bannerImage || "/no-photo.png"}

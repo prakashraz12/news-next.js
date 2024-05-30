@@ -7,7 +7,7 @@ export const CoverStoryCard = ({ cover }: { cover: News }) => {
   return (
     <div
       className="reletive overflow-hidden cursor-pointer rounded-sm"
-      onClick={() => router.push(`/coverstory/${cover?._id}`)}
+      onClick={() => router.push(`/home/coverstory/${cover?._id}`)}
     >
       <div className="relative group">
         <img

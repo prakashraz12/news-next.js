@@ -16,7 +16,7 @@ export const VarticalNewsCardCompoent = ({
   return (
     <Card
       className="cursor-pointer mt-3 w-full h-[450px]"
-      onClick={() => router.push(`/news/${item?._id}`)}
+      onClick={() => router.push(`/home/news/${item?._id}`)}
     >
       <div className="overflow-hidden relative">
         <img

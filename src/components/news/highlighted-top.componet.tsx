@@ -29,7 +29,7 @@ export const HighlightedTopNews = ({
     <React.Fragment>
       <AdsViewComponent />
       <div className="md:p-7 p-3 flex flex-col md:gap-10 gap-3">
-        <Link href={`/news/${id}`}>
+        <Link href={`/home/news/${id}`}>
           <h1 className="font-bold md:text-7xl text-2xl text-center hover:text-sky-700 cursor-pointer ease-linear duration-200">
             {title}
           </h1>

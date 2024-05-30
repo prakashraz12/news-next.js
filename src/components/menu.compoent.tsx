@@ -49,7 +49,7 @@ export function MenuComponet() {
           <NavigationMenuItem className="hidden md:block" key={index}>
             <NavigationMenuTrigger
               className="text-md"
-              onClick={() => router.push(`/menu/${menuItem?._id}`)}
+              onClick={() => router.push(`/home/menu/${menuItem?._id}`)}
             >
               {menuItem?.menuTitle}
             </NavigationMenuTrigger>
@@ -60,7 +60,7 @@ export function MenuComponet() {
                     key={newsItem._id}
                     bannerImage={newsItem?.bannerImage}
                     title={newsItem.newsTitle}
-                    href={`/news/${newsItem._id}`}
+                    href={`/home/news/${newsItem._id}`}
                   >
                     {newsItem.shortDescription}
                   </ListItem>

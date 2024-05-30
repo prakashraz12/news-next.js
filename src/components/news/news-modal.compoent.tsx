@@ -43,7 +43,7 @@ export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
             <div
               className="relative overflow-hidden rounded-md"
               onClick={() => {
-                router.push(`/news/${newsData[0]?._id}`);
+                router.push(`/home/news/${newsData[0]?._id}`);
               }}
             >
               <img
