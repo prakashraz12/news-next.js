@@ -23,7 +23,7 @@ export const HorizontalNewsCard = ({ item }: { item: News }) => {
         </p>
         <p className="line-clamp-2 text-sm">{item?.shortDescription}</p>
         <p className="flex gap-3 md:mt-1 sm:mt-0 text-sm">
-          <Clock size={"19px"} />३ घन्टा अगाडि
+          <Clock size={"19px"} />
         </p>
       </div>
     </div>

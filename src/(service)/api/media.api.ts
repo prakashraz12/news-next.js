@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const baseUrl = "http://localhost:8000/api/v1/file";
+import { BASE_URL } from "../../../_config";
+const baseUrl = `${BASE_URL}/file`;
 
 export const mediaApi = createApi({
     reducerPath:"media-api",

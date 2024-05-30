@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { VarticalNewsCardCompoent } from "../vartical-news-card.compoent";
 import { numsFormatter } from "@/utils/number-formatter.util";
 import { ChevronRight } from "lucide-react";
-import { HorizontalNewsCard } from "./horizontal-news-card.compoent";
+// import { HorizontalNewsCard } from "./horizontal-news-card.compoent";
 import { province } from "@/constant";
 import { News } from "@/types/newsTypes";
 import { useGetNewsMutation } from "@/(service)/api/news.api";

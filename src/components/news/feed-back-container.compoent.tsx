@@ -8,13 +8,22 @@ import { CommentLoadingAniamtion } from "./comment-loading-animation.componet";
 interface FeedBackContainerPorps {
   newsId?: string;
   newsOwner?: string;
+  type?: string;
+  comment: Comment[];
+  setComment: React.Dispatch<React.SetStateAction<Comment[]>>;
 }
 
-export const FeedBackContainer = ({ newsId, newsOwner }: FeedBackContainerPorps) => {
+export const FeedBackContainer = ({
+  newsId,
+  newsOwner,
+  type,
+  comment,
+  setComment,
+}: FeedBackContainerPorps) => {
   const [page, setPage] = useState<number>(1);
   const [isLoadingCommentfetching, setIsLoadingCommentfetching] =
     useState<boolean>(false);
-  const [comment, setComment] = useState<Comment[]>([]);
+
   const [
     searchParams,
     {
@@ -49,6 +58,7 @@ export const FeedBackContainer = ({ newsId, newsOwner }: FeedBackContainerPorps)
       <CommentInputCntainerCompoent
         newsId={newsId}
         setCommentData={setComment}
+        type={type}
         setIsLoadingCommentfetching={setIsLoadingCommentfetching}
       />
       <hr className="mt-5 mb-5" />
@@ -60,7 +70,7 @@ export const FeedBackContainer = ({ newsId, newsOwner }: FeedBackContainerPorps)
             key={index}
             setComment={setComment}
             newsOwner={newsOwner}
-            
+            type={type}
           />
         ))}
       {isCommentLoading && <CommentLoadingAniamtion length={3} />}

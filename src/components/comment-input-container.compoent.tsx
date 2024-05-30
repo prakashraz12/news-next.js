@@ -8,12 +8,14 @@ interface CommentInputCntainerCompoentProps {
   newsId?: string;
   setCommentData: (type: any) => void;
   setIsLoadingCommentfetching: (type: boolean) => void;
+  type?: string;
 }
 
 export const CommentInputCntainerCompoent = ({
   newsId,
   setCommentData,
   setIsLoadingCommentfetching,
+  type
 }: CommentInputCntainerCompoentProps) => {
   const [comment, setComment] = useState<string>("");
   const [
@@ -26,7 +28,7 @@ export const CommentInputCntainerCompoent = ({
   ] = useCreateCommentMutation();
 
   const handleComment = async () => {
-    await commentBody({ newsId, comment });
+    await commentBody({ newsId, comment, type });
   };
 
   useEffect(() => {

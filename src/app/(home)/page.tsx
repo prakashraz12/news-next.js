@@ -23,15 +23,15 @@ const HomePage = () => {
 
   return (
     <HomePageLayout>
-      <main className="md:container md:mx-auto min-h-screen w-full">
-        <RednderHighlightedNews />
-        <p className="text-sm text-center">Advertisement</p>
-        <AdsViewComponent />
-        <hr className="mb-5" />
-        <RenderNewsList />
-        <ProvinceNewsComponent />
+      <main className="md:mx-auto min-h-screen w-full">
+        <div className="md:container">
+          <RednderHighlightedNews />
+          <p className="text-sm text-center">Advertisement</p>
+          <AdsViewComponent />
+          <hr className="mb-5" />
+          <RenderNewsList />
 
-        {/* <NewsModalComponent newsHeadLine={"समाचार"} />
+          {/* <NewsModalComponent newsHeadLine={"समाचार"} />
         
         <br />
         <hr className="mb-5" />
@@ -67,11 +67,18 @@ const HomePage = () => {
         <NewsModalComponent newsHeadLine={"विचार"} />
         <AdsViewComponent />
         <hr className="mt-5 mb-5" /> */}
-        <TrendingNews colSpan={6}  />
-        <CoverStoryComponent />
+          <TrendingNews colSpan={6} />
+        </div>
+
+        <FeatureNewsCompoent />
+        <section className="md:container">
+          <ProvinceNewsComponent />
+        </section>
+        <section className="md:container">
+          <CoverStoryComponent />
+        </section>
+        <PhotoGalleryComponet />
       </main>
-      <FeatureNewsCompoent />
-      <PhotoGalleryComponet />
       <MoreCommentedNews />
     </HomePageLayout>
   );

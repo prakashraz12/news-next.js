@@ -15,8 +15,8 @@ interface HighlightedNewsProps {
   content?: string;
   bannerImage?: string;
   author?: AuthorInterFace;
-  createTime: string
-  id: string;
+  createTime: string | any
+   id: string;
 }
 export const HighlightedTopNews = ({
   title,

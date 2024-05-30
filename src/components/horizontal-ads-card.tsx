@@ -1,9 +1,9 @@
 import React from "react";
 
-interface HorizontalAdsCardProps {
-  adsImageUrl: string;
-  adsLink: string;
-}
+// interface HorizontalAdsCardProps {
+//   adsImageUrl: string;
+//   adsLink: string;
+// }
 export const HorizontalAdsCard = () => {
 
   return (

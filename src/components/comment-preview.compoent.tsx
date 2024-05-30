@@ -41,10 +41,12 @@ export const CommentPreviewComponent = ({
   comment,
   setComment,
   newsOwner,
+  type
 }: {
   comment: any;
   setComment: (type: any) => void;
-  newsOwner?: string;
+    newsOwner?: string;
+  type?:string
 }) => {
   const [isMainCommentOpen, setIsMainCompoentOpen] = useState<boolean>(false);
   const [mainComment, setMainComment] = useState<string>(
@@ -98,12 +100,12 @@ export const CommentPreviewComponent = ({
   };
 
   const handleDeleteComment = async () => {
-    await deleteCommetId({ commentId: comment?._id });
+    await deleteCommetId({ commentId: comment?._id, type });
   };
 
   const handledDeleteReplies = async (replyId: string) => {
     setSelectedReplies(replyId);
-    await deleteReplies({ commentId: comment?._id, replyId });
+    await deleteReplies({ commentId: comment?._id, replyId, type });
   };
 
   useEffect(() => {

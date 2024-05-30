@@ -1,19 +1,18 @@
 "use client";
-import { useGetNewsByIdMutation } from "@/(service)/api/news.api";
+
+import { useGetGalleryNewsByIdMutation } from "@/(service)/api/gallery.api";
+import { NewsDetailsPage } from "@/components/details-page.compeont";
 import { News } from "@/types/newsTypes";
 import { useParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
-import { NewsDetailsPage } from "@/components/details-page.compeont";
 
-const DetailsPage = () => {
+const GalleryDetailsPage = () => {
   const [newsData, setNewsData] = useState<News | any>(undefined);
   const params = useParams();
   const [
     getNewsById,
     { isSuccess: isNewsfetched, data: newsDatas, isLoading: isNewsFetching },
-  ] = useGetNewsByIdMutation();
-
-
+  ] = useGetGalleryNewsByIdMutation();
 
   // useEffect(() => {
   //   setIsAdsShown(true);
@@ -37,12 +36,14 @@ const DetailsPage = () => {
       setNewsData(newsDatas?.data as News);
     }
   }, [isNewsfetched]);
-
   return (
-    <>
-      <NewsDetailsPage isNewsFetching={isNewsFetching} newsData={newsData} isNewsfetched={isNewsfetched} />
-    </>
+    <NewsDetailsPage
+      isNewsFetching={isNewsFetching}
+      newsData={newsData}
+      isNewsfetched={isNewsfetched}
+      type="gallery"
+    />
   );
 };
 
-export default DetailsPage;
+export default GalleryDetailsPage;

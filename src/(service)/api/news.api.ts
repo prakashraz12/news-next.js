@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const baseUrl = "http://localhost:8000/api/v1/news";
+import { BASE_URL } from "../../../_config";
+const baseUrl = `${BASE_URL}/news`;
 
 export const newsApi = createApi({
   reducerPath: "news-api",
@@ -42,6 +43,12 @@ export const newsApi = createApi({
         body: { menuId, limit },
       }),
     }),
+    getNewsByMenus: builder.mutation({
+      query: ({ menuId }) => ({
+        url: `/get/menu/${menuId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -51,4 +58,5 @@ export const {
   useGetNewsByMenuMutation,
   useGetNewsByIdMutation,
   useGetTrendingNewsMutation,
+  useGetNewsByMenusMutation,
 } = newsApi;

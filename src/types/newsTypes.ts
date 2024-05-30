@@ -59,8 +59,8 @@ export interface SubMenu {
     content?: string;
     isPublished?: boolean;
     tags?: string[];
-    recommendedNews?: string[];
-    owner?: Owner;
+    recommendedNews: string[];
+    owner: Owner;
     isHighlighted?: boolean;
     bannerImage?: string;
     province?: string | null;

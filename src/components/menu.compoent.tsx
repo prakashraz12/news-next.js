@@ -13,13 +13,15 @@ import {
 } from "@/components/ui/navigation-menu";
 import { useSelector } from "react-redux";
 import { useGetNewsByMenuMutation } from "@/(service)/api/news.api";
-import { AppSettingsPorps, Menu, News } from "@/types/newsTypes";
+import { Menu, News } from "@/types/newsTypes";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export function MenuComponet() {
+  const router = useRouter();
   const appSettings = useSelector(
-    (app: AppSettingsPorps) => app.app.appSettings
+    (app: any) => app.app.appSettings
   );
   const [searchParams, { data }] = useGetNewsByMenuMutation();
   const menusId = appSettings?.menus?.map((item: Menu) => item._id);
@@ -43,9 +45,12 @@ export function MenuComponet() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        {appSettings?.menus.map((menuItem, index) => (
+        {appSettings?.menus.map((menuItem:any, index:number) => (
           <NavigationMenuItem className="hidden md:block" key={index}>
-            <NavigationMenuTrigger className="text-md">
+            <NavigationMenuTrigger
+              className="text-md"
+              onClick={() => router.push(`/menu/${menuItem?._id}`)}
+            >
               {menuItem?.menuTitle}
             </NavigationMenuTrigger>
             <NavigationMenuContent className="border-1 border-gray-950">
@@ -71,7 +76,13 @@ export function MenuComponet() {
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  {
+    className?: string;
+    title: string;
+    children: React.ReactNode;
+    bannerImage?: string;
+    href: string;
+  }
 >(({ className, title, children, bannerImage, ...props }, ref) => {
   return (
     <li>
@@ -79,16 +90,16 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:bg-sky-800 hover:text-white",
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:text-sky-800 dark:hover:text-white ",
             className
           )}
           {...props}
         >
           <div className="flex gap-2">
             <img
-              src={bannerImage || "no-photo.png"}
+              src={bannerImage || "/no-photo.png"}
               alt="banner-image"
-              className="w-[70px] h-[70px] object-cover rounded-sm"
+              className={`w-[70px] h-[70px] ${bannerImage ? "object-cover" :"object-contain"} ${!bannerImage && "opacity-10"} rounded-sm`}
             />
             <div className="text-md leading-none p-2">{title}</div>
           </div>

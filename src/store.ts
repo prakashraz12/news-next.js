@@ -5,6 +5,8 @@ import { newsApi } from "./(service)/api/news.api";
 import appReducer from "./(store)/slices/app.slice";
 import { settingsApi } from "./(service)/api/settings.api";
 import { commentApi } from "./(service)/api/comment.ap";
+import { coverStoryApi } from "./(service)/api/coverStory.api";
+import { galleryApi } from "./(service)/api/gallery.api";
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
@@ -12,6 +14,8 @@ export const store = configureStore({
     [newsApi.reducerPath]: newsApi.reducer,
     [settingsApi.reducerPath]: settingsApi.reducer,
     [commentApi.reducerPath]: commentApi.reducer,
+    [coverStoryApi.reducerPath]: coverStoryApi.reducer,
+    [galleryApi.reducerPath]:galleryApi.reducer,
     app: appReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -20,6 +24,8 @@ export const store = configureStore({
       mediaApi.middleware,
       newsApi.middleware,
       settingsApi.middleware,
-      commentApi.middleware
+      commentApi.middleware,
+      coverStoryApi.middleware,
+      galleryApi.middleware
     ),
 });

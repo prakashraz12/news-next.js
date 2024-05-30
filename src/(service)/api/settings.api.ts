@@ -1,6 +1,7 @@
 import { addSettings } from "@/(store)/slices/app.slice";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const baseUrl = "http://localhost:8000/api/v1/settings";
+import { BASE_URL } from "../../../_config";
+const baseUrl = `${BASE_URL}/settings`;
 
 export const settingsApi = createApi({
   reducerPath: "settings-api",

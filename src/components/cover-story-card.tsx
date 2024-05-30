@@ -1,16 +1,29 @@
-import React from 'react'
+import { News } from "@/types/newsTypes";
+import { useRouter } from "next/navigation";
+import React from "react";
 
-export const CoverStoryCard = () => {
+export const CoverStoryCard = ({ cover }: { cover: News }) => {
+  const router = useRouter();
   return (
-    <div className='overflow-hidden cursor-pointer'>
-          <img
-            src="https://www.onlinekhabar.com/wp-content/uploads/2024/03/Dhye-Dreams1-1.jpg"
-            alt="news-image"
-            className="aspect-square w-full object-cover transition-all hover:duration-1000 ease-in-out hover:scale-105"
-          />
-          <p className="text-2xl font-semibold bg-sky-900 p-3 text-white">
-            धाय ड्रिम्स : हामी ‘जलवायु शरणार्थी’ बन्न तयार भएका हौं ?
+    <div
+      className="reletive overflow-hidden cursor-pointer rounded-sm"
+      onClick={() => router.push(`/coverstory/${cover?._id}`)}
+    >
+      <div className="relative group">
+        <img
+          src={cover?.bannerImage || "/no-photo.png"}
+          alt="news-image"
+          loading="lazy"
+          className="aspect-square w-full object-cover transition-transform duration-300 transform scale-100 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent"></div>
+        <div className="absolute inset-0 flex items-end justify-start pointer-events-none p-2 pb-5">
+          {" "}
+          <p className="text-2xl font-semibold  p-3 text-white line-clamp-2">
+            {cover.newsTitle.slice(0, 85)}
           </p>
         </div>
-  )
-}
+      </div>
+    </div>
+  );
+};

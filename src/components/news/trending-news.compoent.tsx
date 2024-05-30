@@ -33,7 +33,7 @@ export const TrendingNews = ({ colSpan, menu, limit }: TrendingNewsProps) => {
       ) : (
         <div className="grid grid-cols-12 md:gap-4 mt-5 gap-2">
           {isSuccess &&
-            data?.data?.map((item: TrendingNews, index: number) => (
+            data?.data?.slice(0,5).map((item: TrendingNews, index: number) => (
               <div
                 className={`col-span-12 md:col-span-${colSpan ? colSpan : 6}`}
                 key={index}
