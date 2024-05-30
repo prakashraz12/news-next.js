@@ -23,6 +23,7 @@ const HomePage = () => {
 
   return (
     <HomePageLayout>
+      
       <main className="md:mx-auto min-h-screen w-full">
         <div className="md:container">
           <RednderHighlightedNews />
