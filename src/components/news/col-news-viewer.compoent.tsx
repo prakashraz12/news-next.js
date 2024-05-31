@@ -6,7 +6,7 @@ import { NotebookPen } from "lucide-react";
 import { useGetNewsMutation } from "@/(service)/api/news.api";
 import { Menu, News } from "@/types/newsTypes";
 import { useRouter } from "next/navigation";
-
+import { HorizontalAdsCompoent } from "../horizontal-ads-compoent";
 
 export const ColNewsViewsCompoent = ({ item }: { item: Menu }) => {
   const router = useRouter();
@@ -17,9 +17,12 @@ export const ColNewsViewsCompoent = ({ item }: { item: Menu }) => {
   const fetchNews = useCallback(() => {
     searchNews({ page: 1, rowsPerPage: 4, menu: item?._id });
   }, [item?._id]);
+
   useEffect(() => {
-    fetchNews();
-  }, []);
+    if (item?._id) {
+      fetchNews()
+    }
+  },[item?._id]);
 
   useEffect(() => {
     if (isSuccessOnFetchedNews) {
@@ -27,24 +30,28 @@ export const ColNewsViewsCompoent = ({ item }: { item: Menu }) => {
     }
   }, [isSuccessOnFetchedNews]);
 
-
   return (
     <div className="w-full p-3">
       {isSuccessOnFetchedNews && newsData?.length > 0 && (
         <>
-          <div className="flex mb-10">
+          <div className="flex md:mb-10 mb-2">
             <h1 className="text-3xl  md:text-5xl font-bold text-sky-800">
               {item?.menuTitle}
             </h1>
           </div>
           <div className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4  bg-sky-800 rounded-sm" onClick={()=>{router.push(`/home/news/${newsData[0]?._id}`)}}>
+            <div
+              className="grid grid-cols-1 md:grid-cols-12 gap-4  bg-sky-800 rounded-sm"
+              onClick={() => {
+                router.push(`/home/news/${newsData[0]?._id}`);
+              }}
+            >
               <div className="md:col-span-6 overflow-hidden">
                 <img
                   src={newsData[0]?.bannerImage || "/no-photo.png"}
                   alt="news-image"
                   loading="lazy"
-                  className={`w-full h-[300px] md:h-[500px] ${newsData[0]?.bannerImage ? "object-cover":"object-contain"} ${newsData[0]?.bannerImage && "hover:scale-105 duration-500 ease-in-out"} ${!newsData[0]?.bannerImage && "opacity-20" }`}
+                  className={`w-full h-[300px] md:h-[500px] ${newsData[0]?.bannerImage ? "object-cover" : "object-contain"} ${newsData[0]?.bannerImage && "hover:scale-105 duration-500 ease-in-out"} ${!newsData[0]?.bannerImage && "opacity-20"}`}
                 />
               </div>
               <div className="md:col-span-6 flex items-center justify-around flex-col p-10  cursor-pointer">
@@ -68,12 +75,12 @@ export const ColNewsViewsCompoent = ({ item }: { item: Menu }) => {
                   <HorizontalNewsCard key={index} item={item} />
                 ))}
               </div>
-              <div className="col-span-12 md:col-span-5 mt-2">
+              <div className="col-span-12 md:col-span-4 mt-2">
                 {newsData.slice(0, 5).map((item, index) => (
                   <HorizontalNewsCard key={index} item={item} />
                 ))}
               </div>
-              <div className="col-span-12 md:col-span-2 mt-2">
+              <div className="col-span-12 md:col-span-3 mt-2 flex justify-center flex-col items-center">
                 <SideBarAdsCompoent />
                 <SideBarAdsCompoent />
               </div>
@@ -81,6 +88,7 @@ export const ColNewsViewsCompoent = ({ item }: { item: Menu }) => {
           </div>
         </>
       )}
+      <HorizontalAdsCompoent/>
     </div>
   );
 };

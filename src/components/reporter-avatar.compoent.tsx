@@ -14,16 +14,15 @@ export const ReporterAvatarCompoent = ({
 }: ReporterAvatarCompoentProps) => {
   return (
     <div className="flex items-center gap-3">
-      <Avatar className="border-dashed border-2 border-sky-500">
+      <Avatar className="border-dashed border-2 border-sky-500 w-7 h-7 md:w-12 md:h-12" >
         <AvatarImage
           src={imageUrl}
           alt="reporter-image"
-          
-          className="object-cover"
+          className="object-cover "
         />
         <AvatarFallback>{fullName?.slice(0, 1)}</AvatarFallback>
       </Avatar>
-      <h6 className="text-sm font-bold">{ fullName}</h6>
+      <h6 className="text-sm md:font-[600]">{ fullName}</h6>
     </div>
   );
 };

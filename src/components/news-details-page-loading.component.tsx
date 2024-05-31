@@ -8,7 +8,7 @@ export const NewsDetailsLoading = () => {
       <Skeleton className="w-[90%] h-20" />
       <hr className="mt-2" />
       <div className="grid grid-cols-12 p-3 gap-4">
-        <div className="col-span-12 md:col-span-1 p-4 flex flex-col justify-start items-center gap-3">
+        <div className="col-span-12 md:col-span-1 p-4 md:flex flex-col justify-start items-center gap-3 hidden">
           <Skeleton className="w-20 h-20 rounded-full" />
           <Skeleton className="w-7 h-7 rounded-sm" />
           <Skeleton className="w-[90%] h-7 rounded-sm" />
@@ -18,7 +18,29 @@ export const NewsDetailsLoading = () => {
           <Skeleton className="w-20 h-20 rounded-full" />
         </div>
         <div className="col-span-12 md:col-span-7 ">
-          <Skeleton className="w-[100%] h-[500px] rounded-sm" />
+          <div className="flex justify-between w-full mb-2">
+            <div className="flex items-center gap-2 w-full">
+              <Skeleton className="w-10 h-10 rounded-full" />
+              <Skeleton className="w-[20%] h-2 rounded-full" />
+            </div>
+            <div className="flex items-center gap-2 w-full justify-end">
+              <Skeleton className="w-10 h-10 rounded-full" />
+              <Skeleton className="w-[20%] h-2 rounded-full" />
+            </div>
+          </div>
+          <Skeleton className="w-[100%] h-[50px] rounded-sm mb-2" />
+          <div className="flex justify-between w-full mb-2">
+            <div className="flex items-center gap-2 w-full">
+              <Skeleton className="w-10 h-10 rounded-full" />
+              <Skeleton className="w-[20%] h-2 rounded-full" />
+            </div>
+            <div className="flex items-center gap-2 w-full justify-end">
+              <Skeleton className="w-10 h-10 rounded-full" />
+              <Skeleton className="w-10 h-10 rounded-full" />
+              <Skeleton className="w-10 h-10 rounded-full" />
+            </div>
+          </div>
+          <Skeleton className="w-[100%] h-[400px] rounded-sm" />
           <Skeleton className="w-[100%] h-5 rounded-sm mt-5" />
           <Skeleton className="w-[100%] h-5 rounded-sm mt-1" />
           <Skeleton className="w-[90%] h-3 rounded-sm mt-2" />
@@ -31,9 +53,9 @@ export const NewsDetailsLoading = () => {
             <Skeleton className="w-[100%] h-3 rounded-sm mt-2" key={index} />
           ))}
           <div className="flex w-full flex-wrap gap-2 mt-4">
-            <Skeleton className="w-[32%] h-60 rounded-sm mt-2" />
-            <Skeleton className="w-[32%] h-60 rounded-sm mt-2" />
-            <Skeleton className="w-[32%] h-60 rounded-sm mt-2" />
+            <Skeleton className="w-[100%] md:w-[32%] h-60 rounded-sm mt-2" />
+            <Skeleton className="w-[100%] md:w-[32%]  h-60 rounded-sm mt-2" />
+            <Skeleton className="w-[100%] md:w-[32%] h-60 rounded-sm mt-2" />
           </div>
           <Skeleton className="w-[100%] h-60 rounded-sm mt-5" />
           <Skeleton className="w-[30%] h-16 rounded-sm mt-5" />
@@ -99,7 +121,7 @@ export const NewsDetailsLoading = () => {
       <Skeleton className="w-[20%] h-[90px] rounded-sm mt-3" />
       <div className="grid grid-cols-12 gap-4 mt-5">
         {Array.from({ length: 8 }).map((i, index) => (
-          <div className="col-span-3" key={index}>
+          <div className="col-span-12 md:col-span-4" key={index}>
             <Card className="p-2">
               <Skeleton className="w-[100%] h-[200px] rounded-sm" />
               <CardContent className="flex flex-col gap-2 p-0 mt-2">

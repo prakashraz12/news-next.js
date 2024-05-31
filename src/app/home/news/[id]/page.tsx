@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { NewsDetailsPage } from "@/components/details-page.compeont";
 
+
 const DetailsPage = () => {
   const [newsData, setNewsData] = useState<News | any>(undefined);
   const params = useParams();

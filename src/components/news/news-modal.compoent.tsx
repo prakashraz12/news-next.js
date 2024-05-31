@@ -7,6 +7,7 @@ import { useGetNewsMutation } from "@/(service)/api/news.api";
 import { Menu, News } from "@/types/newsTypes";
 import { AdsViewComponent } from "../ads-view.component";
 import { useRouter } from "next/navigation";
+import { Skeleton } from "../ui/skeleton";
 interface NewsModalComponentProps {
   item?: Menu;
 }
@@ -14,7 +15,7 @@ interface NewsModalComponentProps {
 export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
   const router = useRouter();
   const [newsData, setNewsData] = useState<News[]>([]);
-  const [searchNews, { data, isSuccess: isSuccessOnFetchedNews }] =
+  const [searchNews, { data, isSuccess: isSuccessOnFetchedNews, isLoading }] =
     useGetNewsMutation();
 
   const fetchNews = useCallback(() => {
@@ -32,12 +33,14 @@ export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
 
   return (
     <React.Fragment>
+      {isLoading && <Loading />}
       {isSuccessOnFetchedNews && newsData.length > 0 && (
         <>
-          <div className="w-full mb-3 p-3">
+          <div className="w-full  p-3">
             <h1 className="text-5xl font-bold text-sky-800">
               {item?.menuTitle}
             </h1>
+            <div></div>
           </div>
           <div className="grid md:grid-cols-3 sm:grid-cols-12 gap-4 p-3">
             <div
@@ -66,7 +69,7 @@ export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
 
               <Button className="bg-sky-800 text-xl ">थप समाचार</Button>
             </div>
-            <div className=" flex-col hidden md:flex w-full">
+            <div className=" flex-col hidden md:flex  items-center w-[80%]">
               <SideBarAdsCompoent />
               <SideBarAdsCompoent />
             </div>
@@ -77,5 +80,52 @@ export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
         </>
       )}
     </React.Fragment>
+  );
+};
+
+const Loading = () => {
+  return (
+    <div className="md:container grid grid-cols-12 gap-2">
+      <div className="col-span-4">
+        <Skeleton className="w-[100%] h-[400px]" />
+      </div>
+      <div className="col-span-4 w-full flex flex-col  gap-3 p-3">
+        <div className="flex w-full gap-2">
+          <Skeleton className="w-[150px] h-[100px]" />
+          <div className="w-full flex flex-col gap-2 p-2">
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+          </div>
+        </div>
+        <div className="flex w-full gap-2">
+          <Skeleton className="w-[150px] h-[100px]" />
+          <div className="w-full flex flex-col gap-2 p-2">
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+          </div>
+        </div>
+        <div className="flex w-full gap-2">
+          <Skeleton className="w-[150px] h-[100px]" />
+          <div className="w-full flex flex-col gap-2 p-2">
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+            <Skeleton className="w-[100%] h-[10px]" />
+          </div>
+        </div>
+        <Skeleton className="w-[100%] h-[50px]" />
+      </div>
+      <div className="col-span-4 flex flex-col gap-2 w-[90%]">
+        <Skeleton className="w-[100%] h-[200px]" />
+        <Skeleton className="w-[100%] h-[200px]" />
+      </div>
+    </div>
   );
 };

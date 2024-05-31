@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AdsViewComponent } from "../ads-view.component";
 import Image from "next/image";
 interface AuthorInterFace {
-  fullName?: string
+  fullName?: string;
   _id: string;
   avatar?: string;
 }
@@ -15,15 +15,15 @@ interface HighlightedNewsProps {
   content?: string;
   bannerImage?: string;
   author?: AuthorInterFace;
-  createTime: string | any
-   id: string;
+  createTime: string | any;
+  id: string;
 }
 export const HighlightedTopNews = ({
   title,
   bannerImage,
   author,
   createTime,
-  id
+  id,
 }: HighlightedNewsProps) => {
   return (
     <React.Fragment>
@@ -35,11 +35,14 @@ export const HighlightedTopNews = ({
           </h1>
         </Link>
         <div className="flex items-center gap-3 justify-center">
-          <ReporterAvatarCompoent fullName={author?.fullName} imageUrl={author?.avatar} />
+          <ReporterAvatarCompoent
+            fullName={author?.fullName}
+            imageUrl={author?.avatar}
+          />
           <TimeCountComponent createTime={createTime} />
         </div>
-        {
-          bannerImage && <Image
+        {bannerImage && (
+          <Image
             src={bannerImage}
             width={0}
             height={0}
@@ -47,7 +50,7 @@ export const HighlightedTopNews = ({
             alt="news-image"
             className="aspect-video rounded-sm"
           />
-        }
+        )}
         <hr />
       </div>
     </React.Fragment>
