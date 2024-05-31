@@ -18,7 +18,7 @@ export const NewsDetailsLoading = () => {
           <Skeleton className="w-20 h-20 rounded-full" />
         </div>
         <div className="col-span-12 md:col-span-7 ">
-          <div className="flex justify-between w-full mb-2">
+          <div className="flex justify-between w-full mb-2 md:hidden">
             <div className="flex items-center gap-2 w-full">
               <Skeleton className="w-10 h-10 rounded-full" />
               <Skeleton className="w-[20%] h-2 rounded-full" />
@@ -28,8 +28,8 @@ export const NewsDetailsLoading = () => {
               <Skeleton className="w-[20%] h-2 rounded-full" />
             </div>
           </div>
-          <Skeleton className="w-[100%] h-[50px] rounded-sm mb-2" />
-          <div className="flex justify-between w-full mb-2">
+          <Skeleton className="w-[100%] h-[50px] rounded-sm mb-2 md:hidden" />
+          <div className="flex justify-between w-full mb-2 md:hidden">
             <div className="flex items-center gap-2 w-full">
               <Skeleton className="w-10 h-10 rounded-full" />
               <Skeleton className="w-[20%] h-2 rounded-full" />

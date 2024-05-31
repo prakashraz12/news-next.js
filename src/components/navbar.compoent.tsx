@@ -9,8 +9,10 @@ import { useSelector } from "react-redux";
 import { Avatar } from "./ui/avatar";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { ModeToggle } from "./theme-switcher.component";
+import { UserProfile } from "./user/user-profile-slider.compoent";
 
 export const NavabrCompoent = () => {
+  const [isUserProfileOpen, setIsUserProfleOpen] = useState<boolean>(false);
   const isLogIn = useSelector(({ app }: { app: any }) => app.token);
 
   const user = useSelector(({ app }: { app: any }) => app.userDetails);
@@ -24,6 +26,7 @@ export const NavabrCompoent = () => {
   const handleAuthModalOpen = () => {
     setIsAuthModalOpen(true);
   };
+
   return (
     <React.Fragment>
       {isClient && (
@@ -40,13 +43,18 @@ export const NavabrCompoent = () => {
               <div className="flex">
                 <ModeToggle />
                 {isLogIn ? (
-                  <Avatar className="cursor-pointer hover:border-2 hover:border-sky-900 transition-all ease-linear ">
+                  <Avatar
+                    className="cursor-pointer border-2 hover:border-sky-900 transition-all ease-linear"
+                    onClick={() => setIsUserProfleOpen(true)}
+                  >
                     <AvatarImage
                       src={user?.avatar}
-                      alt={user.fullName}
+                      alt="user"
                       className="object-cover"
                     />
-                    <AvatarFallback>{user?.fullName}</AvatarFallback>
+                    <AvatarFallback className="flex justify-center w-full items-center text-xl">
+                      {user.fullName.slice(0, 1)}
+                    </AvatarFallback>
                   </Avatar>
                 ) : (
                   <>
@@ -58,6 +66,10 @@ export const NavabrCompoent = () => {
                   </>
                 )}
                 <SearchComponent />
+                <UserProfile
+                  open={isUserProfileOpen}
+                  setOpen={setIsUserProfleOpen}
+                />
               </div>
             </div>
           </nav>

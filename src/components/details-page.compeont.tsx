@@ -64,7 +64,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
         <div className="md:container md:mx-auto min-h-screen w-full overflow-hidden p-2">
           <div className="w-full p-1 md:p-8 ">
             <div
-              className={`sticky top-[80px] z-10  dark:bg-[#020817] bg-white`}
+              className={`sticky top-[20px] z-10  dark:bg-[#020817] bg-white`}
             >
               <div className="flex justify-between">
                 <h1
@@ -86,9 +86,9 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   </div>
                 )}
               </div>
-              <hr />
+              <hr className="hidden md:block" />
             </div>
-            <div className="grid grid-cols-12 w-full">
+            <div className="grid grid-cols-12 w-full gap-5">
               <div className="col-span-1 hidden md:block">
                 <div
                   className={`sticky top-[155px]  p-2  z-0 ease-out duration-500`}
@@ -219,7 +219,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   setComment={setComment}
                 />
               </div>
-              <div className="md:col-span-4 w-full mt-7  md:flex flex-col justify-start col-span-10">
+              <div className="md:col-span-4 w-full mt-7  md:flex flex-col  col-span-12 items-center">
                 <div className="hidden md:block">
                   <hr className="mt-2 mb-2" />
                   <p className="text-sm text-center">Advertisment</p>
@@ -233,7 +233,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   newsData !== undefined &&
                   newsData.recommendedNews.length > 0 && (
                     <>
-                      <p className="text-2xl md:text-4xl font-bold text-sky-800">सिफारिस</p>
+                      <p className="text-2xl md:text-4xl font-bold text-sky-800 text-start">सिफारिस</p>
                       <hr className="mt-2 mb-2" />
                       <div className="flex flex-col">
                         {newsData?.recommendedNews?.slice(0, 5).map(
