@@ -61,12 +61,12 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
       {/* {isAdsShown && <PopUpAdsOnDetailsPage setIsAdsShown={setIsAdsShown} />} */}
       {isNewsFetching && <NewsDetailsLoading />}
       {isNewsfetched && (
-        <div className="md:container md:mx-auto min-h-screen w-full">
-          <div className="w-full p-3 md:p-8 ">
+        <div className="md:container md:mx-auto min-h-screen w-full overflow-hidden p-2">
+          <div className="w-full p-1 md:p-8 ">
             <div
-              className={`sticky top-[80px] z-10   p-0 dark:bg-[#020817] bg-white`}
+              className={`sticky top-[80px] z-10  dark:bg-[#020817] bg-white`}
             >
-              <div className="flex justify-between  p-0">
+              <div className="flex justify-between">
                 <h1
                   className={`text-5xl md:block hidden text-sky-950  dark:text-white  font-bold mt-2 mb-3 ease-in-out duration-50 transition-all ${isHeadingSticky ? "text-xl" : "text-6xl"}`}
                 >
@@ -88,10 +88,10 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
               </div>
               <hr />
             </div>
-            <div className="grid grid-cols-12 gap-10 w-full">
+            <div className="grid grid-cols-12 w-full">
               <div className="col-span-1 hidden md:block">
                 <div
-                  className={`sticky top-[155px]   p-2  z-0 ease-out duration-500`}
+                  className={`sticky top-[155px]  p-2  z-0 ease-out duration-500`}
                 >
                   <div className="flex justify-center items-center flex-col gap-2">
                     <MessageCircleDashedIcon size={"48px"} color="#2596be" />
@@ -121,7 +121,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   </div>
                 </div>
               </div>
-              <div className="md:col-span-7 col-span-10">
+              <div className="md:col-span-7 col-span-12 w-full">
                 {!isHeadingSticky && (
                   <div className="md:flex hidden items-center gap-3 justify-center ease-in duration-700 mt-3 mb-3">
                     <ReporterAvatarCompoent
@@ -180,7 +180,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                     src={newsData?.bannerImage || "/no-photo.png"}
                     alt="news-banner-image"
                     loading="lazy"
-                    className="w-full aspect-auto object-cover rounded-sm"
+                    className="w-full aspect-video object-cover rounded-sm"
                   />
                 )}
                 <p className="text-md mt-3 mb-1">
@@ -219,7 +219,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   setComment={setComment}
                 />
               </div>
-              <div className="md:col-span-4 w-full mt-7  md:flex flex-col justify-start col-span-10 ">
+              <div className="md:col-span-4 w-full mt-7  md:flex flex-col justify-start col-span-10">
                 <div className="hidden md:block">
                   <hr className="mt-2 mb-2" />
                   <p className="text-sm text-center">Advertisment</p>
@@ -228,15 +228,15 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   <SideBarAdsCompoent />
                   <hr className="mt-2 mb-2" />
                 </div>
-                <hr className="mt-2 mb-2" />
+                <hr className="mt-2 mb-2 hidden md:block" />
                 {isNewsfetched &&
                   newsData !== undefined &&
                   newsData.recommendedNews.length > 0 && (
                     <>
-                      <p className="text-4xl font-bold text-sky-800">सिफारिस</p>
+                      <p className="text-2xl md:text-4xl font-bold text-sky-800">सिफारिस</p>
                       <hr className="mt-2 mb-2" />
                       <div className="flex flex-col">
-                        {newsData?.recommendedNews?.slice(0,5).map(
+                        {newsData?.recommendedNews?.slice(0, 5).map(
                           (item: any, index: number) => (
                             <div key={index}>
                               <HorizontalNewsCard item={item} />

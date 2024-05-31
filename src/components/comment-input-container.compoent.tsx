@@ -3,6 +3,7 @@ import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { useCreateCommentMutation } from "@/(service)/api/comment.ap";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 interface CommentInputCntainerCompoentProps {
   newsId?: string;
@@ -17,6 +18,7 @@ export const CommentInputCntainerCompoent = ({
   setIsLoadingCommentfetching,
   type
 }: CommentInputCntainerCompoentProps) => {
+  const isAuth = useSelector((state: any) => state.app.token);
   const [comment, setComment] = useState<string>("");
   const [
     commentBody,
@@ -28,7 +30,11 @@ export const CommentInputCntainerCompoent = ({
   ] = useCreateCommentMutation();
 
   const handleComment = async () => {
-    await commentBody({ newsId, comment, type });
+    if (isAuth) {
+      await commentBody({ newsId, comment, type });
+    } else {
+      toast.error("Login in first")
+   }
   };
 
   useEffect(() => {
