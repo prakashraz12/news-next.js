@@ -21,16 +21,22 @@ export default function RootLayout({
   return (
     <React.Fragment>
       <html lang="en" suppressHydrationWarning>
+        <head>
+          <link rel="manifeast" href="/manifest.json" />
+          <meta name="theme-color" content="#ffff" />
+        </head>
         <body className={mukta.className}>
-          <ThemeProvider  attribute="class"
+          <ThemeProvider
+            attribute="class"
             defaultTheme="system"
             enableSystem
-            disableTransitionOnChange>
-          <ReduxStoreProviderLayout>
-            <Toaster position="top-center" reverseOrder={false} />
-            {children}
-          </ReduxStoreProviderLayout>
-        </ThemeProvider>
+            disableTransitionOnChange
+          >
+            <ReduxStoreProviderLayout>
+              <Toaster position="top-center" reverseOrder={false} />
+              {children}
+            </ReduxStoreProviderLayout>
+          </ThemeProvider>
         </body>
       </html>
     </React.Fragment>

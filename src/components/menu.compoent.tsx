@@ -11,29 +11,38 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetNewsByMenuMutation } from "@/(service)/api/news.api";
 import { Menu, News } from "@/types/newsTypes";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { setMenuNews } from "@/(store)/slices/cache.slice";
+import { useDeviceType } from "../../hook/useDeviceType";
 
 export function MenuComponet() {
+  const isMobile: boolean = useDeviceType();
+  const dispatch = useDispatch();
   const router = useRouter();
-  const appSettings = useSelector(
-    (app: any) => app.app.appSettings
-  );
-  const [searchParams, { data }] = useGetNewsByMenuMutation();
+  const appSettings = useSelector((app: any) => app.app.appSettings);
+  const cachedMenusData = useSelector((state: any) => state?.cache?.menuNews);
+  const [searchParams, { isSuccess, data }] = useGetNewsByMenuMutation();
   const menusId = appSettings?.menus?.map((item: Menu) => item._id);
   const fetchNews = React.useCallback(async () => {
     await searchParams({ menu: [...menusId] });
   }, [appSettings?.menus?.length]);
 
   React.useEffect(() => {
-    if (appSettings?.menus?.length) {
+    if (cachedMenusData === null && appSettings?.menus && !isMobile) {
       fetchNews();
     }
-  }, [appSettings?.menus?.length]);
+  }, [appSettings?.menus]);
+
+  React.useEffect(() => {
+    if (isSuccess) {
+      dispatch(setMenuNews(data?.data));
+    }
+  }, [isSuccess]);
 
   return (
     <NavigationMenu>
@@ -45,7 +54,7 @@ export function MenuComponet() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        {appSettings?.menus.map((menuItem:any, index:number) => (
+        {appSettings?.menus.map((menuItem: any, index: number) => (
           <NavigationMenuItem className="hidden md:block" key={index}>
             <NavigationMenuTrigger
               className="text-md"
@@ -55,7 +64,7 @@ export function MenuComponet() {
             </NavigationMenuTrigger>
             <NavigationMenuContent className="border-1 border-gray-950">
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                {data?.data?.[menuItem._id]?.map((newsItem: News) => (
+                {cachedMenusData?.[menuItem._id]?.map((newsItem: News) => (
                   <ListItem
                     key={newsItem._id}
                     bannerImage={newsItem?.bannerImage}
@@ -99,7 +108,7 @@ const ListItem = React.forwardRef<
             <img
               src={bannerImage || "/no-photo.png"}
               alt="banner-image"
-              className={`w-[70px] h-[70px] ${bannerImage ? "object-cover" :"object-contain"} ${!bannerImage && "opacity-10"} rounded-sm`}
+              className={`w-[70px] h-[70px] ${bannerImage ? "object-cover" : "object-contain"} ${!bannerImage && "opacity-10"} rounded-sm`}
             />
             <div className="text-md leading-none p-2">{title}</div>
           </div>

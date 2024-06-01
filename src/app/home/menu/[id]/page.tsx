@@ -1,13 +1,9 @@
 "use client";
-import React from 'react'
-import { LayoutOne } from '../_compoenents/layoutOne'
+import React from "react";
+import { MainMenuPage } from "../_compoenents/mainMenuPage";
 
-const page = () => {
-  return (
-    <div>
-     <LayoutOne/>
-    </div>
-  )
-}
+const Page = () => {
+  return <MainMenuPage />;
+};
 
-export default page
+export default Page;

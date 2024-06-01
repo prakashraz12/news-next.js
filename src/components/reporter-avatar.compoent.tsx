@@ -14,7 +14,7 @@ export const ReporterAvatarCompoent = ({
 }: ReporterAvatarCompoentProps) => {
   return (
     <div className="flex items-center gap-3">
-      <Avatar className="border-dashed border-2 border-sky-500 w-7 h-7 md:w-12 md:h-12" >
+      <Avatar className="border-dashed border-2 border-sky-500 w-7 h-7 md:w-10 md:h-10" >
         <AvatarImage
           src={imageUrl}
           alt="reporter-image"

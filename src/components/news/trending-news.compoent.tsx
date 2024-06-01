@@ -27,7 +27,7 @@ export const TrendingNews = ({ colSpan, menu, limit }: TrendingNewsProps) => {
   }, [menu]);
   return (
     <div className="w-full p-3">
-      <h1 className="text-3xl md:text-5xl font-bold text-sky-800">ट्रेन्डिङ</h1>
+      <h1 className="text-2xl md:text-5xl font-bold text-sky-800">ट्रेन्डिङ</h1>
       {isLoading ? (
         <Loading />
       ) : (

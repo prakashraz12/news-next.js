@@ -4,37 +4,48 @@ import React, { useEffect, useState } from "react";
 import { HighlightedTopNews } from "./news/highlighted-top.componet";
 import { News } from "@/types/newsTypes";
 import { Skeleton } from "./ui/skeleton";
+import { useDispatch, useSelector } from "react-redux";
+import { cachedHighlightedNews } from "@/(store)/slices/cache.slice";
 
 export const RednderHighlightedNews = () => {
+  const [loading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const cachedHightlighted = useSelector(
+    (state: any) => state.cache.highlightedNews as News[]
+  );
   const page = 0;
   const rowsPerPage = 3;
   const isHighlighted = true;
   const [
     searchparams,
-    { data: newsDataFetched, isSuccess: isSuccessfullyFetched, isLoading },
+    { data: newsDataFetched, isSuccess: isSuccessfullyFetched },
   ] = useGetNewsMutation();
 
-  const [newsData, setNewsData] = useState<News[]>([]);
+  const fetchData = async () => {
+    searchparams({ page, rowsPerPage, isHighlighted });
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      searchparams({ page, rowsPerPage, isHighlighted });
-    };
-    fetchData();
+    if (cachedHightlighted.length === 0) {
+      fetchData();
+    } else if (cachedHightlighted.length) {
+      setIsLoading(false);
+    }
   }, []);
 
   useEffect(() => {
     if (isSuccessfullyFetched) {
-      setNewsData(newsDataFetched?.data);
+      dispatch(cachedHighlightedNews(newsDataFetched?.data));
+      setIsLoading(false);
     }
   }, [isSuccessfullyFetched]);
 
   return (
     <>
-      {isLoading &&
+      {loading &&
         Array.from({ length: 3 }).map((_, index) => <Loading key={index} />)}
-      {isSuccessfullyFetched &&
-        newsData?.map((item, index) => (
+      {cachedHightlighted.length > 0 &&
+        cachedHightlighted?.map((item, index) => (
           <HighlightedTopNews
             bannerImage={item?.bannerImage}
             title={item?.newsTitle}

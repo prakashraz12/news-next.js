@@ -13,6 +13,8 @@ export const AdsViewComponent = () => {
         }
         alt="ads-image"
         className="w-full h-fit sm:p-1 md:p-4 object-contain"
+       
+        loading="lazy"
       />
     </div>
   );

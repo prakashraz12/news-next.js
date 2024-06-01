@@ -49,6 +49,7 @@ export const HighlightedTopNews = ({
             layout="responsive"
             alt="news-image"
             className="aspect-video rounded-sm"
+            loading="lazy"
           />
         )}
         <hr />

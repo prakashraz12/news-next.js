@@ -2,15 +2,20 @@
 import React from "react";
 import Image from "next/image";
 import { News } from "@/types/newsTypes";
+import { useRouter } from "next/navigation";
 export const FallbackNewsLayout = ({
   allNewsData,
 }: {
   allNewsData: News[];
 }) => {
+  const router = useRouter();
   return (
     <div className="md:container grid grid-cols-12 gap-3 p-4">
       {allNewsData?.length > 0 && (
-        <div className="col-span-12 md:col-span-4 relative overflow-hidden rounded-md">
+        <div
+          className="col-span-12 md:col-span-4 relative overflow-hidden rounded-md cursor-pointer"
+          onClick={() => router.push(`/home/news/${allNewsData[0]?._id}`)}
+        >
           <div className="relative group">
             <img
               src={allNewsData[0]?.bannerImage || "/no-photo.png"}
@@ -28,7 +33,10 @@ export const FallbackNewsLayout = ({
         </div>
       )}
       {allNewsData?.length > 1 && (
-        <div className="col-span-12 md:col-span-4 relative overflow-hidden rounded-md">
+        <div
+          className="col-span-12 md:col-span-4 relative overflow-hidden rounded-md cursor-pointer"
+          onClick={() => router.push(`/home/news/${allNewsData[1]?._id}`)}
+        >
           <div className="relative group rounded-md">
             <img
               src={allNewsData[1]?.bannerImage || "/no-photo.png"}
@@ -49,8 +57,9 @@ export const FallbackNewsLayout = ({
         <div className="col-span-12 md:col-span-4">
           {allNewsData.slice(2)?.map((item, index) => (
             <div
-              className="flex gap-1 cursor-pointer hover:text-sky-950 mt-1 mb-2"
+              className="flex gap-1 cursor-pointer hover:text-sky-950 mt-1 mb-2 cursor-pointer"
               key={index}
+              onClick={() => router.push(`/home/news/${item?._id}`)}
             >
               <Image
                 src={item?.bannerImage || "/np-photo.png"}

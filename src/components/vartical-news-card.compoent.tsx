@@ -23,7 +23,7 @@ export const VarticalNewsCardCompoent = ({
           src={item?.bannerImage || "/no-photo.png"}
           loading="lazy"
           alt="news-image"
-          className={`w-full h-[200px] ${item?.bannerImage ? "object-cover" : "object-contain"} ${item?.bannerImage && "hover:scale-150 ease-in duration-500"} ${!item?.bannerImage && "opacity-10"}`}
+          className={`w-full h-[190px] ${item?.bannerImage ? "object-cover" : "object-contain"} ${item?.bannerImage && "hover:scale-150 ease-in duration-500"} ${!item?.bannerImage && "opacity-10"}`}
         />
         {type === "province" && (
           <p className="bg-sky-800 w-auto absolute bottom-2 p-2 text-md font-medium text-white">
@@ -40,7 +40,7 @@ export const VarticalNewsCardCompoent = ({
         <p className="text-2xl md:font-bold font-medium hover:text-sky-800 line-clamp-2">
           {item?.newsTitle}
         </p>
-        <p className="mt-2 line-clamp-6">{item?.shortDescription}</p>
+        <p className="mt-2 line-clamp-6">{item?.shortDescription.slice(0,210)}</p>
       </CardContent>
     </Card>
   );

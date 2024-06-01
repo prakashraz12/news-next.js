@@ -1,9 +1,10 @@
 "use client";
-import { useGetNewsByIdMutation } from "@/(service)/api/news.api";
 import { News } from "@/types/newsTypes";
 import { useParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { NewsDetailsPage } from "@/components/details-page.compeont";
+import { useLazyGetNewsByIdQuery } from "@/(service)/api/news.api";
+
 
 
 const DetailsPage = () => {
@@ -12,7 +13,7 @@ const DetailsPage = () => {
   const [
     getNewsById,
     { isSuccess: isNewsfetched, data: newsDatas, isLoading: isNewsFetching },
-  ] = useGetNewsByIdMutation();
+  ] = useLazyGetNewsByIdQuery();
 
 
 

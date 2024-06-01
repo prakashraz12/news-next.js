@@ -8,14 +8,8 @@ export const newsApi = createApi({
     baseUrl,
     credentials: "include",
   }),
+
   endpoints: (builder) => ({
-    crateNews: builder.mutation({
-      query: (data) => ({
-        url: "/create",
-        method: "POST",
-        body: data,
-      }),
-    }),
     getNews: builder.mutation({
       query: (searchparams) => ({
         url: "/search",
@@ -30,7 +24,7 @@ export const newsApi = createApi({
         body: searchparams,
       }),
     }),
-    getNewsById: builder.mutation({
+    getNewsById: builder.query({
       query: (id) => ({
         url: `/get/${id}`,
         method: "GET",
@@ -53,10 +47,9 @@ export const newsApi = createApi({
 });
 
 export const {
-  useCrateNewsMutation,
   useGetNewsMutation,
   useGetNewsByMenuMutation,
-  useGetNewsByIdMutation,
+  useLazyGetNewsByIdQuery,
   useGetTrendingNewsMutation,
   useGetNewsByMenusMutation,
 } = newsApi;

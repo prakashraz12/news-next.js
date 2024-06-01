@@ -61,12 +61,12 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
       {/* {isAdsShown && <PopUpAdsOnDetailsPage setIsAdsShown={setIsAdsShown} />} */}
       {isNewsFetching && <NewsDetailsLoading />}
       {isNewsfetched && (
-        <div className="md:container md:mx-auto min-h-screen w-full overflow-hidden p-2">
-          <div className="w-full p-1 md:p-8 ">
+        <div className="md:container md:mx-auto min-h-screen w-full  p-2">
+          <div className="w-full p-1 md:p-8 dark:bg-[#020817] bg-white">
             <div
-              className={`sticky top-[20px] z-10  dark:bg-[#020817] bg-white`}
+              className={`sticky top-[81px] z-10  dark:bg-[#020817] bg-white`}
             >
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
                 <h1
                   className={`text-5xl md:block hidden text-sky-950  dark:text-white  font-bold mt-2 mb-3 ease-in-out duration-50 transition-all ${isHeadingSticky ? "text-xl" : "text-6xl"}`}
                 >
@@ -194,8 +194,9 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                         return (
                           <img
                             {...domNode.attribs}
-                            className="aspect-video"
+                            className="aspect-video rounded-sm mt-1 mb-1"
                             loading="lazy"
+
                           />
                         );
                       }
@@ -258,8 +259,8 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
           </div>
           <AdsViewComponent />
           <div className="mt-1 md:p-6 p-2">
-            <h1 className="text-5xl font-bold text-sky-900">सम्बन्धित खबर</h1>
-            <hr className="mt-4" />
+            <h1 className="text-2xl md:text-5xl font-bold text-sky-900">सम्बन्धित खबर</h1>
+            <hr className="mt-2" />
           </div>
           <RelatedNews menu={newsData?.menu} newsId={newsData?._id} />
         </div>

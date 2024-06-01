@@ -10,8 +10,10 @@ import { Avatar } from "./ui/avatar";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { ModeToggle } from "./theme-switcher.component";
 import { UserProfile } from "./user/user-profile-slider.compoent";
+import { MenuIcon } from "lucide-react";
 
 export const NavabrCompoent = () => {
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
   const [isUserProfileOpen, setIsUserProfleOpen] = useState<boolean>(false);
   const isLogIn = useSelector(({ app }: { app: any }) => app.token);
 
@@ -37,13 +39,15 @@ export const NavabrCompoent = () => {
             </div>
             <div className="flex justify-between items-center w-full">
               <div className="md:hidden">
-                <MobileNavBrComponent menuList={menuList} />
+                <MenuIcon onClick={()=>setIsMobileNavOpen(true)}/>
+                <MobileNavBrComponent open={isMobileNavOpen} setOpen={setIsMobileNavOpen} />
               </div>
               <div className="hidden md:block"></div>
               <div className="flex">
                 <ModeToggle />
                 {isLogIn ? (
                   <Avatar
+                    aria-label="user-avatar"
                     className="cursor-pointer border-2 hover:border-sky-900 transition-all ease-linear"
                     onClick={() => setIsUserProfleOpen(true)}
                   >
@@ -79,33 +83,3 @@ export const NavabrCompoent = () => {
   );
 };
 
-const menuList = [
-  {
-    label: "होमपेज",
-    link: "/",
-  },
-  {
-    label: "समाचार",
-    link: "/news",
-  },
-  {
-    label: "विजनेस",
-    link: "/business",
-  },
-  {
-    label: "मनोरन्जन",
-    link: "/enter",
-  },
-  {
-    label: "विचार",
-    link: "/thought",
-  },
-  {
-    label: "खेलकुद",
-    link: "/sports",
-  },
-  {
-    label: "अन्य",
-    link: "/other",
-  },
-];

@@ -2,26 +2,41 @@ import React from "react";
 import {
   Sheet,
   SheetContent,
-  SheetHeader,
-  SheetTrigger,
+  SheetHeader
 } from "@/components/ui/sheet";
-import { MenuIcon } from "lucide-react";
 
-interface MenuProps {
-  menuList: { label: string; link: string }[];
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+
+interface MobileNavBrComponentProps {
+  open: boolean;
+  setOpen: (type: boolean) => void;
 }
-export const MobileNavBrComponent = ({ menuList }: MenuProps) => {
+export const MobileNavBrComponent = ({
+  open,
+  setOpen,
+}: MobileNavBrComponentProps) => {
+  const appSettings = useSelector((app: any) => app?.app?.appSettings);
+  const router = useRouter();
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    <Sheet> 
-      <SheetTrigger>
-        <MenuIcon />
-      </SheetTrigger>
+    <Sheet open={open} onOpenChange={handleClose}>
       <SheetContent>
         <SheetHeader className="mt-3">
           <ul>
-            {menuList?.map((menu, index) => (
-              <li className="font-bold text-xl p-3 text-start" key={index}>
-                {menu?.label}
+            {appSettings?.menus?.map((menu: any, index: number) => (
+              <li
+                className="font-bold text-xl p-3 text-start"
+                key={index}
+                onClick={() => {
+                  router.push(`/home/menu/${menu?._id}`);
+                  handleClose()
+                }}
+              >
+                {menu?.menuTitle}
               </li>
             ))}
           </ul>
