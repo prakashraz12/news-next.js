@@ -37,7 +37,7 @@ export const ProvinceNewsComponent = () => {
             {province?.map((pr, index) => (
               <li
                 key={index}
-                className="p-2 bg-green-800 w-10 h-10 flex justify-center align-middle cursor-pointer rounded-sm text-xl font-medium text-white"
+                className="p-2 bg-green-800 w-12 h-12 flex justify-center align-middle cursor-pointer rounded-full text-xl font-medium text-white"
               >
                 {numsFormatter(pr?.order)}
               </li>
@@ -63,7 +63,9 @@ export const ProvinceNewsComponent = () => {
           .map((item, index) => (
             <VarticalNewsCardCompoent key={index} item={item} type="province" />
           ))}
-        {newsData?.map((item, index) => <HorizontalNewsCard item={item} key={index}/>)}
+        {newsData?.map((item, index) => (
+          <HorizontalNewsCard item={item} key={index} />
+        ))}
       </div>
     </div>
   );

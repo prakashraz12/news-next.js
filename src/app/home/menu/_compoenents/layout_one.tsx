@@ -4,6 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { VarticalNewsCardCompoent } from "@/components/vartical-news-card.compoent";
 import { News } from "@/types/newsTypes";
 import { ChevronRight, NotebookPen } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -11,6 +12,7 @@ interface LayoutOneProps {
   news: {
     submenu: string;
     news: News[];
+    subMenuId: string;
   };
 }
 export const LayoutOneComponent = ({ news }: LayoutOneProps) => {
@@ -21,8 +23,10 @@ export const LayoutOneComponent = ({ news }: LayoutOneProps) => {
         <h1 className="text-3xl md:text-4xl font-bold text-orange-800 dark:text-white">
           {news?.submenu}
         </h1>
-        <div className="w-[30px] h-[30px] rounded-full bg-orange-800 dark:bg-[#1e273b]  flex justify-center items-center text-white">
-          <ChevronRight />
+        <div className="w-[30px] h-[30px] rounded-full bg-orange-800 dark:bg-[#1e273b]  flex justify-center items-center text-white cursor-pointer">
+          <Link href={`/home/submenu/${news?.subMenuId}`}>
+            <ChevronRight/>
+         </Link>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 cursor-pointer bg-orange-800 dark:bg-[#1e273b] rounded-sm" onClick={()=> router.push(`/home/news/${news?.news[0]?._id}`)}>

@@ -8,6 +8,7 @@ import { Menu, News } from "@/types/newsTypes";
 import { AdsViewComponent } from "../ads-view.component";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "../ui/skeleton";
+import Link from "next/link";
 interface NewsModalComponentProps {
   item?: Menu;
 }
@@ -36,15 +37,14 @@ export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
       {isLoading && <Loading />}
       {isSuccessOnFetchedNews && newsData.length > 0 && (
         <>
-          <div className="w-full  p-3">
-            <h1 className="text-5xl font-bold text-sky-800">
+          <div className="w-full pt-3 pb-3 p-2">
+            <h1 className="text-2xl md:text-4xl  ld:text-5xl font-bold text-sky-800">
               {item?.menuTitle}
             </h1>
-            <div></div>
           </div>
-          <div className="grid md:grid-cols-3 sm:grid-cols-12 gap-4 p-3">
+          <div className="grid grid-cols-12 gap-3 p-2">
             <div
-              className="relative overflow-hidden rounded-md"
+              className="relative overflow-hidden rounded-md col-span-12 lg:col-span-5"
               onClick={() => {
                 router.push(`/home/news/${newsData[0]?._id}`);
               }}
@@ -60,16 +60,16 @@ export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
                 <span>{newsData[0]?.newsTitle}</span>
               </p>
             </div>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-5 col-span-12 md:col-span-7 lg:col-span-4">
               {newsData
                 ?.slice(1)
                 ?.map((item, index) => (
                   <HorizontalNewsCard key={index} item={item} />
                 ))}
 
-              <Button className="bg-sky-800 text-xl ">थप समाचार</Button>
+              <Button className="bg-sky-800 text-xl"><Link href={`/menu/${item?._id}`}>थप समाचार</Link></Button>
             </div>
-            <div className=" flex-col hidden md:flex  items-center w-[80%]">
+            <div className="flex-col gap-4 hidden md:flex  items-center w-[100%] col-span-12 md:col-span-5 lg:col-span-3">
               <SideBarAdsCompoent />
               <SideBarAdsCompoent />
             </div>

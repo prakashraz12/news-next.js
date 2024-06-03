@@ -30,14 +30,27 @@ export const RelatedNews = ({ menu, subMenu, newsId }: RelatedNewsProps) => {
     }
   }, [isSuccess]);
 
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:p-6 p-2">
-      {newsData.filter((i)=> i._id !== newsId).map((item, index) => (
-        <div key={index}>
-          <VarticalNewsCardCompoent item={item} />
-        </div>
-      ))}
-    </div>
+    <>
+      {isSuccess && newsData?.length > 0 && (
+        <>
+          <div className="mt-1 md:p-6 p-2">
+            <h1 className="text-2xl md:text-5xl font-bold text-sky-900">
+              सम्बन्धित खबर
+            </h1>
+            <hr className="mt-2" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:p-6 p-2">
+            {newsData
+              .filter((i) => i._id !== newsId)
+              .map((item, index) => (
+                <div key={index}>
+                  <VarticalNewsCardCompoent item={item} />
+                </div>
+              ))}
+          </div>
+        </>
+      )}
+    </>
   );
 };

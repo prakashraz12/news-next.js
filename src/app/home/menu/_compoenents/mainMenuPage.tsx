@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useGetNewsByMenusMutation } from "@/(service)/api/news.api";
+import { useLazyGetNewsByMenusQuery } from "@/(service)/api/news.api";
 import { useParams } from "next/navigation";
 import { LayOutTwoLoading, LayoutTwo } from "./layoutTwo";
 import { FallbackNewsLayout } from "./fallback-news.layout";
@@ -18,7 +18,7 @@ export const MainMenuPage = () => {
   const [newsData, setMenuData] = useState<NewsProps[]>([]);
   const [allNewsData, setAllNewsData] = useState<News[]>([]);
   const params = useParams();
-  const [menusIds, { data, isSuccess }] = useGetNewsByMenusMutation();
+  const [menusIds, { data, isSuccess }] = useLazyGetNewsByMenusQuery();
 
   const fetchNews = useCallback(async () => {
     if (params.id) {
@@ -61,6 +61,8 @@ export const MainMenuPage = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  console.log(data)
   return (
     <>
       {isClient && (

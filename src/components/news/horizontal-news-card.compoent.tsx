@@ -16,7 +16,7 @@ export const HorizontalNewsCard = ({ item }: { item: News }) => {
           src={item?.bannerImage || "/no-photo.png"}
           alt="news-images"
           loading="lazy"
-          className={`w-[180px] h-[90px] ${item?.bannerImage ? "object-cover" : "object-contain"} rounded ${item?.bannerImage && " hover:scale-110 ease-in-out duration-500"} ${!item.bannerImage && "opacity-20"} `}
+          className={`w-[180px] h-[90px] ${item?.bannerImage ? "object-cover" : "object-contain"} rounded ${item?.bannerImage && " hover:scale-110 ease-in-out duration-500"} ${!item.bannerImage && "opacity-75"} `}
         />
       </div>
       <div className="flex flex-col justify-between p-1 w-full">

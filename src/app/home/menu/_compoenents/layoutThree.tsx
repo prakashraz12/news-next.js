@@ -6,12 +6,14 @@ import { VarticalNewsCardCompoent } from "@/components/vartical-news-card.compoe
 import { News } from "@/types/newsTypes";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface LayoutProps {
   news: {
     submenu: string;
     news: News[];
+    subMenuId: string;
   };
 }
 export const LayoutThree = ({ news }: LayoutProps) => {
@@ -22,7 +24,9 @@ export const LayoutThree = ({ news }: LayoutProps) => {
           {news?.submenu}
         </p>
         <div className="w-10 h-10 bg-sky-950 text-white flex justify-center items-center rounded-full">
-          <ChevronRight />
+          <Link href={`/home/submenu/${news?.subMenuId}`}>
+            <ChevronRight />
+          </Link>
         </div>
       </div>
       <div className="flex flex-col gap-5">
@@ -42,7 +46,11 @@ export const LayoutThree = ({ news }: LayoutProps) => {
         </p>
         <div className="flex items-center gap-3 justify-center">
           <Avatar>
-            <AvatarImage src={news?.news[0]?.owner?.avatar} alt="owner" className="object-cover" />
+            <AvatarImage
+              src={news?.news[0]?.owner?.avatar}
+              alt="owner"
+              className="object-cover"
+            />
             <AvatarFallback>
               {news?.news[0]?.owner?.fullName?.slice(1)}
             </AvatarFallback>

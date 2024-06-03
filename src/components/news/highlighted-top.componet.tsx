@@ -28,7 +28,7 @@ export const HighlightedTopNews = ({
   return (
     <React.Fragment>
       <AdsViewComponent />
-      <div className="md:p-7 p-3 flex flex-col md:gap-10 gap-3">
+      <div className="lg:p-5 p-2 flex flex-col md:gap-10 gap-3">
         <Link href={`/home/news/${id}`}>
           <h1 className="font-bold md:text-7xl text-2xl text-center hover:text-sky-700 cursor-pointer ease-linear duration-200">
             {title}
@@ -42,15 +42,15 @@ export const HighlightedTopNews = ({
           <TimeCountComponent createTime={createTime} />
         </div>
         {bannerImage && (
-          <Image
-            src={bannerImage}
-            width={0}
-            height={0}
-            layout="responsive"
-            alt="news-image"
-            className="aspect-video rounded-sm"
-            loading="lazy"
-          />
+          <div className="w-full aspect-video relative">
+            <Image
+              src={bannerImage}
+              fill
+              alt="news-image"
+              className="object-cover rounded-sm"
+              priority
+            />
+          </div>
         )}
         <hr />
       </div>

@@ -1,3 +1,4 @@
+
 import { Mukta } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
@@ -18,6 +19,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <React.Fragment>
       <html lang="en" suppressHydrationWarning>

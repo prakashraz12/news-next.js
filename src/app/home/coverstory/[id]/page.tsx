@@ -5,7 +5,7 @@ import { News } from "@/types/newsTypes";
 import { useParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 
-const GalleryDetailsPage = () => {
+const StoryNewsDetailsPage = () => {
   const [newsData, setNewsData] = useState<News | any>(undefined);
   const params = useParams();
   const [
@@ -45,4 +45,4 @@ const GalleryDetailsPage = () => {
   );
 };
 
-export default GalleryDetailsPage;
+export default StoryNewsDetailsPage;

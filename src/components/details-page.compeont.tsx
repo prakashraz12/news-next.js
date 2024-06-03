@@ -14,7 +14,6 @@ import { SideBarAdsCompoent } from "./news/side-bar-ads.compoent";
 import { TrendingNews } from "./news/trending-news.compoent";
 import { RelatedNews } from "./news/relatedNews.compont";
 import { FeedBackContainer } from "./news/feed-back-container.compoent";
-import { FeelingAfterReadNewsCompoent } from "./news/feeling-after-read-news.compoent";
 import { HorizontalAdsCompoent } from "./horizontal-ads-compoent";
 import parse from "html-react-parser";
 import { HorizontalNewsCard } from "./news/horizontal-news-card.compoent";
@@ -209,8 +208,6 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   Advertisment
                 </p>
                 <HorizontalAdsCompoent />
-                <hr className="mt-3 mb-3" />
-                <FeelingAfterReadNewsCompoent />
                 <hr className="mt-5 mb-5" />
                 <FeedBackContainer
                   type={type}
@@ -220,7 +217,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   setComment={setComment}
                 />
               </div>
-              <div className="md:col-span-4 w-full mt-7  md:flex flex-col  col-span-12 items-center">
+              <div className="md:col-span-4 w-full mt-7  md:flex flex-col  col-span-12">
                 <div className="hidden md:block">
                   <hr className="mt-2 mb-2" />
                   <p className="text-sm text-center">Advertisment</p>
@@ -234,7 +231,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   newsData !== undefined &&
                   newsData.recommendedNews.length > 0 && (
                     <>
-                      <p className="text-2xl md:text-4xl font-bold text-sky-800 text-start">सिफारिस</p>
+                      <p className="text-2xl md:text-4xl font-bold text-sky-800 flex justify-start">सिफारिस</p>
                       <hr className="mt-2 mb-2" />
                       <div className="flex flex-col">
                         {newsData?.recommendedNews?.slice(0, 5).map(
@@ -258,10 +255,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
             <hr className="mt-2 mb-4" />
           </div>
           <AdsViewComponent />
-          <div className="mt-1 md:p-6 p-2">
-            <h1 className="text-2xl md:text-5xl font-bold text-sky-900">सम्बन्धित खबर</h1>
-            <hr className="mt-2" />
-          </div>
+        
           <RelatedNews menu={newsData?.menu} newsId={newsData?._id} />
         </div>
       )}

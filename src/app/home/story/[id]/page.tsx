@@ -1,17 +1,17 @@
 "use client";
+import { useLazyGetStoryNewsByIdQuery } from "@/(service)/api/story.api";
+import { NewsDetailsPage } from "@/components/details-page.compeont";
 import { News } from "@/types/newsTypes";
 import { useParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
-import { NewsDetailsPage } from "@/components/details-page.compeont";
-import { useLazyGetNewsByIdQuery } from "@/(service)/api/news.api";
 
-const DetailsPage = () => {
+const Page = () => {
   const [newsData, setNewsData] = useState<News | any>(undefined);
   const params = useParams();
   const [
     getNewsById,
     { isSuccess: isNewsfetched, data: newsDatas, isLoading: isNewsFetching },
-  ] = useLazyGetNewsByIdQuery();
+  ] = useLazyGetStoryNewsByIdQuery();
 
   // useEffect(() => {
   //   setIsAdsShown(true);
@@ -35,7 +35,6 @@ const DetailsPage = () => {
       setNewsData(newsDatas?.data as News);
     }
   }, [isNewsfetched]);
-
   return (
     <NewsDetailsPage
       isNewsFetching={isNewsFetching}
@@ -45,4 +44,4 @@ const DetailsPage = () => {
   );
 };
 
-export default DetailsPage;
+export default Page;

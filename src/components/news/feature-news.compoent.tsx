@@ -7,12 +7,13 @@ import {
   CarouselPrevious,
 } from "../ui/carousel";
 import { Card, CardContent } from "../ui/card";
+import Autoplay from "embla-carousel-autoplay";
 
 export const FeatureNewsCompoent = () => {
   return (
-    <div className="w-full bg-sky-900 pl-[60px] pr-[60px] pt-[20px]  pb-[55px]">
+    <div className="w-full pl-[60px] pr-[60px] pt-[20px]  pb-[55px]">
       <div className="md:container">
-        <h1 className="text-3xl  md:text-5xl text-white font-bold mb-10 mt-10">
+        <h1 className="text-3xl  md:text-5xl text-sky-950 font-bold mb-5 mt-5">
           फिचर
         </h1>
         <Carousel
@@ -20,6 +21,11 @@ export const FeatureNewsCompoent = () => {
             align: "start",
             loop: true,
           }}
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}
           className="w-full/3"
         >
           <CarouselContent>

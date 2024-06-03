@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useGetNewsMutation } from "@/(service)/api/news.api";
 import { AppSettingsPorps, Menu, News, SubMenu } from "@/types/newsTypes";
 import { Skeleton } from "../ui/skeleton";
+import Link from "next/link";
 
 export const NarratorNewsCompoent = ({ item }: { item: Menu }) => {
   const appSettings = useSelector(({ app }: { app: AppSettingsPorps }) => {
@@ -59,8 +60,10 @@ export const NarratorNewsCompoent = ({ item }: { item: Menu }) => {
                 ))}
               </ul>
             </div>
-            <div className="bg-sky-800 rounded-full p-0.5 text-white cursor-pointer">
+            <div className="bg-sky-800 rounded-full p-0.5 text-white cursor-pointer w-10 h-10 flex justify-center items-center">
+              <Link href={`/home/menu/${item?._id}`}>
               <ChevronRight />
+            </Link>
             </div>
           </div>
           <div className="md:hidden">

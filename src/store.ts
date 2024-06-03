@@ -8,6 +8,7 @@ import { settingsApi } from "./(service)/api/settings.api";
 import { commentApi } from "./(service)/api/comment.ap";
 import { coverStoryApi } from "./(service)/api/coverStory.api";
 import { galleryApi } from "./(service)/api/gallery.api";
+import { storyApi } from "./(service)/api/story.api";
 
 export const store = configureStore({
   reducer: {
@@ -17,7 +18,8 @@ export const store = configureStore({
     [settingsApi.reducerPath]: settingsApi.reducer,
     [commentApi.reducerPath]: commentApi.reducer,
     [coverStoryApi.reducerPath]: coverStoryApi.reducer,
-    [galleryApi.reducerPath]:galleryApi.reducer,
+    [galleryApi.reducerPath]: galleryApi.reducer,
+    [storyApi.reducerPath]:storyApi.reducer,
     app: appReducer,
     cache: cacheReducer,
   },
@@ -29,6 +31,7 @@ export const store = configureStore({
       settingsApi.middleware,
       commentApi.middleware,
       coverStoryApi.middleware,
-      galleryApi.middleware
+      galleryApi.middleware,
+      storyApi.middleware
     ),
 });

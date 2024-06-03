@@ -11,6 +11,7 @@ import { MoreCommentedNews } from "@/components/news/more-commented.compoent";
 import { RednderHighlightedNews } from "@/components/rednderHighlightedNews.compoent";
 import { useGetSettingsMutation } from "@/(service)/api/settings.api";
 import { RenderNewsList } from "@/components/renderNewsList.compoent";
+import { StoryCoverContainer } from "@/components/news/storyContainer.compoent";
 
 const HomePage = () => {
   const [getSettings] = useGetSettingsMutation();
@@ -26,48 +27,12 @@ const HomePage = () => {
     <HomePageLayout>
       <main className="md:mx-auto min-h-screen w-full">
         <div className="md:container">
+          <StoryCoverContainer/>
           <RednderHighlightedNews />
           <p className="text-sm text-center">Advertisement</p>
           <AdsViewComponent />
           <hr className="mb-5" />
           <RenderNewsList />
-
-          {/* <NewsModalComponent newsHeadLine={"समाचार"} />
-        
-        <br />
-        <hr className="mb-5" />
-        <p className="text-sm text-center">Advertisement</p>
-        <AdsViewComponent />
-        <hr className="mb-5" />
-   
-        <hr className="mb-5 mt-5" />
-        <p className="text-sm text-center">Advertisement</p>
-        <AdsViewComponent />
-        <hr className="mb-5 mt-5" />
-     
-        <hr className="mb-5 mt-5" />
-     
-        <p className="text-sm text-center">Advertisement</p>
-        <AdsViewComponent />
-        <hr className="mb-5 mt-5" />
-
-        <hr className="mb-5 mt-5" />
-        <p className="text-sm text-center">Advertisement</p>
-        <HorizontalAdsCompoent />
-        <hr className="mt-5 mb-5" />
-      
-        <hr className="mt-5 mb-5" />
-       
-        <hr className="mt-5" />
-        <p className="text-sm text-center">Advertisement</p>
-        <HorizontalAdsCompoent />
-        <hr className="mt-5" />
-        <NarratorNewsCompoent />
-        <hr className="mt-5 hidden md:block" />
-        <AdsViewComponent />
-        <NewsModalComponent newsHeadLine={"विचार"} />
-        <AdsViewComponent />
-        <hr className="mt-5 mb-5" /> */}
           <TrendingNews colSpan={6} />
         </div>
         <FeatureNewsCompoent />

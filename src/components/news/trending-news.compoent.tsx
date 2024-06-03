@@ -14,17 +14,17 @@ interface TrendingNewsProps {
 }
 export const TrendingNews = ({ colSpan, menu, limit }: TrendingNewsProps) => {
 
-  const [menuId, { isSuccess, data, isLoading }] = useGetTrendingNewsMutation();
+  const [getTrendingNews, { isSuccess, data, isLoading }] = useGetTrendingNewsMutation();
 
   const fetchNews = useCallback(async () => {
-    await menuId({ menuId: menu, limit: limit });
+    await getTrendingNews({ menuId: menu ? menu : undefined, limit: limit ? limit : 10 });
   }, [menu]);
 
   useEffect(() => {
-    if (menu) {
-      fetchNews();
-    }
-  }, [menu]);
+    fetchNews();
+  }, []);
+
+  console.log(data);
   return (
     <div className="w-full p-3">
       <h1 className="text-2xl md:text-5xl font-bold text-sky-800">ट्रेन्डिङ</h1>
@@ -33,7 +33,7 @@ export const TrendingNews = ({ colSpan, menu, limit }: TrendingNewsProps) => {
       ) : (
         <div className="grid grid-cols-12 md:gap-4 mt-5 gap-2">
           {isSuccess &&
-            data?.data?.slice(0,5).map((item: TrendingNews, index: number) => (
+            data?.data?.slice(0, 5).map((item: TrendingNews, index: number) => (
               <div
                 className={`col-span-12 md:col-span-${colSpan ? colSpan : 6}`}
                 key={index}

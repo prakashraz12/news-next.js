@@ -12,6 +12,7 @@ import { Card, CardContent } from "../ui/card";
 import { useGetGalleryNewsMutation } from "@/(service)/api/gallery.api";
 import { News } from "@/types/newsTypes";
 import { useRouter } from "next/navigation";
+import Autoplay from "embla-carousel-autoplay";
 
 export const PhotoGalleryComponet = () => {
   const router = useRouter();
@@ -43,7 +44,15 @@ export const PhotoGalleryComponet = () => {
             <ArrowRightCircleIcon className="text-white cursor-pointer" />
           </div>
           <div className="flex justify-center align-middle mt-5">
-            <Carousel className="w-11/12">
+            <Carousel className="w-11/12"   opts={{
+            align: "start",
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}>
               <CarouselContent className="-ml-1">
                 {galleryData?.map((data, index) => (
                   <CarouselItem

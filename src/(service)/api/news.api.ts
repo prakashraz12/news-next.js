@@ -37,12 +37,24 @@ export const newsApi = createApi({
         body: { menuId, limit },
       }),
     }),
-    getNewsByMenus: builder.mutation({
+    getNewsByMenus: builder.query({
       query: ({ menuId }) => ({
         url: `/get/menu/${menuId}`,
         method: "GET",
       }),
     }),
+    getNewsBySubMenu: builder.mutation({
+      query: ({ page, limit, subMenuId }) => ({
+        url: `/get/submenu/?subMenuId=${subMenuId}&page=${page}$limit=${limit}`,
+        method: "POST",
+      }),
+    }),
+    getMoreCommentedNews: builder.query({
+      query: () => ({
+        url: `/get/morecomment/:000`
+      }),
+    })
+    
   }),
 });
 
@@ -51,5 +63,7 @@ export const {
   useGetNewsByMenuMutation,
   useLazyGetNewsByIdQuery,
   useGetTrendingNewsMutation,
-  useGetNewsByMenusMutation,
+  useLazyGetNewsByMenusQuery,
+  useGetNewsBySubMenuMutation,
+  useGetMoreCommentedNewsQuery
 } = newsApi;

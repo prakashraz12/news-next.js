@@ -10,13 +10,16 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { News } from "@/types/newsTypes";
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
+import Autoplay from "embla-carousel-autoplay"
 
 interface LayoutTwoProps {
   news: {
     submenu: string;
     news: News[];
+    subMenuId: string;
   };
 }
 export const LayoutTwo = ({ news }: LayoutTwoProps) => {
@@ -27,7 +30,9 @@ export const LayoutTwo = ({ news }: LayoutTwoProps) => {
         <div className="pt-4 pb-4 flex justify-between items-center">
           <h1 className="text-white text-4xl font-bold">{news?.submenu}</h1>
           <div className="text-sky-900 cursor-pointer bg-white w-[30px] h-[30px] flex justify-center items-center rounded-full">
-            <ChevronRight />
+          <Link href={`/home/submenu/${news?.subMenuId}`}>
+          <ChevronRight />
+         </Link>
           </div>
         </div>
         <Carousel
@@ -35,6 +40,11 @@ export const LayoutTwo = ({ news }: LayoutTwoProps) => {
             align: "start",
             loop: true,
           }}
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}
           className="w-full/3"
         >
           <CarouselContent>
