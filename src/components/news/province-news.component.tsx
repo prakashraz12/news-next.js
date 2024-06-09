@@ -7,6 +7,7 @@ import { HorizontalNewsCard } from "./horizontal-news-card.compoent";
 import { province } from "@/constant";
 import { News } from "@/types/newsTypes";
 import { useGetNewsMutation } from "@/(service)/api/news.api";
+import Link from "next/link";
 
 export const ProvinceNewsComponent = () => {
   const [newsData, setNewsData] = useState<News[]>([]);
@@ -39,20 +40,26 @@ export const ProvinceNewsComponent = () => {
                 key={index}
                 className="p-2 bg-green-800 w-12 h-12 flex justify-center align-middle cursor-pointer rounded-full text-xl font-medium text-white"
               >
+                <Link href={`/home/province/${pr?.order}`}>
                 {numsFormatter(pr?.order)}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="rounded-full md:p-2 p-1 w-10 h-10 bg-green-800 text-white flex justify-center items-center">
+          <Link href={"/home/province"}>
           <ChevronRight />
+         </Link>
         </div>
       </div>
       <div className="md:hidden">
         <ul className="flex whitespace-nowrap gap-3 w-full overflow-x-auto overflow-y-hidden">
           {province?.map((pr, index) => (
             <li key={index} className="whitespace-nowrap w-full">
+              <Link href={`/home/province/${pr.order}`}>
               {pr.label}
+              </Link>
             </li>
           ))}
         </ul>

@@ -55,7 +55,7 @@ export const StoryOverCompoent = ({
           </div>
         </DrawerHeader>
         <Carousel
-          className="md:container h-screen"
+          className="md:container h-screen relative"
           setApi={setApi}
           plugins={[
             Autoplay({
@@ -118,8 +118,8 @@ export const StoryOverCompoent = ({
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden lg:block" />
-          <CarouselNext className="hidden lg:block" />
+          <CarouselPrevious className="hidden lg:flex absolute top-1/2 left-3 shadow-lg bg-sky-950 text-white" />
+          <CarouselNext className="hidden lg:flex absolute top-1/2 right-3 shadow-lg bg-sky-950 text-white" />
         </Carousel>
       </DrawerContent>
     </Drawer>

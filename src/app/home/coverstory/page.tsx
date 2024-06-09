@@ -97,7 +97,7 @@ const Page = () => {
                     </h1>
                     <p className="hidden md:flex">{data?.shortDescription}</p>
                     <div className=" items-center gap-3 justify-end hidden md:flex">
-                      <Avatar className="border-2">
+                      <Avatar className="border-2 shadow-lg">
                         <AvatarImage
                           src={data?.owner?.avatar}
                           alt="owner"
@@ -113,7 +113,7 @@ const Page = () => {
                 </div>
                 <p className="mt-2 md:hidden">{data?.shortDescription}</p>
                 <div className=" items-center gap-3 justify-end flex md:hidden">
-                  <Avatar className="border-2">
+                  <Avatar className="border-2 shadow-lg">
                     <AvatarImage
                       src={data?.owner.avatar}
                       alt="owner"

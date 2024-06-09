@@ -53,6 +53,11 @@ export const newsApi = createApi({
       query: () => ({
         url: `/get/morecomment/:000`
       }),
+    }),
+    getProvinceNews: builder.query({
+      query: () => ({
+        url:"/province"
+      })
     })
     
   }),
@@ -65,5 +70,6 @@ export const {
   useGetTrendingNewsMutation,
   useLazyGetNewsByMenusQuery,
   useGetNewsBySubMenuMutation,
-  useGetMoreCommentedNewsQuery
+  useGetMoreCommentedNewsQuery,
+  useGetProvinceNewsQuery
 } = newsApi;

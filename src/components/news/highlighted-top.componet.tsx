@@ -42,7 +42,7 @@ export const HighlightedTopNews = ({
           <TimeCountComponent createTime={createTime} />
         </div>
         {bannerImage && (
-          <div className="w-full aspect-video relative">
+          <div className="w-full aspect-video relative shadow-lg">
             <Image
               src={bannerImage}
               fill

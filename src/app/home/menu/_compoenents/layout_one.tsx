@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { VarticalNewsCardCompoent } from "@/components/vartical-news-card.compoent";
@@ -25,11 +25,14 @@ export const LayoutOneComponent = ({ news }: LayoutOneProps) => {
         </h1>
         <div className="w-[30px] h-[30px] rounded-full bg-orange-800 dark:bg-[#1e273b]  flex justify-center items-center text-white cursor-pointer">
           <Link href={`/home/submenu/${news?.subMenuId}`}>
-            <ChevronRight/>
-         </Link>
+            <ChevronRight />
+          </Link>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 cursor-pointer bg-orange-800 dark:bg-[#1e273b] rounded-sm" onClick={()=> router.push(`/home/news/${news?.news[0]?._id}`)}>
+      <div
+        className="grid grid-cols-1 md:grid-cols-12 gap-4 cursor-pointer bg-orange-800 dark:bg-[#1e273b] rounded-sm"
+        onClick={() => router.push(`/home/news/${news?.news[0]?._id}`)}
+      >
         <div className="md:col-span-6 overflow-hidden">
           <img
             src={news?.news[0]?.bannerImage || "/no-photo.png"}
