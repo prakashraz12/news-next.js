@@ -1,12 +1,12 @@
 import React from "react";
-import { HorizontalAdsCard } from "./horizontal-ads-card";
+import { SideBarAdsCompoent } from "./news/side-bar-ads.compoent";
 
-export const HorizontalAdsCompoent = () => {
+export const HorizontalAdsCompoent = ({menuTitle}:{menuTitle:string}) => {
   return (
-    <div className="grid-cols-1 md:grid-cols-3 gap-4  hidden md:grid">
-      <HorizontalAdsCard />
-      <HorizontalAdsCard />
-      <HorizontalAdsCard />
+    <div className="grid-cols-1 md:grid-cols-3  hidden md:grid">
+     <SideBarAdsCompoent searchStatus={`${menuTitle}4`}/>
+     <SideBarAdsCompoent searchStatus={`${menuTitle}5`}/>
+     <SideBarAdsCompoent searchStatus={`${menuTitle}6`}/>
     </div>
   );
 };

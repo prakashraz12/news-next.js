@@ -6,12 +6,13 @@ import { News } from "@/types/newsTypes";
 import { Skeleton } from "./ui/skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { cachedHighlightedNews } from "@/(store)/slices/cache.slice";
+import { AdsViewComponent } from "./ads-view.component";
 
 export const RednderHighlightedNews = () => {
   const [loading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const cachedHightlighted = useSelector(
-    (state: any) => state.cache.highlightedNews as News[]
+    (state: any) => state?.cache?.highlightedNews as News[]
   );
   const page = 0;
   const rowsPerPage = 3;
@@ -42,6 +43,12 @@ export const RednderHighlightedNews = () => {
 
   return (
     <>
+      {isSuccessfullyFetched && (
+        <>
+          <p className="text-sm font-extralight text-center">Advertisement</p>
+          <AdsViewComponent searchStatus="highlightAds1" />
+        </>
+      )}
       {loading &&
         Array.from({ length: 3 }).map((_, index) => <Loading key={index} />)}
       {cachedHightlighted.length > 0 &&
@@ -55,6 +62,14 @@ export const RednderHighlightedNews = () => {
             id={item?._id}
           />
         ))}
+      <>
+        {isSuccessfullyFetched && (
+          <>
+            <p className="text-sm font-extralight text-center">Advertisement</p>
+            <AdsViewComponent searchStatus="highlightedAds2" />
+          </>
+        )}
+      </>
     </>
   );
 };

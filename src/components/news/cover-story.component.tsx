@@ -8,6 +8,7 @@ import { Skeleton } from "../ui/skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { setCoverStoryNews } from "@/(store)/slices/cache.slice";
 import Link from "next/link";
+import { AdsViewComponent } from "../ads-view.component";
 
 export const CoverStoryComponent = () => {
   const dispatch = useDispatch();
@@ -49,10 +50,43 @@ export const CoverStoryComponent = () => {
             </div>
           </div>
           <div className="grid  gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {coverStoryNews?.map((cover: News, index: number) => (
-              <CoverStoryCard cover={cover} key={index} />
-            ))}
+            {coverStoryNews
+              ?.slice(0, 3)
+              .map((cover: News, index: number) => (
+                <CoverStoryCard cover={cover} key={index} />
+              ))}
           </div>
+          <div>
+            <hr className="mt-2 mb-2" />
+            <p className="text-sm font-extralight text-center">Advertisement</p>
+          </div>
+          <AdsViewComponent searchStatus="cover-1" />
+          <hr className="mt-2 mb-2" />
+          <div className="grid  gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3">
+            {coverStoryNews
+              ?.slice(3, 6)
+              .map((cover: News, index: number) => (
+                <CoverStoryCard cover={cover} key={index} />
+              ))}
+          </div>
+          <div>
+            <hr className="mt-2 mb-2" />
+            <p className="text-sm font-extralight text-center">Advertisement</p>
+          </div>
+          <AdsViewComponent searchStatus="cover-2" />
+          <hr className="mt-2 mb-2" />
+          <div className="grid  gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3">
+            {coverStoryNews
+              ?.slice(6, 9)
+              .map((cover: News, index: number) => (
+                <CoverStoryCard cover={cover} key={index} />
+              ))}
+          </div>
+          <div>
+            <hr className="mt-2 mb-2" />
+            <p className="text-sm font-extralight text-center">Advertisement</p>
+          </div>
+          <AdsViewComponent searchStatus="cover-3" />
         </div>
       )}
     </>

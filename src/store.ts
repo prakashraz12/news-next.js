@@ -4,11 +4,13 @@ import { mediaApi } from "./(service)/api/media.api";
 import { newsApi } from "./(service)/api/news.api";
 import appReducer from "./(store)/slices/app.slice";
 import cacheReducer from "./(store)/slices/cache.slice";
+import adsReducer from "./(store)/slices/ads.slice";
 import { settingsApi } from "./(service)/api/settings.api";
 import { commentApi } from "./(service)/api/comment.ap";
 import { coverStoryApi } from "./(service)/api/coverStory.api";
 import { galleryApi } from "./(service)/api/gallery.api";
 import { storyApi } from "./(service)/api/story.api";
+import { adsApi } from "./(service)/api/ads.api";
 
 export const store = configureStore({
   reducer: {
@@ -20,8 +22,10 @@ export const store = configureStore({
     [coverStoryApi.reducerPath]: coverStoryApi.reducer,
     [galleryApi.reducerPath]: galleryApi.reducer,
     [storyApi.reducerPath]:storyApi.reducer,
+    [adsApi.reducerPath]:adsApi.reducer,
     app: appReducer,
     cache: cacheReducer,
+    ads: adsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -32,6 +36,7 @@ export const store = configureStore({
       commentApi.middleware,
       coverStoryApi.middleware,
       galleryApi.middleware,
-      storyApi.middleware
+      storyApi.middleware,
+      adsApi.middleware
     ),
 });

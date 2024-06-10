@@ -2,7 +2,6 @@ import React from "react";
 import { ReporterAvatarCompoent } from "../reporter-avatar.compoent";
 import { TimeCountComponent } from "../time-count.compoent";
 import Link from "next/link";
-import { AdsViewComponent } from "../ads-view.component";
 import Image from "next/image";
 interface AuthorInterFace {
   fullName?: string;
@@ -18,6 +17,7 @@ interface HighlightedNewsProps {
   createTime: string | any;
   id: string;
 }
+
 export const HighlightedTopNews = ({
   title,
   bannerImage,
@@ -27,7 +27,6 @@ export const HighlightedTopNews = ({
 }: HighlightedNewsProps) => {
   return (
     <React.Fragment>
-      <AdsViewComponent />
       <div className="lg:p-5 p-2 flex flex-col md:gap-10 gap-3">
         <Link href={`/home/news/${id}`}>
           <h1 className="font-bold md:text-7xl text-2xl text-center hover:text-sky-700 cursor-pointer ease-linear duration-200">

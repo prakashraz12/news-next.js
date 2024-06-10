@@ -78,7 +78,7 @@ export const ColNewsViewsCompoent = ({ item }: { item: Menu }) => {
               </div>
             </div>
             <br />
-            <AdsViewComponent />
+            <AdsViewComponent searchStatus={`${item?.menuTitle}1`} />
             <div className="grid grid-cols-12 gap-2 mt-2">
               <div className="col-span-12 md:col-span-5 mt-2">
                 {newsData.slice(0, 5).map((item, index) => (
@@ -91,14 +91,18 @@ export const ColNewsViewsCompoent = ({ item }: { item: Menu }) => {
                 ))}
               </div>
               <div className="col-span-12 md:col-span-3 mt-2 flex justify-center flex-col items-center">
-                <SideBarAdsCompoent />
-                <SideBarAdsCompoent />
+              <hr/>
+              <p className="text-sm font-extralight text-center">Advertisment</p>
+                <SideBarAdsCompoent  searchStatus={`${item?.menuTitle}2`} />
+                <SideBarAdsCompoent   searchStatus={`${item?.menuTitle}3`}/>
               </div>
             </div>
           </div>
         </>
       )}
-      <HorizontalAdsCompoent />
+      <hr/>
+      <p className="text-sm font-extralight text-center">Advertisment</p>
+      <HorizontalAdsCompoent menuTitle={item?.menuTitle} />
     </div>
   );
 };

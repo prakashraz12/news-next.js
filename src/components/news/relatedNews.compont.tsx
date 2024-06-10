@@ -35,7 +35,7 @@ export const RelatedNews = ({ menu, subMenu, newsId }: RelatedNewsProps) => {
       {isSuccess && newsData?.length > 0 && (
         <>
           <div className="mt-1 md:p-6 p-2">
-            <h1 className="text-2xl md:text-5xl font-bold text-sky-900">
+            <h1 className="text-2xl md:text-5xl font-bold text-sky-900 dark:text-white">
               सम्बन्धित खबर
             </h1>
             <hr className="mt-2" />

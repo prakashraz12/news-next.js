@@ -67,12 +67,12 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
             >
               <div className="flex justify-between items-center">
                 <h1
-                  className={`text-5xl md:block hidden text-sky-950  dark:text-white  font-bold mt-2 mb-3 ease-in-out duration-50 transition-all ${isHeadingSticky ? "text-xl" : "text-6xl"}`}
+                  className={`text-5xl md:block hidden text-sky-950  dark:text-white  font-bold mt-2 mb-3 ease-linear	 duration-50 transition-all ${isHeadingSticky ? "text-xl" : "text-6xl"}`}
                 >
                   {newsData?.newsTitle}
                 </h1>
                 {isHeadingSticky && (
-                  <div className="md:flex hidden items-center gap-3 justify-center ease-in duration-50 mt-3 mb-3">
+                  <div className="md:flex hidden items-center gap-3 justify-center ease-linear	transition-all duration-50 mt-3 mb-3">
                     <ReporterAvatarCompoent
                       fullName={newsData?.owner?.fullName}
                       imageUrl={newsData?.owner?.avatar}
@@ -231,7 +231,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   newsData !== undefined &&
                   newsData.recommendedNews.length > 0 && (
                     <>
-                      <p className="text-2xl md:text-4xl font-bold text-sky-800 flex justify-start">सिफारिस</p>
+                      <p className="text-2xl md:text-4xl font-bold text-sky-800 flex justify-start dark:text-white">सिफारिस</p>
                       <hr className="mt-2 mb-2" />
                       <div className="flex flex-col">
                         {newsData?.recommendedNews?.slice(0, 5).map(

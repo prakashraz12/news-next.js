@@ -41,11 +41,12 @@ export const NarratorNewsCompoent = ({ item }: { item: Menu }) => {
 
   return (
     <>
+    
       {isLoading && <Loading />}
       {isSuccessOnFetchedNews && newsData?.length > 0 && (
         <div className="w-full mt-10 p-3">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl  md:text-5xl font-bold text-sky-800">
+            <h1 className="text-3xl  md:text-5xl font-bold text-sky-800 dark:text-white">
               {item?.menuTitle}
             </h1>
             <div>
@@ -88,7 +89,9 @@ export const NarratorNewsCompoent = ({ item }: { item: Menu }) => {
               {newsData[0]?.newsTitle}
             </h1>
           </div>
-          <AdsViewComponent />
+          <hr/>
+          <p className="text-sm font-extralight text-center">Advertisment</p>
+          <AdsViewComponent searchStatus={`${item?.menuTitle}1`} />
           <hr className="hidden md:block" />
           <div className="flex w-full sm:mt-1 md:mt-5">
             <div className="grid grid-cols-12 gap-2 mt-2">
@@ -102,9 +105,12 @@ export const NarratorNewsCompoent = ({ item }: { item: Menu }) => {
                   <HorizontalNewsCard key={index} item={item} />
                 ))}
               </div>
+              
               <div className="col-span-12 md:col-span-3 mt-2 flex flex-col items-center">
-                <SideBarAdsCompoent />
-                <SideBarAdsCompoent />
+              <hr/>
+              <p className="text-sm font-extralight text-center">Advertisment</p>
+                <SideBarAdsCompoent searchStatus={`${item?.menuTitle}2`} />
+                <SideBarAdsCompoent searchStatus={`${item?.menuTitle}3`} />
               </div>
             </div>
           </div>

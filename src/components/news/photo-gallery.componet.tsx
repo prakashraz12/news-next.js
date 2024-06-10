@@ -13,6 +13,7 @@ import { useGetGalleryNewsMutation } from "@/(service)/api/gallery.api";
 import { News } from "@/types/newsTypes";
 import { useRouter } from "next/navigation";
 import Autoplay from "embla-carousel-autoplay";
+import { AdsViewComponent } from "../ads-view.component";
 
 export const PhotoGalleryComponet = () => {
   const router = useRouter();
@@ -91,6 +92,11 @@ export const PhotoGalleryComponet = () => {
               <CarouselNext />
             </Carousel>
           </div>
+        </div>
+        <div>
+        <hr className="mt-2 mb-2" />
+        <p className="text-sm text-center text-white">Advertisement</p>
+          <AdsViewComponent searchStatus="gallery"/>
         </div>
       </div>
       }

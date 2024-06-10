@@ -5,7 +5,6 @@ import { Button } from "../ui/button";
 import { SideBarAdsCompoent } from "./side-bar-ads.compoent";
 import { useGetNewsMutation } from "@/(service)/api/news.api";
 import { Menu, News } from "@/types/newsTypes";
-import { AdsViewComponent } from "../ads-view.component";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "../ui/skeleton";
 import Link from "next/link";
@@ -38,7 +37,7 @@ export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
       {isSuccessOnFetchedNews && newsData.length > 0 && (
         <>
           <div className="w-full pt-3 pb-3 p-2">
-            <h1 className="text-2xl md:text-4xl  ld:text-5xl font-bold text-sky-800">
+            <h1 className="text-2xl md:text-4xl  ld:text-5xl font-bold text-sky-800 dark:text-white">
               {item?.menuTitle}
             </h1>
           </div>
@@ -67,16 +66,16 @@ export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
                   <HorizontalNewsCard key={index} item={item} />
                 ))}
 
-              <Button className="bg-sky-800 text-xl"><Link href={`/menu/${item?._id}`}>थप समाचार</Link></Button>
+              <Button className="bg-sky-800 text-xl"><Link href={`/home/menu/${item?._id}`}>थप समाचार</Link></Button>
             </div>
-            <div className="flex-col gap-4 hidden md:flex  items-center w-[100%] col-span-12 md:col-span-5 lg:col-span-3">
-              <SideBarAdsCompoent />
-              <SideBarAdsCompoent />
-            </div>
+            <section className="flex-col gap-4 hidden md:flex  items-center w-[100%] col-span-12 md:col-span-5 lg:col-span-3">
+              <hr></hr>
+              <p className="text-sm font-extralight text-center">Advertisement</p>
+              <SideBarAdsCompoent searchStatus={`${item?.menuTitle}1`}  />
+              <SideBarAdsCompoent searchStatus={`${item?.menuTitle}2`}/>
+            </section>
           </div>
           <hr className="mb-3 mt-3" />
-          <p className="text-sm text-center">Advertisement</p>
-          <AdsViewComponent />
         </>
       )}
     </React.Fragment>

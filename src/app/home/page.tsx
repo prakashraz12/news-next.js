@@ -1,8 +1,7 @@
 "use client";
 import React, { useCallback, useEffect } from "react";
-import { AdsViewComponent } from "@/components/ads-view.component";
 import { CoverStoryComponent } from "@/components/news/cover-story.component";
-import { FeatureNewsCompoent } from "@/components/news/feature-news.compoent";
+// import { FeatureNewsCompoent } from "@/components/news/feature-news.compoent";
 import { PhotoGalleryComponet } from "@/components/news/photo-gallery.componet";
 import { ProvinceNewsComponent } from "@/components/news/province-news.component";
 import { TrendingNews } from "@/components/news/trending-news.compoent";
@@ -27,15 +26,13 @@ const HomePage = () => {
     <HomePageLayout>
       <main className="md:mx-auto min-h-screen w-full">
         <div className="md:container">
-          <StoryCoverContainer/>
+          <StoryCoverContainer />
           <RednderHighlightedNews />
-          <p className="text-sm text-center">Advertisement</p>
-          <AdsViewComponent />
           <hr className="mb-5" />
           <RenderNewsList />
           <TrendingNews colSpan={6} />
         </div>
-        <FeatureNewsCompoent />
+        {/* <FeatureNewsCompoent /> */}
         <section className="md:container">
           <ProvinceNewsComponent />
         </section>
