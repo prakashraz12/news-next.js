@@ -43,12 +43,7 @@ export const RednderHighlightedNews = () => {
 
   return (
     <>
-      {isSuccessfullyFetched && (
-        <>
-          <p className="text-sm font-extralight text-center">Advertisement</p>
-          <AdsViewComponent searchStatus="highlightAds1" />
-        </>
-      )}
+      <AdsViewComponent searchStatus="highlightAds1" />
       {loading &&
         Array.from({ length: 3 }).map((_, index) => <Loading key={index} />)}
       {cachedHightlighted.length > 0 &&
@@ -63,12 +58,8 @@ export const RednderHighlightedNews = () => {
           />
         ))}
       <>
-        {isSuccessfullyFetched && (
-          <>
-            <p className="text-sm font-extralight text-center">Advertisement</p>
-            <AdsViewComponent searchStatus="highlightedAds2" />
-          </>
-        )}
+        <p className="text-sm font-extralight text-center">Advertisement</p>
+        <AdsViewComponent searchStatus="highlightedAds2" />
       </>
     </>
   );

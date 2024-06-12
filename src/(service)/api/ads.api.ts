@@ -15,10 +15,16 @@ export const adsApi = createApi({
         method: "GET"
       }),
     }),
-    
+    clickOnAds: builder.query({
+      query: (id) => ({
+        url: `/click/${id}`,
+        method: "GET"
+      }),
+    }),
   }),
 });
 
 export const {
-  useLazyGetAdsByPositionQuery
+  useLazyGetAdsByPositionQuery,
+  useLazyClickOnAdsQuery
 } = adsApi;

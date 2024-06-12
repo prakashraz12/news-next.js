@@ -8,11 +8,11 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [provinceNews, setProvinceNews] = useState<News[]>([]);
   const { id } = useParams();
-  const [page, setPage] = useState<number>(1);
+  const page = 1
   const [searchParams, { data, isSuccess, isLoading }] = useGetNewsMutation();
 
   const fetchNews = useCallback(async () => {
@@ -29,9 +29,9 @@ const page = () => {
       setProvinceNews(data?.data);
     }
   }, [isSuccess]);
-//   const handleLoadMore = () => {
-//     setPage(page + 1);
-//   };
+  // const handleLoadMore = () => {
+  //   setPage(page + 1);
+  // };
 
   return (
     <div>
@@ -110,7 +110,7 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
 
 const LoadingAnimation = () => {
   return (

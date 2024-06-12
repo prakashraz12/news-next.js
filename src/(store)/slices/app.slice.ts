@@ -4,7 +4,7 @@ import Cookies from "js-cookie"
 let appSettings = null;
 
 if (typeof window !== "undefined") {
-    appSettings = JSON?.parse(localStorage.getItem("settings") || "null") || null;
+    appSettings = JSON?.parse(sessionStorage.getItem("settings") || "null") || null;
 }
 
 let token = null;
@@ -30,7 +30,7 @@ const appSlice = createSlice({
     reducers: {
         addSettings: (state, action) => {
             state.appSettings = action.payload;
-            localStorage.setItem("settings", JSON.stringify(action.payload));
+            sessionStorage.setItem("settings", JSON.stringify(action.payload));
         },
         setToken: (state, action) => {
             state.token = action.payload;

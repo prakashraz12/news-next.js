@@ -58,7 +58,7 @@ export const ColNewsViewsCompoent = ({ item }: { item: Menu }) => {
                     src={newsData[0]?.bannerImage || "/no-photo.png"}
                     alt="news-image"
                     loading="lazy"
-                    className={`w-full h-[300px] md:h-[400px] lg:h-[500px] ${newsData[0]?.bannerImage ? "object-cover" : "object-contain"} ${newsData[0]?.bannerImage && "hover:scale-105 duration-500 ease-in-out"} ${!newsData[0]?.bannerImage && "opacity-20"}`}
+                    className={`w-full h-[200px] md:h-[400px] lg:h-[500px] ${newsData[0]?.bannerImage ? "object-cover" : "object-contain"} ${newsData[0]?.bannerImage && "hover:scale-105 duration-500 ease-in-out"} ${!newsData[0]?.bannerImage && "opacity-20"}`}
                   />
                 </div>
               )}

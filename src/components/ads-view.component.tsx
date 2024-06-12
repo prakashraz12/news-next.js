@@ -1,20 +1,20 @@
 "use client";
-import { useLazyGetAdsByPositionQuery } from "@/(service)/api/ads.api";
-import Image from "next/image";
-import React, { useCallback, useEffect } from "react";
+import {
+  useLazyClickOnAdsQuery,
+  useLazyGetAdsByPositionQuery,
+} from "@/(service)/api/ads.api";
+import React, { useCallback, useEffect, useState } from "react";
 import { Skeleton } from "./ui/skeleton";
-import { useDispatch, useSelector } from "react-redux";
-import { setAdsSlice } from "@/(store)/slices/ads.slice";
 
 export const AdsViewComponent = ({
   searchStatus,
 }: {
   searchStatus: string;
 }) => {
-  const ads = useSelector((state:any) => state?.ads?.adsSlice);
-  const dispatch = useDispatch();
-  const [getAds, { isLoading, data, isSuccess }] = useLazyGetAdsByPositionQuery();
-
+  const [adsData, setAdsData] = useState<any>({});
+  const [clickOnAds] = useLazyClickOnAdsQuery();
+  const [getAds, { isLoading, data, isSuccess }] =
+    useLazyGetAdsByPositionQuery();
   const fetchAds = useCallback(async () => {
     await getAds(searchStatus);
   }, [searchStatus]);
@@ -23,28 +23,32 @@ export const AdsViewComponent = ({
     if (searchStatus !== undefined) {
       fetchAds();
     }
-  }, [searchStatus, ads]);
+  }, [searchStatus]);
+
+  const handleClickOnAds = async () => {
+    await clickOnAds(adsData?._id);
+    window.open(`${adsData?.adsUrl}`, "_blank");
+  };
 
   useEffect(() => {
     if (isSuccess) {
-      const newData = { ...ads, [searchStatus]: data?.data }; // Merge new data with existing data
-      dispatch(setAdsSlice(newData));
+      setAdsData(data?.data);
     }
-  }, [isSuccess, searchStatus, data, ads]);
+  }, [isSuccess]);
   
-  console.log(ads)
   return (
     <>
-      {isSuccess && (
-        <div className="flex justify-center cursor-pointer">
-          {/* <Image
-            width={0}
-            height={0}
-            src={data?.data?.adsImage}
+      {isSuccess && adsData &&  (
+        <div
+          className="flex justify-center cursor-pointer"
+          onClick={handleClickOnAds}
+        >
+          <img
+            src={adsData?.adsImage || ""}
             alt="ads-image"
-            className="w-full h-[100px] sm:p-1 object-fit rounded-md"
+            className="w-full h-[100px] sm:p-1 md:object-cover object-contain rounded-md"
             loading="lazy"
-          /> */}
+          />
         </div>
       )}
       {isLoading && (

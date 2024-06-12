@@ -37,6 +37,13 @@ export const newsApi = createApi({
         body: { menuId, limit },
       }),
     }),
+    searchNews: builder.mutation({
+      query: (searchParams) => ({
+        url: `/all/search`,
+        method: "POST",
+        body: searchParams,
+      }),
+    }),
     getNewsByMenus: builder.query({
       query: ({ menuId }) => ({
         url: `/get/menu/${menuId}`,
@@ -71,5 +78,6 @@ export const {
   useLazyGetNewsByMenusQuery,
   useGetNewsBySubMenuMutation,
   useGetMoreCommentedNewsQuery,
-  useGetProvinceNewsQuery
+  useGetProvinceNewsQuery,
+  useSearchNewsMutation
 } = newsApi;

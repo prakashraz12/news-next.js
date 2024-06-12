@@ -14,10 +14,12 @@ import { SideBarAdsCompoent } from "./news/side-bar-ads.compoent";
 import { TrendingNews } from "./news/trending-news.compoent";
 import { RelatedNews } from "./news/relatedNews.compont";
 import { FeedBackContainer } from "./news/feed-back-container.compoent";
-import { HorizontalAdsCompoent } from "./horizontal-ads-compoent";
 import parse from "html-react-parser";
 import { HorizontalNewsCard } from "./news/horizontal-news-card.compoent";
 import { Comment } from "@/types/newsTypes";
+
+import { useSelector } from "react-redux";
+import { PopUpAdsPage } from "./news/pop-up-ads-on-details-page.component";
 interface DetailsPageProps {
   isNewsFetching: boolean;
   isNewsfetched: boolean;
@@ -30,6 +32,12 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
   newsData,
   type,
 }) => {
+  const settings = useSelector(
+    (state: any) => state?.app?.appSettings?.defaultSettings
+  );
+  const [isAdsShown, setIsAdsShown] = useState(
+    settings && settings[0]?.isShowPopupAdsOnDetailsPage || false
+  );
   const [comment, setComment] = useState<Comment[]>([]);
   const [isHeadingSticky, setIsHeadingSticky] = useState<boolean>(false);
   useEffect(() => {
@@ -55,9 +63,18 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsAdsShown(false);
+    }, 4000);
+  }, []);
+
   return (
     <React.Fragment>
-      {/* {isAdsShown && <PopUpAdsOnDetailsPage setIsAdsShown={setIsAdsShown} />} */}
+      {isAdsShown && (
+        <PopUpAdsPage setIsAdsShown={setIsAdsShown} searchStatus="popup-1" />
+      )}
       {isNewsFetching && <NewsDetailsLoading />}
       {isNewsfetched && (
         <div className="md:container md:mx-auto min-h-screen w-full  p-2">
@@ -151,7 +168,8 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                     )}
                   </div>
                   <br />
-                  <AdsViewComponent />
+
+                  <AdsViewComponent searchStatus="d-1" />
                   <br />
                   <div className="flex justify-between items-center mt-4">
                     <div className="text-sky-900 flex items-center gap-3">
@@ -182,10 +200,12 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                     className="w-full aspect-video object-cover rounded-sm"
                   />
                 )}
+                <hr className="mt-2 mb-2" />
+                <p className="text-sm text-center">Advertisement</p>
+                <AdsViewComponent searchStatus="d-5" />
                 <p className="text-md mt-3 mb-1">
                   {newsData?.shortDescription}
                 </p>
-                <AdsViewComponent />
                 <div className="mt-5 md:max-w-none md:text-lg">
                   {parse(newsData?.content || "", {
                     replace: (domNode) => {
@@ -195,8 +215,32 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                             {...domNode.attribs}
                             className="aspect-video rounded-sm mt-1 mb-1"
                             loading="lazy"
-
                           />
+                        );
+                      } else if (
+                        domNode.type === "tag" &&
+                        domNode.name === "iframe" &&
+                        domNode.attribs.class === "ql-video"
+                      ) {
+                        return (
+                          <iframe
+                            {...domNode.attribs}
+                            className="w-full h-[200px] md:h-[400px] rounded-md"
+                            allowFullScreen
+                          ></iframe>
+                        );
+                      } else if (
+                        domNode.type === "tag" &&
+                        domNode.name === "iframe"
+                      ) {
+                        return (
+                          <div className="embed-responsive embed-responsive-16by9">
+                            <iframe
+                              {...domNode.attribs}
+                              className="embed-responsive-item"
+                              allowFullScreen
+                            ></iframe>
+                          </div>
                         );
                       }
                       return domNode;
@@ -207,7 +251,17 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                 <p className="md:block hidden text-sm text-center">
                   Advertisment
                 </p>
-                <HorizontalAdsCompoent />
+                <div className="grid grid-cols-12">
+                  <div className="col-span-12 md:col-span-4">
+                    <SideBarAdsCompoent searchStatus="d-7" />
+                  </div>
+                  <div className="col-span-12 md:col-span-4">
+                    <SideBarAdsCompoent searchStatus="d-8" />
+                  </div>
+                  <div className="col-span-12 md:col-span-4">
+                    <SideBarAdsCompoent searchStatus="d-9" />
+                  </div>
+                </div>
                 <hr className="mt-5 mb-5" />
                 <FeedBackContainer
                   type={type}
@@ -221,41 +275,42 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                 <div className="hidden md:block">
                   <hr className="mt-2 mb-2" />
                   <p className="text-sm text-center">Advertisment</p>
-                  <SideBarAdsCompoent />
-                  <SideBarAdsCompoent />
-                  <SideBarAdsCompoent />
-                  <hr className="mt-2 mb-2" />
+                  <SideBarAdsCompoent searchStatus="d-1" />
+                  <SideBarAdsCompoent searchStatus="d-2" />
                 </div>
                 <hr className="mt-2 mb-2 hidden md:block" />
                 {isNewsfetched &&
                   newsData !== undefined &&
                   newsData.recommendedNews.length > 0 && (
                     <>
-                      <p className="text-2xl md:text-4xl font-bold text-sky-800 flex justify-start dark:text-white">सिफारिस</p>
+                      <p className="text-2xl md:text-4xl font-bold text-sky-800 flex justify-start dark:text-white">
+                        सिफारिस
+                      </p>
                       <hr className="mt-2 mb-2" />
                       <div className="flex flex-col">
-                        {newsData?.recommendedNews?.slice(0, 5).map(
-                          (item: any, index: number) => (
+                        {newsData?.recommendedNews
+                          ?.slice(0, 5)
+                          .map((item: any, index: number) => (
                             <div key={index}>
                               <HorizontalNewsCard item={item} />
                               <hr className="mt-2 mb-2" />
                             </div>
-                          )
-                        )}
+                          ))}
                       </div>
                     </>
                   )}
                 <p className="text-sm text-center">Advertisment</p>
-                <SideBarAdsCompoent />
-                <SideBarAdsCompoent />
+                <SideBarAdsCompoent searchStatus="d-3" />
+                <SideBarAdsCompoent searchStatus="d-4" />
                 <hr className="mt-2 mb-2" />
                 <TrendingNews colSpan={10} menu={newsData?.menu} />
+                <div className="pl-4 flex flex-col gap-3">
+                  <SideBarAdsCompoent searchStatus="d-t-1" />
+                  <SideBarAdsCompoent searchStatus="d-t-2" />
+                </div>
               </div>
             </div>
-            <hr className="mt-2 mb-4" />
           </div>
-          <AdsViewComponent />
-        
           <RelatedNews menu={newsData?.menu} newsId={newsData?._id} />
         </div>
       )}

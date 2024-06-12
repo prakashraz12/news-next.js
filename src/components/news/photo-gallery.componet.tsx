@@ -96,7 +96,9 @@ export const PhotoGalleryComponet = () => {
         <div>
         <hr className="mt-2 mb-2" />
         <p className="text-sm text-center text-white">Advertisement</p>
-          <AdsViewComponent searchStatus="gallery"/>
+            <div className="md:container">
+            <AdsViewComponent searchStatus="gallery"/>
+        </div>
         </div>
       </div>
       }

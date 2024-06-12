@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { CoverStoryComponent } from "@/components/news/cover-story.component";
 // import { FeatureNewsCompoent } from "@/components/news/feature-news.compoent";
 import { PhotoGalleryComponet } from "@/components/news/photo-gallery.componet";
@@ -11,20 +11,46 @@ import { RednderHighlightedNews } from "@/components/rednderHighlightedNews.comp
 import { useGetSettingsMutation } from "@/(service)/api/settings.api";
 import { RenderNewsList } from "@/components/renderNewsList.compoent";
 import { StoryCoverContainer } from "@/components/news/storyContainer.compoent";
+import { useDispatch, useSelector } from "react-redux";
+import { PopUpAdsPage } from "@/components/news/pop-up-ads-on-details-page.component";
+import { setIsFlagged } from "@/(store)/slices/cache.slice";
 
 const HomePage = () => {
+  const flagged = useSelector((state:any)=>state?.cache?.isFlaged)
+  const dispatch = useDispatch();
+  const settings = useSelector(
+    (state: any) => state?.app?.appSettings?.defaultSettings
+  );
+  const [isAdsShown, setIsAdsShown] = useState(false);
   const [getSettings] = useGetSettingsMutation();
   const fetchApi = useCallback(async () => {
     getSettings({});
   }, []);
 
-  useEffect(() => {
-    fetchApi();
+  useLayoutEffect(() => {
+    if (settings === null || settings === undefined) {
+      fetchApi();
+    }
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsAdsShown(false);
+    dispatch(setIsFlagged(true))
+    }, 4000);
+  }, []);
+  useEffect(() => {
+    if (settings && settings[0]?.isShowPopupAdsOnLandingPage === true && flagged === false ) {
+      setIsAdsShown(true);
+    }
+  }, [settings]);
 
   return (
     <HomePageLayout>
       <main className="md:mx-auto min-h-screen w-full">
+        {isAdsShown && (
+          <PopUpAdsPage searchStatus="popup-2" setIsAdsShown={setIsAdsShown} />
+        )}
         <div className="md:container">
           <StoryCoverContainer />
           <RednderHighlightedNews />

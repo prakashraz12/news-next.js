@@ -15,7 +15,7 @@ export const VarticalNewsCardCompoent = ({
   const router = useRouter();
   return (
     <Card
-      className="cursor-pointer mt-3 w-full h-[450px]"
+      className="cursor-pointer mt-3 w-full h-[425px]"
       onClick={() => router.push(`/home/news/${item?._id}`)}
     >
       <div className="overflow-hidden relative">
@@ -23,7 +23,7 @@ export const VarticalNewsCardCompoent = ({
           src={item?.bannerImage || "/no-photo.png"}
           loading="lazy"
           alt="news-image"
-          className={`w-full h-[190px] ${item?.bannerImage ? "object-cover" : "object-contain"} ${item?.bannerImage && "hover:scale-150 ease-in duration-500"} ${!item?.bannerImage && "opacity-75"}`}
+          className={`w-full h-[190px] ${item?.bannerImage ? "object-cover" : "object-contain"} ${item?.bannerImage && "hover:scale-105 ease-in duration-200"} ${!item?.bannerImage && "opacity-75"}`}
         />
         {type === "province" && (
           <p className="bg-sky-800 w-auto absolute bottom-2 p-2 text-md font-medium text-white">

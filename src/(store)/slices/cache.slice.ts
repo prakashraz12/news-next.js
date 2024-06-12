@@ -8,13 +8,15 @@ const half_half: News[] = [];
 const flat: News[] = [];
 const coverStoryNews: News[] = [];
 const menuNews: any = null;
+const isFlaged: boolean = false;
 const initialState = {
   highlightedNews,
   menuNews,
   rows,
   flat,
   half_half,
-  coverStoryNews
+  coverStoryNews,
+  isFlaged
 };
 // Define the slice
 const cacheSlice = createSlice({
@@ -38,10 +40,13 @@ const cacheSlice = createSlice({
     },
     setCoverStoryNews: (state, action) => {
       state.coverStoryNews = action.payload;
+    },
+    setIsFlagged: (state, action) => {
+      state.isFlaged = action.payload;
     }
   },
 });
 
-export const { cachedHighlightedNews, setMenuNews, setFlat, setHalfAndHalf, setRowsNews , setCoverStoryNews} = cacheSlice.actions;
+export const { cachedHighlightedNews, setMenuNews, setFlat, setHalfAndHalf, setRowsNews , setCoverStoryNews, setIsFlagged} = cacheSlice.actions;
 
 export default cacheSlice.reducer;

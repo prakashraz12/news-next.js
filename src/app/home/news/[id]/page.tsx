@@ -13,13 +13,6 @@ const DetailsPage = () => {
     { isSuccess: isNewsfetched, data: newsDatas, isLoading: isNewsFetching },
   ] = useLazyGetNewsByIdQuery();
 
-  // useEffect(() => {
-  //   setIsAdsShown(true);
-  //   setTimeout(() => {
-  //     setIsAdsShown(false);
-  //   }, 1000);
-  // }, []);
-
   const fetchNews = useCallback(async () => {
     await getNewsById(params.id);
   }, [params?.id]);
