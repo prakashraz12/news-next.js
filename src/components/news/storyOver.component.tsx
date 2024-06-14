@@ -15,6 +15,7 @@ import { X } from "lucide-react";
 import { useDeviceType } from "../../../hook/useDeviceType";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
+import { formatRelativeNepaliDate } from "@/utils/time-counter.util";
 interface StoryOverCompoentPorps {
   open: boolean;
   setOpen: (type: boolean) => void;
@@ -40,6 +41,7 @@ export const StoryOverCompoent = ({
       }
     }
   }, [open, selectedItems, api, news]);
+
 
   return (
     <Drawer open={open} onClose={() => setOpen(false)}>
@@ -105,8 +107,12 @@ export const StoryOverCompoent = ({
                             </Avatar>
                             <p className="text-white">
                               {data?.owner?.fullName}.
-                              <span className="font-medium text-sm">
-                                २०८१ जेठ २० गते १४:११
+                              <span className="font-medium text-sm ml-2">
+                               
+                                  {formatRelativeNepaliDate(
+                                    new Date(data?.createdAt)
+                                  )}
+                                
                               </span>
                             </p>
                           </div>

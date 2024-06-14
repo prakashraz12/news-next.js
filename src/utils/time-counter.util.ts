@@ -1,7 +1,7 @@
 import { formatNepaliDate } from "./format-neplai-version-date.util";
 import { numsFormatter } from "./number-formatter.util";
 
-export const formatRelativeNepaliDate = (date: any): string => {
+export const formatRelativeNepaliDate = (date: any): any => {
   const now = new Date();
   const elapsedMilliseconds = now.getTime() - date.getTime();
   const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);

@@ -117,7 +117,7 @@ export const UserSettings = ({
 
   useEffect(() => {
     if (isLogout) {
-      dispatch(setLogOut({}));
+      dispatch(setLogOut());
       setOpen(false);
     }
   }, [isLogout]);

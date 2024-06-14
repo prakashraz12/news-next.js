@@ -13,7 +13,7 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
 export function MenuComponet() {
-  const appSettings = useSelector((app: any) => app.app.appSettings);
+  const appSettings = useSelector((app: any) => app?.app?.appSettings);
   const params = useParams();
   const path = usePathname();
   return (

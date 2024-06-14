@@ -69,7 +69,7 @@ export interface SubMenu {
     views?: string;
     comments?: string[];
     menu?: string;
-    createdAt?: string;
+    createdAt: string | Date;
     updatedAt?: string;
     __v?: number;
   }

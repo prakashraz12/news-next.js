@@ -40,7 +40,7 @@ const appSlice = createSlice({
             state.userDetails = action.payload;
             Cookies.set("userDetails", JSON.stringify(action.payload),  {expires:90})
         },
-        setLogOut: (state, action) => {
+        setLogOut: (state) => {
             state.userDetails = null;
             state.token = null;
             Cookies.remove("access_token");
