@@ -23,7 +23,7 @@ export const CoverStoryComponent = () => {
   }, [coverStoryNews]);
 
   useEffect(() => {
-    if (coverStoryNews.length === 0) {
+    if (coverStoryNews?.length === 0) {
       fetchApi();
     }
   }, []);
@@ -40,11 +40,11 @@ export const CoverStoryComponent = () => {
       {coverStoryNews?.length > 0 && (
         <div className="w-full p-3">
           <div className="flex md:mb-10  mb-2 justify-between w-full">
-            <h1 className="text-3xl  md:text-5xl font-bold text-sky-800">
+            <h1 className="text-3xl  md:text-5xl font-bold text-sky-800 dark:text-white">
               कभर स्टोरी
             </h1>
             <div className="p-2 md:p-3 rounded-full bg-sky-800 text-white">
-              <Link href={`/home/coverstory`}>
+              <Link href={`/home/coverstory`} aria-label="cover-story-page">
                 <ChevronRight />
               </Link>
             </div>

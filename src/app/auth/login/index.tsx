@@ -9,15 +9,17 @@ import { useDispatch } from "react-redux";
 import { setToken, setUserDetails } from "@/(store)/slices/app.slice";
 interface LoginProps {
   setModalType: (type: string) => void;
-  setOpen:(type:boolean)=> void
+  setOpen: (type: boolean) => void
+  handleWithGoogle:(type:any)=>void
 }
 
 interface LoginFormValues {
   email: string;
   password: string;
+  
 }
 
-const Login = ({ setModalType, setOpen }: LoginProps) => {
+const Login = ({ setModalType, setOpen, handleWithGoogle  }: LoginProps) => {
   const dispatch = useDispatch();
   const [
     loginData,
@@ -87,21 +89,13 @@ const Login = ({ setModalType, setOpen }: LoginProps) => {
           </a>
         </p>
         <div className="flex flex-col mt-6 gap-3">
-          <div className="flex items-start gap-5 justify-center border  border-slate-300 p-3 rounded-md cursor-pointer hover:bg-yellow-500 hover:text-white">
+          <div onClick={handleWithGoogle} className="flex items-start gap-5 justify-center border  border-slate-300 p-3 rounded-md cursor-pointer">
             <img
               src="/google.png"
               alt="google-image.png"
               className="w-[20px] h-[20px]"
             />
             <p className="text-md">गुगलसँग लगइन गर्नुहोस्</p>
-          </div>
-          <div className="flex items-start gap-5 justify-center border border-slate-300 p-3 rounded-md cursor-pointer hover:bg-sky-800 hover:text-white">
-            <img
-              src="/facebook.png"
-              alt="google-image.png"
-              className="w-[20px] h-[20px]"
-            />
-            <p className="text-md">फेसबुकबाट लगइन गर्नुहोस्</p>
           </div>
         </div>
       </div>

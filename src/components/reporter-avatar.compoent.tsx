@@ -22,7 +22,7 @@ export const ReporterAvatarCompoent = ({
         />
         <AvatarFallback>{fullName?.slice(0, 1)}</AvatarFallback>
       </Avatar>
-      <h6 className="text-sm md:font-[600]">{ fullName}</h6>
+      <p className="text-sm md:font-[600]">{ fullName}</p>
     </div>
   );
 };

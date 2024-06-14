@@ -9,9 +9,10 @@ import toast from "react-hot-toast";
 interface RegisterProps {
   setModalType: (type: string) => void;
   setOpen: (type: boolean) => void;
+  handleWithGoogle: (type: any) => void;
 }
 
-const Register = ({ setModalType, setOpen }: RegisterProps) => {
+const Register = ({ setModalType, setOpen, handleWithGoogle }: RegisterProps) => {
   const [
     registerData,
     {
@@ -85,7 +86,7 @@ const Register = ({ setModalType, setOpen }: RegisterProps) => {
       </p>
       <hr className="mt-3 mb-3" />
       <div className="flex flex-col mt-6 gap-3">
-        <div className="flex items-start gap-5 justify-center border  border-slate-300 p-3 rounded-md cursor-pointer hover:bg-yellow-500 hover:text-white">
+        <div onClick={handleWithGoogle} className="flex items-start gap-5 justify-center border  border-slate-300 p-3 rounded-md cursor-pointer">
           <img
             src="/google.png"
             alt="google-image.png"
@@ -93,14 +94,7 @@ const Register = ({ setModalType, setOpen }: RegisterProps) => {
           />
           <p className="text-md">गुगलसँग सँग जडान गर्नुहोस्</p>
         </div>
-        <div className="flex items-start gap-5 justify-center border border-slate-300 p-3 rounded-md cursor-pointer hover:bg-sky-800 hover:text-white">
-          <img
-            src="/facebook.png"
-            alt="google-image.png"
-            className="w-[20px] h-[20px]"
-          />
-          <p className="text-md">फेसबुकबाट सँग जडान गर्नुहोस्</p>
-        </div>
+      
       </div>
     </div>
   );

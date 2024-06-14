@@ -3,6 +3,8 @@ import { TrendingNewsCardCompoent } from "../trending-news-card-compoent";
 import { useGetTrendingNewsMutation } from "@/(service)/api/news.api";
 import { Skeleton } from "../ui/skeleton";
 import { AdsViewComponent } from "../ads-view.component";
+import { useDispatch, useSelector } from "react-redux";
+import { setTrendingNews } from "@/(store)/slices/cache.slice";
 
 interface TrendingNews {
   newsTitle: string;
@@ -14,26 +16,41 @@ interface TrendingNewsProps {
   limit?: number;
 }
 export const TrendingNews = ({ colSpan, menu, limit }: TrendingNewsProps) => {
+  const dispatch = useDispatch();
+  const trendingNews = useSelector((state: any) => state?.cache?.trendingNews);
 
-  const [getTrendingNews, { isSuccess, data, isLoading }] = useGetTrendingNewsMutation();
+  const [getTrendingNews, { isSuccess, data, isLoading }] =
+    useGetTrendingNewsMutation();
 
   const fetchNews = useCallback(async () => {
-    await getTrendingNews({ menuId: menu ? menu : undefined, limit: limit ? limit : 10 });
+    await getTrendingNews({
+      menuId: menu ? menu : undefined,
+      limit: limit ? limit : 10,
+    });
   }, [menu]);
 
   useEffect(() => {
-    fetchNews();
-  }, []);
+    if (trendingNews?.length === 0) {
+      fetchNews();
+    }
+  }, [trendingNews]);
 
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setTrendingNews(data?.data))
+    }
+  },[isSuccess])
   return (
     <div className="w-full p-3">
-      <h1 className="text-2xl md:text-5xl font-bold text-sky-800 dark:text-white">ट्रेन्डिङ</h1>
+      <h1 className="text-2xl md:text-5xl font-bold text-sky-800 dark:text-white">
+        ट्रेन्डिङ
+      </h1>
       {isLoading ? (
         <Loading />
       ) : (
         <div className="grid grid-cols-12 md:gap-4 mt-5 gap-2">
-          {isSuccess &&
-            data?.data?.slice(0, 6).map((item: TrendingNews, index: number) => (
+          {trendingNews &&
+           trendingNews?.slice(0, 6).map((item: TrendingNews, index: number) => (
               <div
                 className={`col-span-12 md:col-span-${colSpan ? colSpan : 6}`}
                 key={index}
@@ -47,11 +64,11 @@ export const TrendingNews = ({ colSpan, menu, limit }: TrendingNewsProps) => {
             ))}
         </div>
       )}
-     <section>
-      <p className="text-sm font-extralight text-center">Advertisement</p>
+      <section>
+        <p className="text-sm font-extralight text-center">Advertisement</p>
 
-      <AdsViewComponent searchStatus="trending"/>
-     </section>
+        <AdsViewComponent searchStatus="trending" />
+      </section>
     </div>
   );
 };

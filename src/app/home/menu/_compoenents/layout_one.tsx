@@ -67,6 +67,7 @@ export const LayoutOneComponent = ({ news }: LayoutOneProps) => {
 export const LayoutOneLoading = () => {
   return (
     <div className="md:container mb-2">
+    
       <Card className="p-0 w-full ">
         <div className="grid grid-cols-12 gap-5 w-full">
           <div className="col-span-12 md:col-span-6">

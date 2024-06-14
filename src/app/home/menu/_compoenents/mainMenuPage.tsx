@@ -62,7 +62,6 @@ export const MainMenuPage = () => {
     setIsClient(true);
   }, []);
 
-  console.log(data)
   return (
     <>
       {isClient && (

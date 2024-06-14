@@ -3,15 +3,19 @@ import {
   useLazyClickOnAdsQuery,
   useLazyGetAdsByPositionQuery,
 } from "@/(service)/api/ads.api";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect } from "react";
 import { Skeleton } from "./ui/skeleton";
+import { useDispatch, useSelector } from "react-redux";
+import { setAdsSlice } from "@/(store)/slices/ads.slice";
 
 export const AdsViewComponent = ({
   searchStatus,
 }: {
   searchStatus: string;
 }) => {
-  const [adsData, setAdsData] = useState<any>({});
+  const ads = useSelector((state: any) => state?.ads?.adsSlice);
+  const dispatch = useDispatch();
+
   const [clickOnAds] = useLazyClickOnAdsQuery();
   const [getAds, { isLoading, data, isSuccess }] =
     useLazyGetAdsByPositionQuery();
@@ -19,36 +23,39 @@ export const AdsViewComponent = ({
     await getAds(searchStatus);
   }, [searchStatus]);
 
-  useEffect(() => {
-    if (searchStatus !== undefined) {
+  useLayoutEffect(() => {
+    if (searchStatus !== undefined && (!ads || !ads[searchStatus])) {
       fetchAds();
     }
-  }, [searchStatus]);
+  }, [searchStatus, ads]);
 
   const handleClickOnAds = async () => {
-    await clickOnAds(adsData?._id);
-    window.open(`${adsData?.adsUrl}`, "_blank");
+    await clickOnAds(ads && ads[searchStatus]?._id);
+    window.open(`${ads && ads[searchStatus]?.adsUrl}`, "_blank");
   };
 
   useEffect(() => {
     if (isSuccess) {
-      setAdsData(data?.data);
+      dispatch(setAdsSlice({ [searchStatus]: data?.data }));
     }
   }, [isSuccess]);
-  
+
   return (
     <>
-      {isSuccess && adsData &&  (
+      {!isLoading && ads && (
         <div
           className="flex justify-center cursor-pointer"
           onClick={handleClickOnAds}
+          aria-label="advertisement"
         >
-          <img
-            src={adsData?.adsImage || ""}
-            alt="ads-image"
-            className="w-full h-[100px] sm:p-1 md:object-cover object-contain rounded-md"
-            loading="lazy"
-          />
+          {ads[searchStatus]?.adsImage && (
+            <img
+              src={ads[searchStatus]?.adsImage || ""}
+              alt="ads-image"
+              className="w-full h-[100px] sm:p-1 md:object-cover object-contain rounded-md"
+              loading="lazy"
+            />
+          )}
         </div>
       )}
       {isLoading && (

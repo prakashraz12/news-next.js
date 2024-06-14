@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import React, { useCallback, useLayoutEffect, useState } from "react";
 import { CoverStoryComponent } from "@/components/news/cover-story.component";
 // import { FeatureNewsCompoent } from "@/components/news/feature-news.compoent";
 import { PhotoGalleryComponet } from "@/components/news/photo-gallery.componet";
@@ -16,7 +16,7 @@ import { PopUpAdsPage } from "@/components/news/pop-up-ads-on-details-page.compo
 import { setIsFlagged } from "@/(store)/slices/cache.slice";
 
 const HomePage = () => {
-  const flagged = useSelector((state:any)=>state?.cache?.isFlaged)
+  const flagged = useSelector((state: any) => state?.cache?.isFlaged);
   const dispatch = useDispatch();
   const settings = useSelector(
     (state: any) => state?.app?.appSettings?.defaultSettings
@@ -33,14 +33,19 @@ const HomePage = () => {
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setTimeout(() => {
       setIsAdsShown(false);
-    dispatch(setIsFlagged(true))
+      dispatch(setIsFlagged(true));
     }, 4000);
   }, []);
-  useEffect(() => {
-    if (settings && settings[0]?.isShowPopupAdsOnLandingPage === true && flagged === false ) {
+
+  useLayoutEffect(() => {
+    if (
+      settings &&
+      settings[0]?.isShowPopupAdsOnLandingPage === true &&
+      flagged === false
+    ) {
       setIsAdsShown(true);
     }
   }, [settings]);

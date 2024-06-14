@@ -47,6 +47,31 @@ export const authApi = createApi({
         body: data,
       }),
     }),
+    continueWithGoogle: builder.query({
+      query: ({access_token}) => ({
+        url: `/with-google/?access_token=${access_token}`,
+        method:"GET"
+    })
+    }),
+    updateUser: builder.mutation({
+      query: (data) => ({
+        url: `/update/me`,
+        method: "PUT",
+        body:data
+      })
+    }),
+    updatePassword: builder.mutation({
+      query: (data) => ({
+        url: `/update/password`,
+        method: "POST",
+        body:data
+      })
+    }),
+    logout: builder.query({
+      query: () => ({
+        url:"/logout"
+      })
+    })
   }),
 });
 
@@ -56,5 +81,9 @@ export const {
   useVerifyEmailMutation,
   useResendVerifyEmailMutation,
   useForgotPasswordMutation,
-  useResetPasswordMutation
+  useResetPasswordMutation,
+  useLazyContinueWithGoogleQuery,
+  useUpdateUserMutation,
+  useUpdatePasswordMutation,
+  useLazyLogoutQuery
 } = authApi;

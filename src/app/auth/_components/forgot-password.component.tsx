@@ -80,7 +80,7 @@ export const ForgotPasswordComponent = ({
                 {forgotPasswordFormState?.errors?.email}
               </p>
             )}
-          <Button className="mt-4 w-full" type="submit" disabled={isLoadingOnForgotPassword}>
+          <Button className="mt-4 w-full dark:text-white" type="submit" disabled={isLoadingOnForgotPassword}>
             रिसेट पासवर्ड लिङ्क पठाउनुहोस्
           </Button>
         </form>

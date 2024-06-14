@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader } from "@/components/ui/sheet";
 
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -27,13 +23,22 @@ export const MobileNavBrComponent = ({
       <SheetContent>
         <SheetHeader className="mt-3">
           <ul>
+            <li
+              className="font-bold text-xl p-3 text-start"
+              onClick={() => {
+                router.push(`/`);
+                handleClose();
+              }}
+            >
+              गृहपृष्ठ
+            </li>
             {appSettings?.menus?.map((menu: any, index: number) => (
               <li
                 className="font-bold text-xl p-3 text-start"
                 key={index}
                 onClick={() => {
                   router.push(`/home/menu/${menu?._id}`);
-                  handleClose()
+                  handleClose();
                 }}
               >
                 {menu?.menuTitle}

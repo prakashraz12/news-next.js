@@ -28,7 +28,7 @@ export const HighlightedTopNews = ({
   return (
     <React.Fragment>
       <div className="lg:p-5 p-2 flex flex-col md:gap-10 gap-3">
-        <Link href={`/home/news/${id}`}>
+        <Link href={`/home/news/${id}`} aria-label="view details news">
           <h1 className="font-bold md:text-7xl text-2xl text-center hover:text-sky-700 cursor-pointer ease-linear duration-200">
             {title}
           </h1>

@@ -32,26 +32,24 @@ export const LoginForm = ({
         placeholder="इमेल"
         className="w-full"
         value={loginFormState?.values?.email}
-        id="email"
         name="email"
         type="email"
         onChange={loginFormState.handleChange}
-        onBlur={loginFormState.handleBlur}
+     
       />
-      {loginFormState?.touched?.email && loginFormState?.errors?.email && (
+      {loginFormState?.touched?.email && Boolean(loginFormState?.errors?.email) && (
         <p className="text-sm text-red-600">{loginFormState?.errors?.email}</p>
       )}
       <Input
         placeholder="पासवर्ड"
         type={isShowPassword ? "text" : "password"}
         value={loginFormState?.values?.password}
-        id="password"
         name="password"
         onChange={loginFormState.handleChange}
         onBlur={loginFormState.handleBlur}
       />
       {loginFormState?.touched?.password &&
-        loginFormState?.errors?.password && (
+        Boolean(loginFormState?.errors?.password) && (
           <p className="text-sm text-red-600">
             {loginFormState?.errors?.password}
           </p>
@@ -74,7 +72,7 @@ export const LoginForm = ({
           <a onClick={clickOnForgotPasswordLink}>पासवर्ड भुल्नु भयो</a>
         </p>
       </div>
-      <Button type="submit" disabled={isLoading}>
+      <Button type="submit" disabled={isLoading} className="dark:text-white">
         लगइन
       </Button>
     </form>

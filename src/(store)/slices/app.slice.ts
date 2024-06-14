@@ -34,15 +34,21 @@ const appSlice = createSlice({
         },
         setToken: (state, action) => {
             state.token = action.payload;
-            Cookies.set("access_token", JSON.stringify(action.payload))
+            Cookies.set("access_token", JSON.stringify(action.payload), {expires:90})
         },
         setUserDetails: (state, action) => {
             state.userDetails = action.payload;
-            Cookies.set("userDetails", JSON.stringify(action.payload))
+            Cookies.set("userDetails", JSON.stringify(action.payload),  {expires:90})
+        },
+        setLogOut: (state, action) => {
+            state.userDetails = null;
+            state.token = null;
+            Cookies.remove("access_token");
+            Cookies.remove("userDetails");
         }
     },
 });
 
-export const { addSettings, setToken, setUserDetails } = appSlice.actions;
+export const { addSettings, setToken, setUserDetails, setLogOut } = appSlice.actions;
 
 export default appSlice.reducer;

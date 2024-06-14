@@ -32,29 +32,32 @@ export const NavabrCompoent = () => {
   return (
     <React.Fragment>
       {isClient && (
-        <div className="w-full shadow-md sticky top-0 bg-white dark:bg-[#020817] border-white border-b z-20">
-          <nav className="md:container md:mx-auto p-5 flex justify-between items-center">
+        <div className="w-full shadow-md sticky top-0 bg-white dark:bg-[#020817] border-b z-20 border-t">
+          <nav className="md:container md:mx-auto p-5 flex justify-between items-center relative">
             <div className="md:block hidden">
               <MenuComponet />
             </div>
             <div className="flex justify-between items-center w-full">
               <div className="md:hidden">
-                <MenuIcon onClick={()=>setIsMobileNavOpen(true)}/>
-                <MobileNavBrComponent open={isMobileNavOpen} setOpen={setIsMobileNavOpen} />
+                <MenuIcon onClick={() => setIsMobileNavOpen(true)} />
+                <MobileNavBrComponent
+                  open={isMobileNavOpen}
+                  setOpen={setIsMobileNavOpen}
+                />
               </div>
               <div className="hidden md:block"></div>
-              <div className="flex">
+              <div className="flex gap-2 items-center">
                 <ModeToggle />
                 {isLogIn ? (
                   <Avatar
                     aria-label="user-avatar"
-                    className="cursor-pointer border-2 hover:border-sky-900 transition-all ease-linear"
+                    className="cursor-pointer border border-red-900 dark:border-white border-dashed transition-all ease-linear p-1"
                     onClick={() => setIsUserProfleOpen(true)}
                   >
                     <AvatarImage
                       src={user?.avatar}
                       alt="user"
-                      className="object-cover"
+                      className="object-cover h-full w-full rounded-full"
                     />
                     <AvatarFallback className="flex justify-center w-full items-center text-xl">
                       {user.fullName.slice(0, 1)}
@@ -76,10 +79,10 @@ export const NavabrCompoent = () => {
                 />
               </div>
             </div>
+          
           </nav>
         </div>
       )}
     </React.Fragment>
   );
 };
-

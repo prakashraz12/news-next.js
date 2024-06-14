@@ -69,6 +69,11 @@ export const commentApi = createApi({
         body:  body ,
       }),
     }),
+    getCommentByUserId: builder.query({
+      query: () => ({
+        url:"/mycomment/me"
+      })
+    })
   }),
 });
 
@@ -81,5 +86,6 @@ export const {
   useDeleteRepliesMutation,
   useUpdateCommentMutation,
   useUpdateCommentRepliesMutation,
-  useDislikeMutation
+  useDislikeMutation,
+  useLazyGetCommentByUserIdQuery
 } = commentApi;

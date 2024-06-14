@@ -46,7 +46,6 @@ export const StoryCoverContainer = () => {
     <>
       {isSuccess && (
         <div className="relative mt-6 pl-3 pr-2">
-         
           <style>{`
           .scroll-container::-webkit-scrollbar {
             display: none;
@@ -57,6 +56,7 @@ export const StoryCoverContainer = () => {
               className="md:flex hidden absolute top-[25%] bg-slate-200 dark:bg-slate-700 text-white rounded-full w-10 h-10 justify-center items-center hover:bg-sky-950 transition-all duration-200 z-10"
               style={{ left: -10 }}
               onClick={handleScrollLeft}
+              aria-label="left-toggle"
             >
               <ArrowLeft />
             </button>
@@ -70,7 +70,7 @@ export const StoryCoverContainer = () => {
                   <div className="flex-shrink-0 w-[70px] h-[70px] md:h-[100px] md:w-[100px] rounded-full border-red-900 dark:border-white border border-dashed overflow-hidden flex justify-center items-center">
                     <img
                       src={data?.bannerImage || "/no-photo.png"}
-                      className={`md:w-[90px] md:h-[90px] ${data?.bannerImage ? "object-cover" :"object-contain"} ${!data?.bannerImage && "opacity-40"} rounded-full  cursor-pointer h-[60px] w-[60px]`}
+                      className={`md:w-[90px] md:h-[90px] ${data?.bannerImage ? "object-cover" : "object-contain"} ${!data?.bannerImage && "opacity-40"} rounded-full  cursor-pointer h-[60px] w-[60px]`}
                       alt="Image"
                     />
                   </div>
@@ -81,6 +81,7 @@ export const StoryCoverContainer = () => {
               ))}
             </div>
             <button
+              aria-label="right-toggle"
               className="md:flex hidden absolute top-[25%] bg-slate-200 dark:bg-slate-700 text-white rounded-full w-10 h-10  justify-center items-center hover:bg-sky-950 transition-all duration-200 z-10"
               style={{ right: -10 }}
               onClick={handleScrollRight}
@@ -88,7 +89,7 @@ export const StoryCoverContainer = () => {
               <ArrowRight />
             </button>
           </div>
-        <hr className="mt-2 mb-2" />
+          <hr className="mt-2 mb-2" />
         </div>
       )}
       <StoryOverCompoent

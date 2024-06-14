@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 import { ReporterAvatarCompoent } from "./reporter-avatar.compoent";
 import { TimeCountComponent } from "./time-count.compoent";
 import {
-  Facebook,
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
+
+import {
   MessageCircleDashedIcon,
-  MessageCircleMore,
-  Twitter,
 } from "lucide-react";
 import { NewsDetailsLoading } from "./news-details-page-loading.component";
 import { News } from "@/types/newsTypes";
@@ -20,6 +26,7 @@ import { Comment } from "@/types/newsTypes";
 
 import { useSelector } from "react-redux";
 import { PopUpAdsPage } from "./news/pop-up-ads-on-details-page.component";
+
 interface DetailsPageProps {
   isNewsFetching: boolean;
   isNewsfetched: boolean;
@@ -36,7 +43,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
     (state: any) => state?.app?.appSettings?.defaultSettings
   );
   const [isAdsShown, setIsAdsShown] = useState(
-    settings && settings[0]?.isShowPopupAdsOnDetailsPage || false
+    (settings && settings[0]?.isShowPopupAdsOnDetailsPage) || false
   );
   const [comment, setComment] = useState<Comment[]>([]);
   const [isHeadingSticky, setIsHeadingSticky] = useState<boolean>(false);
@@ -124,14 +131,29 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   </div>
                   <div className="mt-3">
                     <ul className="flex flex-col justify-between items-center h-auto gap-2 text-white">
-                      <li className="w-[55px] h-[55px] bg-sky-900 flex justify-center items-center rounded-full">
-                        <Facebook color="#fff" />
+                      <li>
+                        <FacebookShareButton
+                          url={window.location.href}
+                          title={newsData?.newsTitle}
+                        >
+                          <FacebookIcon className=" rounded-full h-full w-[55px]" />
+                        </FacebookShareButton>
                       </li>
-                      <li className="w-[55px] h-[55px] bg-sky-900 flex justify-center items-center rounded-full">
-                        <Twitter />
+                      <li>
+                        <TwitterShareButton
+                          url={window.location.href}
+                          title={newsData?.newsTitle}
+                        >
+                          <TwitterIcon className=" rounded-full h-full w-[55px]" />
+                        </TwitterShareButton>
                       </li>
-                      <li className="w-[55px] h-[55px] bg-sky-900 flex justify-center items-center rounded-full">
-                        <MessageCircleMore />
+                      <li>
+                        <WhatsappShareButton
+                          url={window.location.href}
+                          title={newsData?.newsTitle}
+                        >
+                          <WhatsappIcon className=" rounded-full h-full w-[55px]" />
+                        </WhatsappShareButton>
                       </li>
                     </ul>
                   </div>
@@ -172,20 +194,35 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   <AdsViewComponent searchStatus="d-1" />
                   <br />
                   <div className="flex justify-between items-center mt-4">
-                    <div className="text-sky-900 flex items-center gap-3">
+                    <div className="text-sky-900 flex items-center gap-3 dark:text-white">
                       <MessageCircleDashedIcon size={"40px"} />
-                      <p className="text-xl font-bold">1.2k</p>
+                      <p className="text-xl font-bold">{comment?.length}</p>
                     </div>
                     <div>
                       <ul className="text-white flex gap-2">
-                        <li className="w-[40px] h-[40px] bg-sky-900 flex justify-center items-center rounded-full">
-                          <Facebook color="#fff" />
+                        <li>
+                          <FacebookShareButton
+                            url={window.location.href}
+                            title={newsData?.newsTitle}
+                          >
+                            <FacebookIcon className=" rounded-full h-full w-[40px]" />
+                          </FacebookShareButton>
                         </li>
-                        <li className="w-[40px] h-[40px] bg-sky-900 flex justify-center items-center rounded-full">
-                          <Twitter />
+                        <li>
+                          <TwitterShareButton
+                            url={window.location.href}
+                            title={newsData?.newsTitle}
+                          >
+                            <TwitterIcon className=" rounded-full h-full w-[40px]" />
+                          </TwitterShareButton>
                         </li>
-                        <li className="w-[40px] h-[40px] bg-sky-900 flex justify-center items-center rounded-full">
-                          <MessageCircleMore />
+                        <li>
+                          <WhatsappShareButton
+                            url={window.location.href}
+                            title={newsData?.newsTitle}
+                          >
+                            <WhatsappIcon className=" rounded-full h-full w-[40px]" />
+                          </WhatsappShareButton>
                         </li>
                       </ul>
                     </div>

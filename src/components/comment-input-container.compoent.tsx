@@ -64,6 +64,7 @@ export const CommentInputCntainerCompoent = ({
         className="bg-sky-800 text-white hover:bg-sky-700 flex justify-end mt-3"
         disabled={comment.length === 0 || isComemntLoading}
         onClick={handleComment}
+        aria-label="comment submit button"
       >
         प्रतिक्रिया दिनुहोस्
       </Button>

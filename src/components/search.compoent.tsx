@@ -24,7 +24,6 @@ import { News } from "@/types/newsTypes";
 import Link from "next/link";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-
 export const SearchComponent = () => {
   const [length, setLength] = useState(1);
   const [page, setPage] = useState(1);
@@ -71,19 +70,20 @@ export const SearchComponent = () => {
   }, [isSuccess]);
 
   return (
-    <Dialog >
+    <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost" className="p-2">
+        <Button variant="ghost" className="p-2" aria-label="search-button">
           <Search />
         </Button>
       </DialogTrigger>
-     
+
       <DialogContent className="sm:max-w-[500px] md:max-w-[700px] w-full">
         <DialogHeader>
           <DialogTitle className="text-xl text-sky-900 dark:text-white w-full flex justify-between items-center ">
-            खोज्नुहोस्  <DialogClose>
-      <X/>
-      </DialogClose>
+            खोज्नुहोस्
+            <DialogClose>
+              <X />
+            </DialogClose>
           </DialogTitle>
         </DialogHeader>
         <div className=" py-4 w-full flex flex-col gap-2 ">
@@ -97,14 +97,18 @@ export const SearchComponent = () => {
           <Button onClick={handleSearchParams}>
             <Search />
           </Button>
-          {
-            isSuccess && searchParams?.length > 0 && <p className="text-2xl font-bold text-center mt-2">
-            {`"${searchParams}"`} का सर्च रिजल्ट
-          </p>
-          }
+          {isSuccess && searchParams?.length > 0 && (
+            <p className="text-2xl font-bold text-center mt-2">
+              {`"${searchParams}"`} का सर्च रिजल्ट
+            </p>
+          )}
           <div>
-            <div className="mt-1 max-h-[500px] overflow-auto" id="scrollableDiv">
-              {isLoading && page === 1 &&
+            <div
+              className="mt-1 max-h-[500px] overflow-auto"
+              id="scrollableDiv"
+            >
+              {isLoading &&
+                page === 1 &&
                 Array.from({ length: 5 }).map((_, index) => (
                   <LoadingAnimation key={index} />
                 ))}

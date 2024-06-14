@@ -25,7 +25,7 @@ export const UserLogoComponent = ({
   return (
     <div  className="cursor-pointer">
       {! isUserLogedIn  ? (
-        <Button variant={"ghost"} className="p-2" onClick={onClick}>
+        <Button variant={"ghost"} className="p-2" onClick={onClick} aria-label="user-logo-icon">
           <CircleUserIcon />
         </Button>
       ) : (
