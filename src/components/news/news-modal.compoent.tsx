@@ -45,7 +45,7 @@ export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
       {isLoading && <Loading />}
       {news && news[item._id]?.length > 0 && (
         <>
-          <div className="w-full pt-3 pb-3 p-2">
+          <div className="w-full pt-2 pb-3 p-2">
             <h1 className="text-2xl md:text-4xl  ld:text-5xl font-bold text-sky-800 dark:text-white">
               {item?.menuTitle}
             </h1>
@@ -103,10 +103,10 @@ export const NewsModalComponent = ({ item }: NewsModalComponentProps) => {
 const Loading = () => {
   return (
     <div className="md:container grid grid-cols-12 gap-2">
-      <div className="col-span-4">
+      <div className="col-span-12 md:col-span-4">
         <Skeleton className="w-[100%] h-[400px]" />
       </div>
-      <div className="col-span-4 w-full flex flex-col  gap-3 p-3">
+      <div className="col-span-12 md:col-span-4 w-full flex flex-col  gap-3 p-3">
         <div className="flex w-full gap-2">
           <Skeleton className="w-[150px] h-[100px]" />
           <div className="w-full flex flex-col gap-2 p-2">
@@ -139,7 +139,7 @@ const Loading = () => {
         </div>
         <Skeleton className="w-[100%] h-[50px]" />
       </div>
-      <div className="col-span-4 flex flex-col gap-2 w-[90%]">
+      <div className="col-span-12 md:col-span-4 hidden md:flex flex-col gap-2 w-[100%]">
         <Skeleton className="w-[100%] h-[200px]" />
         <Skeleton className="w-[100%] h-[200px]" />
       </div>

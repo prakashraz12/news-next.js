@@ -6,10 +6,9 @@ import { LoginSchema } from "../auth.validation-schema";
 import { useLoginMutation } from "@/(service)/api/user.api";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { setToken, setUserDetails } from "@/(store)/slices/app.slice";
+import { setIsAuthOpen, setToken, setUserDetails } from "@/(store)/slices/app.slice";
 interface LoginProps {
   setModalType: (type: string) => void;
-  setOpen: (type: boolean) => void
   handleWithGoogle:(type:any)=>void
 }
 
@@ -19,7 +18,7 @@ interface LoginFormValues {
   
 }
 
-const Login = ({ setModalType, setOpen, handleWithGoogle  }: LoginProps) => {
+const Login = ({ setModalType, handleWithGoogle  }: LoginProps) => {
   const dispatch = useDispatch();
   const [
     loginData,
@@ -64,7 +63,7 @@ const Login = ({ setModalType, setOpen, handleWithGoogle  }: LoginProps) => {
       dispatch(setToken(loginResponse?.data?.token));
       dispatch(setUserDetails(loginResponse?.data?.user));
       toast.success("Logedin success fully")
-      setOpen(false)
+      dispatch(setIsAuthOpen(false))
     }
   }, [isLogedinSuccessfully]);
   

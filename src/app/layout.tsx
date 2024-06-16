@@ -23,10 +23,6 @@ export default function RootLayout({
   return (
     <React.Fragment>
       <html lang="en" suppressHydrationWarning>
-        <head>
-          <link rel="manifeast" href="/manifest.json" />
-          <meta name="theme-color" content="#ffff" />
-        </head>
         <body className={mukta.className}>
           <ThemeProvider
             attribute="class"

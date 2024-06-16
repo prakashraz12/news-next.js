@@ -58,9 +58,10 @@ const ResetPasswordPage = () => {
   useEffect(() => {
     if (isResetPassword) {
       toast.success("तपाँइको पासवर्ड सफलतापूर्वक परिवर्तित गरियो");
+      resetPasswordFormState.handleReset({});
       setTimeout(() => {
         router.push("/");
-      }, 4000);
+      }, 1000);
     }
   }, [isResetPassword]);
 

@@ -53,7 +53,7 @@ export const FeedBackContainer = ({
   };
   return (
     <div className="w-full flex flex-col">
-      <h1 className="text-3xl font-bold text-sky-800">प्रतिक्रिया</h1>
+      <h1 className="text-3xl font-bold text-sky-800 dark:text-white">प्रतिक्रिया</h1>
       <hr className="mt-5" />
       <CommentInputCntainerCompoent
         newsId={newsId}

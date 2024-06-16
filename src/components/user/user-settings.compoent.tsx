@@ -3,14 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import {
-  useLazyLogoutQuery,
   useUpdatePasswordMutation,
   useUpdateUserMutation,
 } from "@/(service)/api/user.api";
 import { useDispatch } from "react-redux";
-import { setLogOut, setUserDetails } from "@/(store)/slices/app.slice";
+import {  setUserDetails } from "@/(store)/slices/app.slice";
 import toast from "react-hot-toast";
-import { ChevronDown, ChevronUp, Loader, LogOut, Pen } from "lucide-react";
+import { ChevronDown, ChevronUp, Loader, Pen } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -35,7 +34,6 @@ const passwordUpdate = Yup.object().shape({
 });
 export const UserSettings = ({
   user,
-  setOpen,
 }: {
   user: any;
   setOpen: (type: boolean) => void;
@@ -54,8 +52,7 @@ export const UserSettings = ({
     { isSuccess: isPasswordUpdated, isLoading: isPasswordUpdating },
   ] = useUpdatePasswordMutation();
   const [updateData, { isSuccess, data, isLoading }] = useUpdateUserMutation();
-  const [logOut, { isSuccess: isLogout, isLoading: isLoggingOut }] =
-    useLazyLogoutQuery();
+
   const handleUpdate = async () => {
     if (!fullName || !email) {
       return toast.error("fullName and email is required");
@@ -69,9 +66,7 @@ export const UserSettings = ({
     }
   };
 
-  const handleLogout = async () => {
-    await logOut({});
-  };
+
   useEffect(() => {
     if (isSuccess) {
       dispatch(setUserDetails(data?.data));
@@ -115,14 +110,9 @@ export const UserSettings = ({
     }
   }, [isPasswordUpdated]);
 
-  useEffect(() => {
-    if (isLogout) {
-      dispatch(setLogOut());
-      setOpen(false);
-    }
-  }, [isLogout]);
+
   return (
-    <div className="w-full h-[750px] flex flex-col justify-between">
+    <div className="w-full h-[560px] flex flex-col justify-between overflow-auto">
       <div>
         <div className="flex flex-col gap-2">
           <div className="flex justify-between p-1">
@@ -279,19 +269,6 @@ export const UserSettings = ({
           )}
         </div>
       </div>
-      <Button
-        className="w-full flex gap-1"
-        variant={"link"}
-        onClick={handleLogout}
-        disabled={isLoggingOut}
-      >
-        {isLoggingOut ? (
-          <Loader className="span mx-2 animate-spin" />
-        ) : (
-          "Logout"
-        )}
-        {!isLoggingOut && <LogOut size={"13px"} />}
-      </Button>
     </div>
   );
 };

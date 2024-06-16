@@ -68,15 +68,15 @@ export const RednderHighlightedNews = () => {
 const Loading = () => {
   return (
     <div className="md:container p-4 flex flex-col items-center">
-      <Skeleton className="w-[100%] h-[80px]" />
-      <Skeleton className="w-[70%] h-[80px] mt-5" />
+      <Skeleton className="w-[100%] h-[50px] md:h-[80px]" />
+      <Skeleton className="w-[70%]  h-[50px] md:h-[80px] mt-5" />
       <div className="flex w-full justify-center items-center gap-4 mt-2">
-        <Skeleton className="w-[70px] h-[70px] rounded-full" />
-        <Skeleton className="w-[20%] h-[1rem] " />
+        <Skeleton className="md:w-[70px] md:h-[70px]  w-[50px] h-[50px] rounded-full" />
+        <Skeleton className="w-[20%] h-[1rem]" />
         <Skeleton className="w-[20px] h-[20px] rounded-full" />
         <Skeleton className="w-[10%] h-[1rem] " />
       </div>
-      <Skeleton className="w-[100%] h-[450px] mt-6" />
+      <Skeleton className="w-[100%] h-[300px] md:h-[450px] mt-6" />
     </div>
   );
 };

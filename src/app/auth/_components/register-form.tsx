@@ -105,7 +105,7 @@ export const RegisterForm = ({
           </p>
         )}
       <Button
-        className="mt-3 col-span-2 dark:text-white"
+        className="mt-3 col-span-2 dark:text-white  dark:hover:bg-sky-900"
         type="submit"
         disabled={isRegisterLoading}
       >

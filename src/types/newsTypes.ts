@@ -71,6 +71,7 @@ export interface SubMenu {
     menu?: string;
     createdAt: string | Date;
     updatedAt?: string;
+    shares: number;
     __v?: number;
   }
   

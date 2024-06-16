@@ -10,9 +10,7 @@ import {
   WhatsappShareButton,
 } from "react-share";
 
-import {
-  MessageCircleDashedIcon,
-} from "lucide-react";
+import { MessageCircleDashedIcon } from "lucide-react";
 import { NewsDetailsLoading } from "./news-details-page-loading.component";
 import { News } from "@/types/newsTypes";
 import { AdsViewComponent } from "./ads-view.component";
@@ -26,6 +24,8 @@ import { Comment } from "@/types/newsTypes";
 
 import { useSelector } from "react-redux";
 import { PopUpAdsPage } from "./news/pop-up-ads-on-details-page.component";
+import { useShareCountIncMutation } from "@/(service)/api/news.api";
+import { formatNumberTOK } from "@/utils/formatNumber.util";
 
 interface DetailsPageProps {
   isNewsFetching: boolean;
@@ -39,6 +39,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
   newsData,
   type,
 }) => {
+  console.log(type)
   const settings = useSelector(
     (state: any) => state?.app?.appSettings?.defaultSettings
   );
@@ -47,6 +48,12 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
   );
   const [comment, setComment] = useState<Comment[]>([]);
   const [isHeadingSticky, setIsHeadingSticky] = useState<boolean>(false);
+
+  const [shareInc] = useShareCountIncMutation();
+
+  const handleShareCountInc = async() => {
+    await shareInc({newsId:newsData?._id, newsType:type})
+  }
   useEffect(() => {
     const handleScroll: () => void = () => {
       const scrollPosition = window.scrollY;
@@ -84,10 +91,10 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
       )}
       {isNewsFetching && <NewsDetailsLoading />}
       {isNewsfetched && (
-        <div className="md:container md:mx-auto min-h-screen w-full  p-2">
+        <div className="lg:container md:mx-auto min-h-screen w-full  lg:p-2">
           <div className="w-full p-1 md:p-8 dark:bg-[#020817] bg-white">
             <div
-              className={`sticky top-[81px] z-10  dark:bg-[#020817] bg-white`}
+              className={`sticky md:top-[60px] lg:top-[60px] z-10  dark:bg-[#020817] bg-white`}
             >
               <div className="flex justify-between items-center">
                 <h1
@@ -98,7 +105,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                 {isHeadingSticky && (
                   <div className="md:flex hidden items-center gap-3 justify-center ease-linear	transition-all duration-50 mt-3 mb-3">
                     <ReporterAvatarCompoent
-                      fullName={newsData?.owner?.fullName}
+                      fullName={newsData?.owner?.fullName || "not available"}
                       imageUrl={newsData?.owner?.avatar}
                     />
                     {newsData?.createdAt !== undefined && (
@@ -111,21 +118,21 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
               </div>
               <hr className="hidden md:block" />
             </div>
-            <div className="grid grid-cols-12 w-full gap-5">
+            <div className="grid grid-cols-12 w-full md:gap-5 lg:gap-5">
               <div className="col-span-1 hidden md:block">
                 <div
-                  className={`sticky top-[155px]  p-2  z-0 ease-out duration-500`}
+                  className={`sticky top-[155px]  p-1 lg:p-2 z-0 ease-out duration-500`}
                 >
                   <div className="flex justify-center items-center flex-col gap-2">
-                    <MessageCircleDashedIcon size={"48px"} color="#2596be" />
-                    <h1 className="text-3xl font-bold">{comment.length}</h1>
-                    <p className="text-md">comments</p>
+                    <MessageCircleDashedIcon size={"48px"}  className="text-sky-900 dark:text-white" />
+                    <h1 className="text-3xl font-bold text-sky-950 dark:text-white">{formatNumberTOK(comment?.length || 0)}</h1>
+                    <p className="text-md text-slate-500">comments</p>
                   </div>
                   <div className="flex justify-center items-center flex-col gap-2 mt-3">
                     <h1 className="text-3xl font-bold text-sky-900 dark:text-white">
-                      900
+                     {formatNumberTOK(newsData?.shares || 0)}
                     </h1>
-                    <p className="text-md text-slate-500 dark:text-white">
+                    <p className="text-md text-slate-500 ">
                       shares
                     </p>
                   </div>
@@ -135,6 +142,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                         <FacebookShareButton
                           url={window.location.href}
                           title={newsData?.newsTitle}
+                          onClick={handleShareCountInc}
                         >
                           <FacebookIcon className=" rounded-full h-full w-[55px]" />
                         </FacebookShareButton>
@@ -143,6 +151,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                         <TwitterShareButton
                           url={window.location.href}
                           title={newsData?.newsTitle}
+                          onClick={handleShareCountInc}
                         >
                           <TwitterIcon className=" rounded-full h-full w-[55px]" />
                         </TwitterShareButton>
@@ -151,6 +160,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                         <WhatsappShareButton
                           url={window.location.href}
                           title={newsData?.newsTitle}
+                          onClick={handleShareCountInc}
                         >
                           <WhatsappIcon className=" rounded-full h-full w-[55px]" />
                         </WhatsappShareButton>
@@ -182,6 +192,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                     <ReporterAvatarCompoent
                       fullName={newsData?.owner?.fullName}
                       imageUrl={newsData?.owner?.avatar}
+                      
                     />
                     {newsData?.createdAt !== undefined && (
                       <TimeCountComponent
@@ -196,14 +207,17 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                   <div className="flex justify-between items-center mt-4">
                     <div className="text-sky-900 flex items-center gap-3 dark:text-white">
                       <MessageCircleDashedIcon size={"40px"} />
-                      <p className="text-xl font-bold">{comment?.length}</p>
+                      <p className="text-xl font-bold">{formatNumberTOK(comment?.length || 0)}</p>
                     </div>
-                    <div>
+                    <div className="flex items-center gap-2">
+                      <p className="text-md mb-1 text-slate-600">{formatNumberTOK(newsData?.shares || 0) } shares</p>
                       <ul className="text-white flex gap-2">
+                        
                         <li>
                           <FacebookShareButton
                             url={window.location.href}
                             title={newsData?.newsTitle}
+                            onClick={handleShareCountInc}
                           >
                             <FacebookIcon className=" rounded-full h-full w-[40px]" />
                           </FacebookShareButton>
@@ -212,6 +226,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                           <TwitterShareButton
                             url={window.location.href}
                             title={newsData?.newsTitle}
+                            onClick={handleShareCountInc}
                           >
                             <TwitterIcon className=" rounded-full h-full w-[40px]" />
                           </TwitterShareButton>
@@ -220,6 +235,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                           <WhatsappShareButton
                             url={window.location.href}
                             title={newsData?.newsTitle}
+                            onClick={handleShareCountInc}
                           >
                             <WhatsappIcon className=" rounded-full h-full w-[40px]" />
                           </WhatsappShareButton>
@@ -263,7 +279,6 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                           <iframe
                             {...domNode.attribs}
                             className="w-full h-[200px] md:h-[400px] rounded-md"
-                            allowFullScreen
                           ></iframe>
                         );
                       } else if (
@@ -275,7 +290,6 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                             <iframe
                               {...domNode.attribs}
                               className="embed-responsive-item"
-                              allowFullScreen
                             ></iframe>
                           </div>
                         );
@@ -288,14 +302,14 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                 <p className="md:block hidden text-sm text-center">
                   Advertisment
                 </p>
-                <div className="grid grid-cols-12">
-                  <div className="col-span-12 md:col-span-4">
+                <div className="grid grid-cols-12 gap-2 lg:gap-1">
+                  <div className="col-span-12 md:col-span-6 lg:col-span-4">
                     <SideBarAdsCompoent searchStatus="d-7" />
                   </div>
-                  <div className="col-span-12 md:col-span-4">
+                  <div className="col-span-12 md:col-span-6 lg:col-span-4">
                     <SideBarAdsCompoent searchStatus="d-8" />
                   </div>
-                  <div className="col-span-12 md:col-span-4">
+                  <div className="col-span-12 md:col-span-12 lg:col-span-4">
                     <SideBarAdsCompoent searchStatus="d-9" />
                   </div>
                 </div>
@@ -354,3 +368,4 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
     </React.Fragment>
   );
 };
+

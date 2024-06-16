@@ -5,16 +5,16 @@ import React, { useEffect } from "react";
 import { forgotPasswordSchema } from "../auth.validation-schema";
 import { useForgotPasswordMutation } from "@/(service)/api/user.api";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setIsAuthOpen } from "@/(store)/slices/app.slice";
 
 interface ForgotPasswordComponentProps {
   setModalType: (type: string) => void;
-  setOpen: (type: boolean) => void;
 }
 export const ForgotPasswordComponent = ({
   setModalType,
-  setOpen,
 }: ForgotPasswordComponentProps) => {
-
+  const dispatch = useDispatch();
   //mutations
   const [
     email,
@@ -58,7 +58,8 @@ export const ForgotPasswordComponent = ({
   useEffect(() => {
     if (isUserForgetPasswordEmailSent) {
       toast.success("रिसेट पासवर्ड टोकन तपाईंको इमेलमा पठाइएको छ, कृपया जाँच गर्नुहोस्");
-      setOpen(false)
+      dispatch(setIsAuthOpen(false));
+      setModalType("login");
     }
   }, [isUserForgetPasswordEmailSent])
 
@@ -80,7 +81,7 @@ export const ForgotPasswordComponent = ({
                 {forgotPasswordFormState?.errors?.email}
               </p>
             )}
-          <Button className="mt-4 w-full dark:text-white" type="submit" disabled={isLoadingOnForgotPassword}>
+          <Button className="mt-4 w-full dark:text-white dark:hover:bg-sky-900" type="submit" disabled={isLoadingOnForgotPassword}>
             रिसेट पासवर्ड लिङ्क पठाउनुहोस्
           </Button>
         </form>

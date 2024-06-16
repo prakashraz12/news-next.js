@@ -5,35 +5,37 @@ import { UserLogoComponent } from "./user-logo.compoent";
 import { SearchComponent } from "./search.compoent";
 import { MobileNavBrComponent } from "./mobile-navbar.compoent";
 import { AuthModal } from "@/app/auth/auth-modal.compoent";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Avatar } from "./ui/avatar";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { ModeToggle } from "./theme-switcher.component";
 import { UserProfile } from "./user/user-profile-slider.compoent";
 import { MenuIcon } from "lucide-react";
+import { setIsAuthOpen } from "@/(store)/slices/app.slice";
 
 export const NavabrCompoent = () => {
+  const dispatch = useDispatch();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
   const [isUserProfileOpen, setIsUserProfleOpen] = useState<boolean>(false);
   const isLogIn = useSelector(({ app }: { app: any }) => app.token);
 
   const user = useSelector(({ app }: { app: any }) => app.userDetails);
   const [isClient, setIsClient] = useState<boolean>(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
   const handleAuthModalOpen = () => {
-    setIsAuthModalOpen(true);
+    dispatch(setIsAuthOpen(true))
   };
 
   return (
     <React.Fragment>
       {isClient && (
         <div className="w-full shadow-md sticky top-0 bg-white dark:bg-[#020817] border-b z-20 border-t">
-          <nav className="md:container md:mx-auto p-5 flex justify-between items-center relative">
+          <nav className="md:container md:mx-auto pt-2 pb-2 pl-5 pr-5 flex justify-between items-center relative">
             <div className="md:block hidden">
               <MenuComponet />
             </div>
@@ -67,8 +69,6 @@ export const NavabrCompoent = () => {
                   <>
                     <UserLogoComponent onClick={handleAuthModalOpen} />
                     <AuthModal
-                      open={isAuthModalOpen}
-                      setOpen={setIsAuthModalOpen}
                     />
                   </>
                 )}

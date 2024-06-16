@@ -1,4 +1,5 @@
 "use client";
+import { AdsViewComponent } from "@/components/ads-view.component";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -58,7 +59,9 @@ export const LayoutThree = ({ news }: LayoutProps) => {
           <p>{news?.news[0]?.owner?.fullName}</p>
         </div>
         <hr className="mt-2 mb-2" />
+        <p className="text-sm text-center">Advertisement</p>
       </div>
+      <AdsViewComponent searchStatus="menu-c-1"/>
       <div className="grid grid-cols-12 gap-4">
         {news?.news?.length > 1 &&
           news?.news?.slice(1)?.map((item, index) => (
@@ -67,6 +70,9 @@ export const LayoutThree = ({ news }: LayoutProps) => {
             </div>
           ))}
       </div>
+      <hr className="mt-2 mb-2" />
+      <p className="text-sm text-center">Advertisement</p>
+      <AdsViewComponent searchStatus="menu-c-2"/>
     </div>
   );
 };

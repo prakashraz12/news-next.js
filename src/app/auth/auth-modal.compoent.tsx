@@ -12,14 +12,12 @@ import { X } from "lucide-react";
 import { authWihGoogle } from "@/utils/firebase.util";
 import toast from "react-hot-toast";
 import { useLazyContinueWithGoogleQuery } from "@/(service)/api/user.api";
-import { useDispatch } from "react-redux";
-import { setToken, setUserDetails } from "@/(store)/slices/app.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsAuthOpen, setToken, setUserDetails } from "@/(store)/slices/app.slice";
 
-interface AuthModalProps {
-  open: boolean;
-  setOpen: (type: boolean) => void;
-}
-export const AuthModal = ({ open, setOpen }: AuthModalProps) => {
+
+export const AuthModal = () => {
+  const authModalOpen = useSelector((state: any) => state?.app?.isAuthOpen);
   const dispatch = useDispatch();
   const [modalType, setModalType] = useState<string>("login");
   const [googleAuth] = useLazyContinueWithGoogleQuery();
@@ -30,10 +28,10 @@ export const AuthModal = ({ open, setOpen }: AuthModalProps) => {
       const response: any = await googleAuth({
         access_token: user?.accessToken,
       });
-      if (response?.data?.code === 200) {
+      if (response?.data?.code === 200 || response?.data?.code === 201) {
         dispatch(setToken(response?.data?.data?.token));
         dispatch(setUserDetails(response?.data?.data?.user));
-        setOpen(false);
+        dispatch(setIsAuthOpen(false))
       }
       if (response?.error?.data?.code === 403) {
         toast.error(response?.error?.data?.message);
@@ -43,7 +41,7 @@ export const AuthModal = ({ open, setOpen }: AuthModalProps) => {
     }
   };
   return (
-    <Dialog open={open}>
+    <Dialog open={authModalOpen}>
       <DialogContent className="sm:max-w-[425px] md:max-w-[700px] flex justify-center flex-col">
         <DialogHeader>
           <div className="flex justify-between">
@@ -58,7 +56,7 @@ export const AuthModal = ({ open, setOpen }: AuthModalProps) => {
               <X
                 onClick={(e) => {
                   e.preventDefault();
-                  setOpen(false);
+                 dispatch(setIsAuthOpen(false))
                   setModalType("login");
                 }}
               />
@@ -69,19 +67,19 @@ export const AuthModal = ({ open, setOpen }: AuthModalProps) => {
         {modalType === "login" ? (
           <Login
             setModalType={setModalType}
-            setOpen={setOpen}
+           
             handleWithGoogle={handleWithGoogle}
           />
         ) : modalType === "register" ? (
           <Register
             setModalType={setModalType}
-            setOpen={setOpen}
+           
             handleWithGoogle={handleWithGoogle}
           />
         ) : (
           <ForgotPasswordComponent
             setModalType={setModalType}
-            setOpen={setOpen}
+            
           />
         )}
       </DialogContent>

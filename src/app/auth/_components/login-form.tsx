@@ -72,7 +72,7 @@ export const LoginForm = ({
           <a onClick={clickOnForgotPasswordLink}>पासवर्ड भुल्नु भयो</a>
         </p>
       </div>
-      <Button type="submit" disabled={isLoading} className="dark:text-white">
+      <Button type="submit" disabled={isLoading} className="dark:text-white dark:hover:bg-sky-900">
         लगइन
       </Button>
     </form>

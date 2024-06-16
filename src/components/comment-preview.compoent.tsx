@@ -235,40 +235,39 @@ export const CommentPreviewComponent = ({
 
   return (
     <div className="w-full flex gap-2 mt-5">
-      <Avatar>
+      <Avatar className="w-10 h-10 rounded-full">
         <AvatarImage
           src={comment?.owner?.avatar || user?.avatar}
           alt={comment?.owner?.fullName}
-          className="object-cover"
+          className="object-cover w-full h-full"
         />
-        <AvatarFallback>{comment?.owner?.fullName}</AvatarFallback>
+        <AvatarFallback className="flex justify-center items-center">{comment?.owner?.fullName || "N"}</AvatarFallback>
       </Avatar>
-      <Card className="p-3 w-full">
+      <Card className="p-3 w-[90%] ouline-none">
         {isLoadingOnCommentDeleting ? (
           <div className="flex justify-center gap-1 items-center h-14">
             <Loader className="rounded-full   h-5 w-5 animate-spin" />
-            <p>Loading....</p>
           </div>
         ) : (
           <>
             <CardTitle className="flex items-center  justify-between">
               <span className="flex gap-3 items-center">
-                <span className="text-xl md:text-xl  font-bold text-sky-900">
-                  {comment?.owner?.fullName || user?.fullName}
+                <span className="text-xl md:text-xl  font-bold text-sky-900 dark:text-white">
+                  {comment?.owner?.fullName || user?.fullName || "unknown"}
                 </span>
                 <span className="text-sm font-medium">
                   {formatRelativeNepaliDate(new Date(comment?.createdAt))}.
                 </span>
               </span>
-              {(comment?.owner?._id === user?.id?.toString() ||
-                newsOwner?.toString() === user?.id?.toString()) && (
+              {((comment?.owner !== null && comment?.owner?._id === user?.id?.toString()) ||
+                (newsOwner !== null && newsOwner?.toString() === user?.id?.toString())) && (
                 <Popover>
                   <PopoverTrigger>
                     <Ellipsis />
                   </PopoverTrigger>
                   <PopoverContent className="p-3">
                     <ul className="flex flex-col gap-2 ">
-                      {comment.owner?._id?.toString() ===
+                      {comment?.owner !== null && comment.owner?._id?.toString() ===
                         user?.id.toString() && (
                         <li
                           className="flex items-center gap-1 cursor-pointer hover:underline"
@@ -326,7 +325,7 @@ export const CommentPreviewComponent = ({
               )}
               <div className="mt-3 flex gap-4 justify-end items-center">
                 <Button
-                  variant={"outline"}
+                  variant={"link"}
                   size={"sm"}
                   className="rounded-xl"
                   onClick={handleReplyOpen}
@@ -335,7 +334,7 @@ export const CommentPreviewComponent = ({
                 </Button>
                 <div className="cursor-pointer flex items-center gap-1">
                   {comment.likes.includes(user?.id) ? (
-                    <img src="/like.png" alt="like-icon" className="h-5" />
+                      <img src="/like.png" alt="like-icon" className={`h-5 filter dark:invert dark:brightness-100 dark:grayscale-0`} />
                   ) : (
                     <ThumbsUpIcon size={"20px"} onClick={hanldeLikeComment} />
                   )}
@@ -343,13 +342,13 @@ export const CommentPreviewComponent = ({
                   <p className="mt-1">{comment?.likes?.length}</p>
                 </div>
 
-                <div className="cursor-pointer flex items-center">
+                <div className="cursor-pointer flex items-center gap-2">
                   {comment.disLikes?.includes(user?.id) ? (
-                    <img src="/dislike.png" alt="like-icon" className="h-5" />
+                    <img src="/dislike.png" alt="like-icon" className="h-5 dark:invert dark:brightness-100 dark:grayscale-0" />
                   ) : (
                     <ThumbsDownIcon size={"20px"} onClick={handleDislike} />
                   )}
-                  <p>{comment?.disLikes?.length}</p>
+                  <p className="mb-2">{comment?.disLikes?.length}</p>
                 </div>
               </div>
               {comment.replies.length > 0 &&

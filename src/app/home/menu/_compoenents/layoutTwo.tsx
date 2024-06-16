@@ -13,7 +13,8 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from "embla-carousel-autoplay";
+import { AdsViewComponent } from "@/components/ads-view.component";
 
 interface LayoutTwoProps {
   news: {
@@ -30,9 +31,9 @@ export const LayoutTwo = ({ news }: LayoutTwoProps) => {
         <div className="pt-4 pb-4 flex justify-between items-center">
           <h1 className="text-white text-4xl font-bold">{news?.submenu}</h1>
           <div className="text-sky-900 cursor-pointer bg-white w-[30px] h-[30px] flex justify-center items-center rounded-full">
-          <Link href={`/home/submenu/${news?.subMenuId}`}>
-          <ChevronRight />
-         </Link>
+            <Link href={`/home/submenu/${news?.subMenuId}`}>
+              <ChevronRight />
+            </Link>
           </div>
         </div>
         <Carousel
@@ -82,6 +83,11 @@ export const LayoutTwo = ({ news }: LayoutTwoProps) => {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+      </div>
+      <div className="md:container p-2">
+        <hr className="mt-2 mb-2" />
+        <p className="text-sm text-center text-white">Advertisement</p>
+        <AdsViewComponent searchStatus="menu-c-3"/>
       </div>
     </div>
   );

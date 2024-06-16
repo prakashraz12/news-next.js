@@ -1,5 +1,6 @@
 "use client";
 import { useGetProvinceNewsQuery } from "@/(service)/api/news.api";
+import { AdsViewComponent } from "@/components/ads-view.component";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { province } from "@/constant";
@@ -21,6 +22,9 @@ const Page = () => {
 
   return (
     <div className="md:container mt-5 mb-6">
+      <hr className="mt-2 mb-2" />
+      <p className="text-sm text-center">Advertisement</p>
+      <AdsViewComponent searchStatus="pr-1" />
       {isLoading && <Loading />}
       {isSuccess &&
         Object.entries(provinceData).map(([provinceName, news]) => (
@@ -42,53 +46,64 @@ const Page = () => {
             )}
             {news?.length > 0 &&
               news?.map((data: News, index: number) => (
-                <Link href={`/home/news/${data?._id}`} key={index}>
-                  <div className="w-full flex gap-4 mt-5 flex-col md:flex-row">
-                    <img
-                      src={data?.bannerImage || "/no-photo.png"}
-                      alt="news-image"
-                      className={` w-full lg:w-[200px] h-[200px] md:h-[200px] ${data?.bannerImage ? "object-cover" : "object-contain"} ${!data?.bannerImage && "opacity-10"}`}
-                    />
-                    <div className="flex flex-col justify-between p-3">
-                      <h1 className="text-xl md:text-3xl font-bold line-clamp-2 hover:text-sky-950 dark:text-white">
-                        {data?.newsTitle?.slice(0, 240)}
-                      </h1>
-                      <p className="hidden md:flex">{data?.shortDescription}</p>
-                      <div className=" items-center gap-3 justify-end hidden md:flex">
-                        <Avatar className="border-2">
-                          <AvatarImage
-                            src={data?.owner?.avatar}
-                            alt="owner"
-                            className="object-cover"
-                          />
-                          <AvatarFallback>
-                            {data?.owner?.fullName?.slice(0, 1)}
-                          </AvatarFallback>
-                        </Avatar>
-                        <p>{data?.owner?.fullName}</p>
+                <React.Fragment key={index}>
+                  <Link href={`/home/news/${data?._id}`} key={index}>
+                    <div className="w-full flex gap-4 mt-5 flex-col md:flex-row">
+                      <img
+                        src={data?.bannerImage || "/no-photo.png"}
+                        alt="news-image"
+                        className={` w-full lg:w-[200px] h-[200px] md:h-[200px] ${data?.bannerImage ? "object-cover" : "object-contain"} ${!data?.bannerImage && "opacity-10"}`}
+                      />
+                      <div className="flex flex-col justify-between p-3">
+                        <h1 className="text-xl md:text-3xl font-bold line-clamp-2 hover:text-sky-950 dark:text-white">
+                          {data?.newsTitle?.slice(0, 240)}
+                        </h1>
+                        <p className="hidden md:flex">
+                          {data?.shortDescription}
+                        </p>
+                        <div className=" items-center gap-3 justify-end hidden md:flex">
+                          <Avatar className="border-2">
+                            <AvatarImage
+                              src={data?.owner?.avatar}
+                              alt="owner"
+                              className="object-cover"
+                            />
+                            <AvatarFallback>
+                              {data?.owner?.fullName?.slice(0, 1)}
+                            </AvatarFallback>
+                          </Avatar>
+                          <p>{data?.owner?.fullName}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <p className="mt-2 md:hidden p-3">{data?.shortDescription}</p>
-                  <div className=" items-center gap-3 justify-end flex md:hidden p-2">
-                    <Avatar className="border-2">
-                      <AvatarImage
-                        src={data?.owner.avatar}
-                        alt="owner"
-                        className="object-cover"
-                      />
-                      {data?.owner?.fullName?.slice(0, 1)}
-                    </Avatar>
-                    <p>{data?.owner?.fullName}</p>
-                  </div>
+                    <p className="mt-2 md:hidden p-3">
+                      {data?.shortDescription}
+                    </p>
+                    <div className=" items-center gap-3 justify-end flex md:hidden p-2">
+                      <Avatar className="border-2">
+                        <AvatarImage
+                          src={data?.owner.avatar}
+                          alt="owner"
+                          className="object-cover"
+                        />
+                        {data?.owner?.fullName?.slice(0, 1)}
+                      </Avatar>
+                      <p>{data?.owner?.fullName}</p>
+                    </div>
 
-                  <hr className="mt-2 mb-2" />
-                </Link>
+                    <hr className="mt-2 mb-2" />
+                  </Link>
+                </React.Fragment>
               ))}
+            {news?.length > 0 && (
+              <>
+                <p className="text-sm text-center mt-2 mb-2">Advertisement</p>
+                <AdsViewComponent searchStatus={news[0]?.province as string} />
+                <hr className="mt-2 mb-2" />
+              </>
+            )}
           </div>
         ))}
-
-      <div></div>
     </div>
   );
 };

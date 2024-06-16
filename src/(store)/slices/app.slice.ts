@@ -16,10 +16,12 @@ if (typeof window !== "undefined") {
 if (typeof window !== "undefined") {
     userDetails = JSON.parse(Cookies.get("userDetails") || "null") || null
 }
+const isAuthOpen = false;
 const initialState = {
     appSettings,
     token,
-    userDetails
+    userDetails,
+    isAuthOpen
 
 };
 
@@ -45,10 +47,13 @@ const appSlice = createSlice({
             state.token = null;
             Cookies.remove("access_token");
             Cookies.remove("userDetails");
+        },
+        setIsAuthOpen: (state, action) => {
+            state.isAuthOpen = action.payload;
         }
     },
 });
 
-export const { addSettings, setToken, setUserDetails, setLogOut } = appSlice.actions;
+export const { addSettings, setToken, setUserDetails, setLogOut, setIsAuthOpen} = appSlice.actions;
 
 export default appSlice.reducer;

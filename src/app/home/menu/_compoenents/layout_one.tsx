@@ -1,4 +1,6 @@
 "use client";
+import { AdsViewComponent } from "@/components/ads-view.component";
+import { SideBarAdsCompoent } from "@/components/news/side-bar-ads.compoent";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { VarticalNewsCardCompoent } from "@/components/vartical-news-card.compoent";
@@ -24,7 +26,7 @@ export const LayoutOneComponent = ({ news }: LayoutOneProps) => {
           {news?.submenu}
         </h1>
         <div className="w-[30px] h-[30px] rounded-full bg-orange-800 dark:bg-[#1e273b]  flex justify-center items-center text-white cursor-pointer">
-          <Link href={`/home/submenu/${news?.subMenuId}`}>
+          <Link href={`/home/submenu/${news?.subMenuId}`} aria-label="view  details page">
             <ChevronRight />
           </Link>
         </div>
@@ -53,12 +55,26 @@ export const LayoutOneComponent = ({ news }: LayoutOneProps) => {
           </p>
         </div>
       </div>
+      <div>
+        <hr className="mt-2 mb-2" />
+        <p className="text-sm text-center">Advertisment</p>
+        <AdsViewComponent searchStatus="menu-1"/>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {news?.news.slice(1).map((item, index) => (
           <div key={index}>
             <VarticalNewsCardCompoent item={item} />
           </div>
         ))}
+      </div>
+      <div>
+        <hr className="mt-2 mb-2" />
+        <p className="text-sm text-center">Advertisment</p>
+      </div>
+      <div className="grid gird-cols-1 md:grid-cols-3">
+        <SideBarAdsCompoent searchStatus="menu-b-1"/>
+        <SideBarAdsCompoent searchStatus="menu-b-2"/>
+        <SideBarAdsCompoent searchStatus="menu-b-3"/>
       </div>
     </div>
   );

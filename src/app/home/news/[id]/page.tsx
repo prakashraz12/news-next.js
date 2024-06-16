@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { NewsDetailsPage } from "@/components/details-page.compeont";
 import { useLazyGetNewsByIdQuery } from "@/(service)/api/news.api";
 
+
 const DetailsPage = () => {
   const [newsData, setNewsData] = useState<News | any>(undefined);
   const params = useParams();
@@ -34,8 +35,13 @@ const DetailsPage = () => {
       isNewsFetching={isNewsFetching}
       newsData={newsData}
       isNewsfetched={isNewsfetched}
+      type="news"
     />
   );
 };
 
 export default DetailsPage;
+
+
+
+

@@ -72,7 +72,7 @@ export const SearchComponent = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost" className="p-2" aria-label="search-button">
+        <Button variant="ghost" className="p-2 bg-transparent" aria-label="search-button">
           <Search />
         </Button>
       </DialogTrigger>
@@ -94,7 +94,7 @@ export const SearchComponent = () => {
             onChange={(e) => setSearchParams(e.target.value)}
             className="w-full"
           />
-          <Button onClick={handleSearchParams}>
+          <Button disabled={!searchParams.length} onClick={handleSearchParams} className="text-white dark:hover:bg-sky-950">
             <Search />
           </Button>
           {isSuccess && searchParams?.length > 0 && (

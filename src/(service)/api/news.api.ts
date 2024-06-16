@@ -65,6 +65,13 @@ export const newsApi = createApi({
       query: () => ({
         url:"/province"
       })
+    }),
+    shareCountInc: builder.mutation({
+      query: (data) => ({
+        url: "/inc/shares",
+        method: "PUT",
+        body:data
+      })
     })
     
   }),
@@ -79,5 +86,6 @@ export const {
   useGetNewsBySubMenuMutation,
   useGetMoreCommentedNewsQuery,
   useGetProvinceNewsQuery,
-  useSearchNewsMutation
+  useSearchNewsMutation,
+  useShareCountIncMutation
 } = newsApi;

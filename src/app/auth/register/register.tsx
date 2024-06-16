@@ -5,14 +5,16 @@ import { registerUserSchema } from "../auth.validation-schema";
 import { VerifyEmailPopUp } from "../_components/verify-email.compoent";
 import { useRegisterMutation } from "@/(service)/api/user.api";
 import toast from "react-hot-toast";
+import { setIsAuthOpen } from "@/(store)/slices/app.slice";
+import { useDispatch } from "react-redux";
 
 interface RegisterProps {
   setModalType: (type: string) => void;
-  setOpen: (type: boolean) => void;
   handleWithGoogle: (type: any) => void;
 }
 
-const Register = ({ setModalType, setOpen, handleWithGoogle }: RegisterProps) => {
+const Register = ({ setModalType, handleWithGoogle }: RegisterProps) => {
+  const dispatch = useDispatch();
   const [
     registerData,
     {
@@ -46,7 +48,7 @@ const Register = ({ setModalType, setOpen, handleWithGoogle }: RegisterProps) =>
       registerUserFormState?.resetForm();
       setTimeout(() => {
         setIsVerifyEmailPopUpOpen(false);
-        setOpen(false);
+        dispatch(setIsAuthOpen(false))
       }, 5000);
     }
   }, [isRegisterSuccess]);

@@ -66,7 +66,6 @@ export const TrendingNews = ({ colSpan, menu, limit }: TrendingNewsProps) => {
       )}
       <section>
         <p className="text-sm font-extralight text-center">Advertisement</p>
-
         <AdsViewComponent searchStatus="trending" />
       </section>
     </div>

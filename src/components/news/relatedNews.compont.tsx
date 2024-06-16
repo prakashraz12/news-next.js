@@ -40,7 +40,7 @@ export const RelatedNews = ({ menu, subMenu, newsId }: RelatedNewsProps) => {
             </h1>
             <hr className="mt-2" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:p-6 p-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:p-6 p-2">
             {newsData
               .filter((i) => i._id !== newsId)
               .map((item, index) => (

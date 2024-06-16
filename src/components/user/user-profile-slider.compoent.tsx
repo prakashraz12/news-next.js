@@ -1,20 +1,31 @@
 import React, { useEffect } from "react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { MessageCircleHeart, SettingsIcon } from "lucide-react";
+import { LogOut, MessageCircleHeart, SettingsIcon } from "lucide-react";
 import { UserSettings } from "./user-settings.compoent";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLazyGetCommentByUserIdQuery } from "@/(service)/api/comment.ap";
 import { CommentCard } from "./comment-card.compoent";
+import { Button } from "../ui/button";
+import { Card, CardContent } from "../ui/card";
+import { useLazyLogoutQuery } from "@/(service)/api/user.api";
+import { setLogOut } from "@/(store)/slices/app.slice";
 interface UserProfilePorps {
   open: boolean;
   setOpen: (type: boolean) => void;
 }
 export const UserProfile = ({ open, setOpen }: UserProfilePorps) => {
+  const dispatch = useDispatch();
   const user = useSelector((state: any) => state?.app?.userDetails);
   const [comment, { data, isSuccess }] = useLazyGetCommentByUserIdQuery();
   const fetchComment = async () => {
     await comment({});
+  };
+  const [logOut, { isSuccess: isLogout, isLoading: isLoggingOut }] =
+    useLazyLogoutQuery();
+
+  const handleLogout = async () => {
+    await logOut({});
   };
   useEffect(() => {
     if (user) {
@@ -22,6 +33,12 @@ export const UserProfile = ({ open, setOpen }: UserProfilePorps) => {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (isLogout) {
+      dispatch(setLogOut());
+      setOpen(false);
+    }
+  }, [isLogout]);
   return (
     <Sheet open={open} onOpenChange={() => setOpen(false)}>
       <SheetContent className="w-[95%] p-0 flex flex-col justify-between">
@@ -44,8 +61,11 @@ export const UserProfile = ({ open, setOpen }: UserProfilePorps) => {
               <TabsTrigger value="comment" className="w-full">
                 Comments <MessageCircleHeart className="w-8 h-5" />
               </TabsTrigger>
-              <TabsTrigger value="s">
+              <TabsTrigger value="profile">
                 Settings <SettingsIcon className="w-8 h-5" />
+              </TabsTrigger>
+              <TabsTrigger value="logout">
+                Logout <LogOut className="w-8 h-5" />
               </TabsTrigger>
             </TabsList>
             <TabsContent
@@ -60,8 +80,34 @@ export const UserProfile = ({ open, setOpen }: UserProfilePorps) => {
                 <p className="text-center">अझै टिप्पणी गरिएको छैन</p>
               )}
             </TabsContent>
-            <TabsContent value="s">
+            <TabsContent value="profile">
               <UserSettings user={user} setOpen={setOpen} />
+            </TabsContent>
+            <TabsContent
+              value="logout"
+              className="w-full h-[500px] flex items-center justify-center"
+            >
+              <Card>
+                <CardContent className="mt-2">
+                  <p className="text-xl">Are you sure want to logout?</p>
+                  <div className="flex flex-col gap-2 mt-5">
+                    <Button
+                      className="w-full"
+                      disabled={isLoggingOut}
+                      onClick={handleLogout}
+                    >
+                      Sure
+                    </Button>
+                    <Button
+                      variant={"destructive"}
+                      disabled={isLoggingOut}
+                      onClick={() => setOpen(false)}
+                    >
+                      No,cancel
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             </TabsContent>
           </Tabs>
         </div>

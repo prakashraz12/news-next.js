@@ -45,7 +45,7 @@ export const SideBarAdsCompoent = ({
             src={ads[searchStatus]?.adsImage}
             alt="ads-image"
             loading="lazy"
-            className="md:w-[90%] w-full h-[200px] md:object-cover object-cover rounded"
+            className="lg:w-[90%]  w-full h-[200px] md:object-cover object-contain"
           />
         </div>
       )}

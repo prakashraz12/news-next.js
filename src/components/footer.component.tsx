@@ -18,7 +18,7 @@ export const FooterCompoent = () => {
         <footer className="bg-sky-900 w-full dark:bg-[#020817] border-t">
           <div className="grid grid-cols-1 md:grid-cols-4 md:container md:mx-auto  w-full p-5">
             <div>
-              <h1 className="text-3xl font-bold text-white">उपयोगी लिंकहरु</h1>
+              <h1 className="text-xl lg:text-3xl font-bold text-white">उपयोगी लिंकहरु</h1>
               <ul className="flex flex-col gap-3 p-3">
                 <li className="text-white hover:text-sky-200 cursor-pointer w-auto">
                   <Link href={`/`} legacyBehavior aria-label="home page">
@@ -44,7 +44,7 @@ export const FooterCompoent = () => {
             </div>
 
             <div>
-              <h1 className="text-3xl font-bold text-white">
+              <h1 className="text-xl lg:text-3xl font-bold text-white">
                 {appSettings?.menus?.length >= 1 &&
                   appSettings?.menus[1]?.menuTitle}
               </h1>
@@ -65,7 +65,7 @@ export const FooterCompoent = () => {
               </ul>
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white">नेपाल खबर</h1>
+              <h1 className="text-xl lg:text-3xl font-bold text-white">नेपाल खबर</h1>
               <ul className="flex flex-col gap-3 p-3">
                 <li className="text-white hover:text-sky-200 cursor-pointer">
                   प्रयोगका सर्त

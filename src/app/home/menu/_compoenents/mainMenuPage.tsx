@@ -6,6 +6,7 @@ import { FallbackNewsLayout } from "./fallback-news.layout";
 import { LayoutThree, LayoutThreeLoading } from "./layoutThree";
 import { LayoutOneComponent, LayoutOneLoading } from "./layout_one";
 import { News } from "@/types/newsTypes";
+import { AdsViewComponent } from "@/components/ads-view.component";
 
 interface NewsProps {
   submenu?: string;
@@ -66,8 +67,13 @@ export const MainMenuPage = () => {
     <>
       {isClient && (
         <>
+          <div className="lg:container mt-2">
+            <hr />
+            <p className="text-sm text-center">Advertisement</p>
+            <AdsViewComponent searchStatus="menu-c-2" />
+          </div>
           {isSuccess && newsData?.length > 0 && (
-            <div className="w-full p-2">
+            <div className="w-full">
               {isSuccess &&
                 newsData?.map((news: any, index: number) => {
                   if (news?.news?.length > 0) {

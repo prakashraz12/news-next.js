@@ -37,11 +37,11 @@ export const PopUpAdsPage = ({
         <div className="w-full fixed bg-slate-200 h-screen z-50 top-0 overflow-hidden flex justify-center items-center flex-col transition-all ease-in-out duration-1000">
           <div className="flex flex-col mb-5">
             <h1 className="text-5xl text-sky-900 font-bold">नेपाल खबर</h1>
-            <p className="text-sm text-sky-900 text-end mt-2">
+            <p className="text-sm text-sky-900 text-end mt-5 lg:mt-3">
               {formatNepaliDate(todayDate)}
             </p>
           </div>
-          <div className="w-full md:w-[500px] h-[300px]  relative">
+          <div className="w-full md:w-[500px] h-[300px]  relative mt-4">
             <img
               src={data?.data?.adsImage}
               className="aspect-video sm:w-full h-full"
@@ -49,7 +49,7 @@ export const PopUpAdsPage = ({
               onClick={handleClickOnAds}
             />
             <Badge
-              className="bg-red-600 absolute top-[-40px] right-2 p-2 cursor-pointer"
+              className="bg-red-600  dark:text-white dark:hover:bg-red-900  absolute top-[-40px] right-2 p-2 cursor-pointer"
               onClick={() => {
                 setIsAdsShown(false);
               }}
