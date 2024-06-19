@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { ReporterAvatarCompoent } from "./reporter-avatar.compoent";
 import { TimeCountComponent } from "./time-count.compoent";
@@ -39,7 +40,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
   newsData,
   type,
 }) => {
-  console.log(type)
+  
   const settings = useSelector(
     (state: any) => state?.app?.appSettings?.defaultSettings
   );
@@ -56,7 +57,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
   }
   useEffect(() => {
     const handleScroll: () => void = () => {
-      const scrollPosition = window.scrollY;
+      const scrollPosition =  window.scrollY;
       setIsHeadingSticky(scrollPosition > 80);
     };
 
@@ -84,6 +85,8 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
     }, 4000);
   }, []);
 
+
+  const hrefLink = typeof window !== "undefined" && window.location.href;
   return (
     <React.Fragment>
       {isAdsShown && (
@@ -94,7 +97,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
         <div className="lg:container md:mx-auto min-h-screen w-full  lg:p-2">
           <div className="w-full p-1 md:p-8 dark:bg-[#020817] bg-white">
             <div
-              className={`sticky md:top-[60px] lg:top-[60px] z-10  dark:bg-[#020817] bg-white`}
+              className={`sticky md:top-[60px] lg:top-[57px] z-10  dark:bg-[#020817] bg-white`}
             >
               <div className="flex justify-between items-center">
                 <h1
@@ -140,7 +143,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                     <ul className="flex flex-col justify-between items-center h-auto gap-2 text-white">
                       <li>
                         <FacebookShareButton
-                          url={window.location.href}
+                          url={hrefLink as string}
                           title={newsData?.newsTitle}
                           onClick={handleShareCountInc}
                         >
@@ -149,7 +152,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                       </li>
                       <li>
                         <TwitterShareButton
-                          url={window.location.href}
+                          url={hrefLink as string}
                           title={newsData?.newsTitle}
                           onClick={handleShareCountInc}
                         >
@@ -158,7 +161,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                       </li>
                       <li>
                         <WhatsappShareButton
-                          url={window.location.href}
+                          url={hrefLink as string}
                           title={newsData?.newsTitle}
                           onClick={handleShareCountInc}
                         >
@@ -215,7 +218,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                         
                         <li>
                           <FacebookShareButton
-                            url={window.location.href}
+                            url={hrefLink as string}
                             title={newsData?.newsTitle}
                             onClick={handleShareCountInc}
                           >
@@ -224,7 +227,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                         </li>
                         <li>
                           <TwitterShareButton
-                            url={window.location.href}
+                            url={hrefLink as string}
                             title={newsData?.newsTitle}
                             onClick={handleShareCountInc}
                           >
@@ -233,7 +236,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
                         </li>
                         <li>
                           <WhatsappShareButton
-                            url={window.location.href}
+                            url={hrefLink as string}
                             title={newsData?.newsTitle}
                             onClick={handleShareCountInc}
                           >

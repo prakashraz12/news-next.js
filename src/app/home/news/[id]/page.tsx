@@ -1,47 +1,32 @@
-"use client";
-import { News } from "@/types/newsTypes";
-import { useParams } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
 import { NewsDetailsPage } from "@/components/details-page.compeont";
-import { useLazyGetNewsByIdQuery } from "@/(service)/api/news.api";
+import React from "react";
+async function getData(id: string) {
+  const res = await fetch(
+    `https://nepal-news-backend.onrender.com/api/v1/news/get/${id}`
+  );
 
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
 
-const DetailsPage = () => {
-  const [newsData, setNewsData] = useState<News | any>(undefined);
-  const params = useParams();
-  const [
-    getNewsById,
-    { isSuccess: isNewsfetched, data: newsDatas, isLoading: isNewsFetching },
-  ] = useLazyGetNewsByIdQuery();
+  return res.json();
+}
 
-  const fetchNews = useCallback(async () => {
-    await getNewsById(params.id);
-  }, [params?.id]);
-
-  useEffect(() => {
-    if (params?.id) {
-      fetchNews();
-    }
-  }, [params?.id]);
-
-  useEffect(() => {
-    if (isNewsfetched) {
-      setNewsData(newsDatas?.data as News);
-    }
-  }, [isNewsfetched]);
+export default async function Page({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
+  const data = await getData(id);
 
   return (
-    <NewsDetailsPage
-      isNewsFetching={isNewsFetching}
-      newsData={newsData}
-      isNewsfetched={isNewsfetched}
-      type="news"
-    />
+    <>
+      <NewsDetailsPage
+        isNewsFetching={false}
+        newsData={data?.data}
+        isNewsfetched={true}
+        type="news"
+      />
+    </>
   );
-};
-
-export default DetailsPage;
-
-
-
-
+}
