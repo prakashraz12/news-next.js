@@ -6,6 +6,7 @@ import React from "react";
 import { ReduxStoreProviderLayout } from "@/layout/redux-provider";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/layout/theme-provider";
+import Head from "next/head";
 
 const mukta = Mukta({ subsets: ["devanagari"], weight: "400" });
 
@@ -22,6 +23,9 @@ export default function RootLayout({
 
   return (
     <React.Fragment>
+      <Head>
+      <meta name="google-site-verification" content="GOyb2NPFc9DelE8EB0JX-koPq8cp6QZnkLlnKuO0Q4Y" />
+      </Head>
       <html lang="en" suppressHydrationWarning>
         <body className={mukta.className}>
           <ThemeProvider
