@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: "नेपाल खबर",
   },
   description: "This is site for accessing news content",
-  other:{"google-site-verification":"GOyb2NPFc9DelE8EB0JX"}
+  other:{"google-site-verification":"GOyb2NPFc9DelE8EB0JX-koPq8cp6QZnkLlnKuO0Q4Y"}
   
 };
 
