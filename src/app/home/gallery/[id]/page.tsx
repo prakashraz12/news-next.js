@@ -1,48 +1,48 @@
-"use client";
-import { useGetGalleryNewsByIdMutation } from "@/(service)/api/gallery.api";
+
 import { NewsDetailsPage } from "@/components/details-page.compeont";
-import { News } from "@/types/newsTypes";
-import { useParams } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import { Metadata } from "next";
+import React from "react";
+import { BASE_URL } from "../../../../../_config";
 
-const GalleryDetailsPage = () => {
-  const [newsData, setNewsData] = useState<News | any>(undefined);
-  const params = useParams();
-  const [
-    getNewsById,
-    { isSuccess: isNewsfetched, data: newsDatas, isLoading: isNewsFetching },
-  ] = useGetGalleryNewsByIdMutation();
+async function getData(id: string) {
+  try {
+    const res = await fetch(`${BASE_URL}/gallery/get/${id}`);
 
-  // useEffect(() => {
-  //   setIsAdsShown(true);
-  //   setTimeout(() => {
-  //     setIsAdsShown(false);
-  //   }, 1000);
-  // }, []);
-
-  const fetchNews = useCallback(async () => {
-    await getNewsById(params.id);
-  }, [params?.id]);
-
-  useEffect(() => {
-    if (params?.id) {
-      fetchNews();
+    if (!res.ok) {
+      return null;
     }
-  }, [params?.id]);
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-  useEffect(() => {
-    if (isNewsfetched) {
-      setNewsData(newsDatas?.data as News);
-    }
-  }, [isNewsfetched]);
+export async function generateMetadata({
+  params: { id },
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const { data } = await getData(id);
+  return {
+    title: data?.newsTitle,
+    description: data?.shortDescription,
+  };
+}
+
+export default async function Page({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
+  const data = await getData(id);
+
   return (
-    <NewsDetailsPage
-      isNewsFetching={isNewsFetching}
-      newsData={newsData}
-      isNewsfetched={isNewsfetched}
-      type="gallery"
-    />
+    <>
+      <NewsDetailsPage
+        newsData={data?.data}
+        isNewsfetched={true}
+        type="gallery"
+      />
+    </>
   );
-};
-
-export default GalleryDetailsPage;
+}

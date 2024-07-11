@@ -1,47 +1,46 @@
-"use client";
-import { useLazyGetStoryNewsByIdQuery } from "@/(service)/api/story.api";
 import { NewsDetailsPage } from "@/components/details-page.compeont";
-import { News } from "@/types/newsTypes";
-import { useParams } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
+import { BASE_URL } from "../../../../../_config";
+import { Metadata } from "next";
+async function getData(id: string) {
+  try {
+    const res = await fetch(`${BASE_URL}/story/get/${id}`);
 
-const Page = () => {
-  const [newsData, setNewsData] = useState<News | any>(undefined);
-  const params = useParams();
-  const [
-    getNewsById,
-    { isSuccess: isNewsfetched, data: newsDatas, isLoading: isNewsFetching },
-  ] = useLazyGetStoryNewsByIdQuery();
-
-  // useEffect(() => {
-  //   setIsAdsShown(true);
-  //   setTimeout(() => {
-  //     setIsAdsShown(false);
-  //   }, 1000);
-  // }, []);
-
-  const fetchNews = useCallback(async () => {
-    await getNewsById(params.id);
-  }, [params?.id]);
-
-  useEffect(() => {
-    if (params?.id) {
-      fetchNews();
+    if (!res.ok) {
+      return null;
     }
-  }, [params?.id]);
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-  useEffect(() => {
-    if (isNewsfetched) {
-      setNewsData(newsDatas?.data as News);
-    }
-  }, [isNewsfetched]);
+export async function generateMetadata({
+  params: { id },
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const { data } = await getData(id);
+  return {
+    title: data?.newsTitle,
+    description: data?.shortDescription,
+  };
+}
+
+export default async function Page({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
+  const data = await getData(id);
+
   return (
-    <NewsDetailsPage
-      isNewsFetching={isNewsFetching}
-      newsData={newsData}
-      isNewsfetched={isNewsfetched}
-    />
+    <>
+      <NewsDetailsPage
+        newsData={data?.data}
+        isNewsfetched={true}
+        type="story"
+      />
+    </>
   );
-};
-
-export default Page;
+}

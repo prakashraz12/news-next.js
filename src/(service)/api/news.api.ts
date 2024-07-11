@@ -80,12 +80,12 @@ export const newsApi = createApi({
 export const {
   useGetNewsMutation,
   useGetNewsByMenuMutation,
-  useLazyGetNewsByIdQuery,
   useGetTrendingNewsMutation,
   useLazyGetNewsByMenusQuery,
   useGetNewsBySubMenuMutation,
   useGetMoreCommentedNewsQuery,
   useGetProvinceNewsQuery,
   useSearchNewsMutation,
-  useShareCountIncMutation
+  useShareCountIncMutation,
+  useGetNewsByIdQuery
 } = newsApi;

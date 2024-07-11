@@ -1,15 +1,30 @@
 import { NewsDetailsPage } from "@/components/details-page.compeont";
 import React from "react";
+import { BASE_URL } from "../../../../../_config";
+import { Metadata } from "next";
 async function getData(id: string) {
-  const res = await fetch(
-    `https://nepal-news-backend.onrender.com/api/v1/news/get/${id}`
-  );
+  try {
+    const res = await fetch(`${BASE_URL}/news/get/${id}`);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    if (!res.ok) {
+      return null;
+    }
+    return res.json();
+  } catch (error) {
+    console.log(error);
   }
+}
 
-  return res.json();
+export async function generateMetadata({
+  params: { id },
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const { data } = await getData(id);
+  return {
+    title: data?.newsTitle,
+    description: data?.shortDescription,
+  };
 }
 
 export default async function Page({
@@ -22,7 +37,6 @@ export default async function Page({
   return (
     <>
       <NewsDetailsPage
-        isNewsFetching={false}
         newsData={data?.data}
         isNewsfetched={true}
         type="news"

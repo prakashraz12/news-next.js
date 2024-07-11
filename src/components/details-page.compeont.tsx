@@ -12,7 +12,6 @@ import {
 } from "react-share";
 
 import { MessageCircleDashedIcon } from "lucide-react";
-import { NewsDetailsLoading } from "./news-details-page-loading.component";
 import { News } from "@/types/newsTypes";
 import { AdsViewComponent } from "./ads-view.component";
 import { SideBarAdsCompoent } from "./news/side-bar-ads.compoent";
@@ -29,13 +28,11 @@ import { useShareCountIncMutation } from "@/(service)/api/news.api";
 import { formatNumberTOK } from "@/utils/formatNumber.util";
 
 interface DetailsPageProps {
-  isNewsFetching: boolean;
   isNewsfetched: boolean;
   newsData: News;
   type?: string;
 }
 export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
-  isNewsFetching,
   isNewsfetched,
   newsData,
   type,
@@ -92,8 +89,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
       {isAdsShown && (
         <PopUpAdsPage setIsAdsShown={setIsAdsShown} searchStatus="popup-1" />
       )}
-      {isNewsFetching && <NewsDetailsLoading />}
-      {isNewsfetched && (
+
         <div className="lg:container md:mx-auto min-h-screen w-full  lg:p-2">
           <div className="w-full p-1 md:p-8 dark:bg-[#020817] bg-white">
             <div
@@ -367,7 +363,6 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
           </div>
           <RelatedNews menu={newsData?.menu} newsId={newsData?._id} />
         </div>
-      )}
     </React.Fragment>
   );
 };
