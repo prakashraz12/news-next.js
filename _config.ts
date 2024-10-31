@@ -1,3 +1,3 @@
-export const BASE_URL = "https://news.roshankarki1.com.np/api/v1"
+export const BASE_URL = "https://nepal-news-backend.onrender.com"
 
 // https://nepal-news-backend.onrender.com
