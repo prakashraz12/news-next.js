@@ -90,7 +90,7 @@ export const NewsDetailsPage: React.FC<DetailsPageProps> = ({
         <PopUpAdsPage setIsAdsShown={setIsAdsShown} searchStatus="popup-1" />
       )}
 
-        <div className="lg:container md:mx-auto min-h-screen w-full  lg:p-2">
+        <div className="lg:max-w-6xl md:mx-auto min-h-screen w-full  lg:p-2">
           <div className="w-full p-1 md:p-8 dark:bg-[#020817] bg-white">
             <div
               className={`sticky md:top-[60px] lg:top-[57px] z-10  dark:bg-[#020817] bg-white`}

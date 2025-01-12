@@ -52,11 +52,11 @@ const HomePage = () => {
 
   return (
     <HomePageLayout>
-      <main className="md:mx-auto min-h-screen w-full">
+      <main className="md:mx-auto min-h-screen w-full mt-6">
         {isAdsShown && (
           <PopUpAdsPage searchStatus="popup-2" setIsAdsShown={setIsAdsShown} />
         )}
-        <div className="md:container">
+        <div className="max-w-6xl mx-auto">
           <StoryCoverContainer />
           <RednderHighlightedNews />
           <hr className="mb-5" />
@@ -64,10 +64,10 @@ const HomePage = () => {
           <TrendingNews colSpan={6} />
         </div>
         {/* <FeatureNewsCompoent /> */}
-        <section className="md:container">
+        <section className="mx-auto max-w-6xl">
           <ProvinceNewsComponent />
         </section>
-        <section className="md:container">
+        <section className="mx-auto max-w-6xl">
           <CoverStoryComponent />
         </section>
         <PhotoGalleryComponet />
